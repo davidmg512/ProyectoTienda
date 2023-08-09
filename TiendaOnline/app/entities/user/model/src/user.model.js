@@ -66,6 +66,24 @@ userSchema.statics.EncryptMD5 = async (passwordUnencrypted)=>{
     const encryptedValue = hash.digest('hex');
     return encryptedValue;
 
+
+}
+
+userSchema.statics.ValidatePhoneNumber = async (numero)=>
+{
+
+        const numeroLimpio = numero.replace(/\D/g, '');
+        
+        if (numeroLimpio.length >= 9 && numeroLimpio.length <= 15) {
+          if (/^\d+$/.test(numeroLimpio)) {
+            return true;
+          }
+        }
+        
+        throw new User.Exceptions.UserBadRequestException({
+            error_type: "PHONE_ERROR",
+            error_message: "BadPhoneNumber"
+        })
 }
 
 const tmpModel = mongoose.model("User", userSchema);

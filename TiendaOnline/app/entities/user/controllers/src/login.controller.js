@@ -40,6 +40,11 @@ async function registerUser(req, res) {
     try {
         const { user_email, user_password } = req.body;
 
+        const numtelfSecure = req.body.user_telf;
+
+        const numValid = await User.subModel.ValidatePhoneNumber(numtelfSecure);
+
+
         const userRecord = await admin.auth().createUser({
             email: user_email,
             password: user_password
