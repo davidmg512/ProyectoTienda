@@ -1,0 +1,21 @@
+{
+    "databases": [
+        {
+            "description": "critical",
+            "uri": "mongodb+srv://SusoJeruso:IiQzx4ZKn8iiySp8@basedatosfit.shmcegj.mongodb.net/BaseDatosLocal",
+            "dialect":"mongo",
+            "database_name": "BaseDatosLocal",
+            "pool": {
+                "max": 100,
+                "min": 10,
+                "acquire": 10000,
+                "idle": 30000
+            }
+        }
+    ],
+    "logs" : {
+        "console" : true,
+        "file" : true,
+        "stopOnUncaughtException" : true
+    }
+}

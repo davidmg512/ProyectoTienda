@@ -1,0 +1,28 @@
+<h2>Registro de Usuario</h2>
+
+<form (submit)="onSubmit()">
+  <div>
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="formData.user_nombre" required>
+  </div>
+  <div>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formData.user_apellidos" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" required>
+  </div>
+  <div>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" required>
+  </div>
+  <div>
+    <label for="telefono">Telefono:</label>
+    <input type="telefono" id="telefono" name="telefono" [(ngModel)]="formData.user_telf" required>
+  </div>
+  
+  <button type="button" (click)="onSubmit()" routerLink="/perfil">Registrar</button>
+</form>
+
+
