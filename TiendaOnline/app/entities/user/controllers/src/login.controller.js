@@ -14,7 +14,7 @@ const admin = require('firebase-admin');
  */
 
 
-async function loginUser(req, res){
+/*async function loginUser(req, res){
 
     try{
         const {user_email, user_password} = req.body;
@@ -29,7 +29,7 @@ async function loginUser(req, res){
         console.error('Error al iniciar sesión', error);
         return res.status(500).json(error.message);
     }
-}
+}*/
 
 async function registerUser(req, res) {
 

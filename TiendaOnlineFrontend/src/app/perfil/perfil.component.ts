@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,15 +9,16 @@ import { Router } from '@angular/router';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent {
+export class PerfilComponent{
 
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router) {}
+    private router: Router, activerouter:ActivatedRoute) {}
 
   onClick(){
     this.UserServiceTsService.logout()
     .then(response =>{ console.log(response);
+      sessionStorage.clear();
       this.router.navigate(['']);
 })
     .catch(error => console.log(error));

@@ -32,6 +32,10 @@ export class LoginComponent {
   onSubmit() {
     this.UserServiceTsService.login(this.formData)
       .then(response =>{ console.log(response);
+        console.log(response.user.email);
+        const nullableValue: string | null = response.user.email; // Supongamos que obtienes un valor nullable de alguna función
+        const stringValue: string = nullableValue ?? 'Valor Predeterminado';
+        sessionStorage.setItem('email',stringValue);
         this.router.navigate(['']);
   })
       .catch(error => console.log(error))
