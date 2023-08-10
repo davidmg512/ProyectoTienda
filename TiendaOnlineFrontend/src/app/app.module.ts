@@ -7,22 +7,32 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 
-import { FormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { LoginComponent } from './login/login.component';
+import {provideAuth, getAuth} from '@angular/fire/auth';
+import {initializeApp} from '@angular/fire/app';
+import {provideFirebaseApp} from '@angular/fire/app';
+import {environment} from '../environments/environment'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+ 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     PerfilComponent,
-    InicioComponent
+    InicioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]

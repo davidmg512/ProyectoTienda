@@ -1,0 +1,16 @@
+
+
+<h2>Inicio de Sesión</h2>
+
+<form (submit)="onSubmit()">
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" required>
+  </div>
+  <div>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" required>
+  </div>
+  
+  <button type="button" (click)="onSubmit()">Log In</button>
+</form>
