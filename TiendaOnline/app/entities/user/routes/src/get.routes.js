@@ -1,10 +1,10 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid, tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
     
-    getAll : function (app) 
+   /* getAll : function (app) 
     {
 
         const User = ModelsService.Models.User;
@@ -35,7 +35,25 @@ module.exports = {
             ],
             User.Controller.getUserById
         );
+    },*/
+
+    getTokenId : function (app) 
+    {
+
+        const User = ModelsService.Models.User;
+
+        // Get user by id
+        app.get(
+            "/user/perfil",
+            [
+                
+                tokenFirebaseValid,
+                User.Middlewares.canReadResource,
+            ],
+            User.Controller.getUserByTokenId
+        );
     },
+
 
     getNombre : function (app)
     {
@@ -50,7 +68,8 @@ module.exports = {
             User.Controller.getUserByNombre
         );
 
-    }
+    },
+
 
 
 };

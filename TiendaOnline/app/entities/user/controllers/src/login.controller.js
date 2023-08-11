@@ -14,7 +14,7 @@ const admin = require('firebase-admin');
  */
 
 
-/*async function loginUser(req, res){
+async function loginUser(req, res){
 
     try{
         const {user_email, user_password} = req.body;
@@ -29,7 +29,7 @@ const admin = require('firebase-admin');
         console.error('Error al iniciar sesión', error);
         return res.status(500).json(error.message);
     }
-}*/
+}
 
 async function registerUser(req, res) {
 
@@ -38,6 +38,7 @@ async function registerUser(req, res) {
 
 
     try {
+
         const { user_email, user_password } = req.body;
 
         const numtelfSecure = req.body.user_telf;
@@ -50,9 +51,9 @@ async function registerUser(req, res) {
             password: user_password
         });
 
-        const noEncryptPassword = req.body.user_password;
+        /*const noEncryptPassword = req.body.user_password;
 
-        req.body.user_password = await User.subModel.EncryptMD5(noEncryptPassword);
+        req.body.user_password = await User.subModel.EncryptMD5(noEncryptPassword);*/
 
         const user = await User.createOne(req.body, {transaction});
         await transaction.commit();

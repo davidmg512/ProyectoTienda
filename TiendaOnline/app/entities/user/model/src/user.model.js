@@ -12,11 +12,6 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
 
-    user_password:{
-        type: String,
-        required:true
-    },
-
     user_nombre:{
         type: String,
         required:true
@@ -57,7 +52,9 @@ userSchema.statics.UserExistsByEmail = async (email)=>{
                 error_message: "User already exists"
             })
         }
+
 },
+
 
 userSchema.statics.EncryptMD5 = async (passwordUnencrypted)=>{
 

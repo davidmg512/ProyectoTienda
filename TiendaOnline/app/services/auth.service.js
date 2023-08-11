@@ -1,6 +1,7 @@
 const ExceptionService = require("@services/exception.service");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const admin = require("firebase-admin");
 const kainda = require("kainda");
 
 /**
@@ -32,6 +33,26 @@ async function tokenValid(req, res, next)
     }
     catch (error) 
     {
+        ExceptionService.handle(error, res);
+    }
+}
+
+async function tokenFirebaseValid(req, res, next){
+    try {
+        const token = getTokenFromHeaders(req);
+        if (!token) {
+            throw kainda.GenericKaindaExceptions.Kainda401Exception.fromTemplate();
+        }
+        
+        // Verifica el token usando el SDK de Firebase
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        
+        if (!decodedToken) {
+            throw kainda.GenericKaindaExceptions.Kainda401Exception.fromTemplate();
+        }
+        next();
+    } catch (error) {
+        console.log(error);
         ExceptionService.handle(error, res);
     }
 }
@@ -174,5 +195,6 @@ module.exports = {
     tokenProvided,
     getTokenFromHeaders,
     decodeToken,
-    verifyToken
+    verifyToken,
+    tokenFirebaseValid
 };

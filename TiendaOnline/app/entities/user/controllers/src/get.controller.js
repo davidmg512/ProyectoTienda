@@ -102,8 +102,35 @@ async function getUserByNombre(req, res){
 
 }
 
+
+
+async function getUserByTokenId(req, res){
+    const User = ModelsService.Models.User;
+
+    const auxiliarEmail = "hola1234@gmail.com";
+
+    try{
+        const user = await User.subModel.findOne({
+            user_email: auxiliarEmail
+        });
+        if(!user){
+            throw new User.Exceptions.UserNotFoundException({
+                error_type: "NOT_FOUND"
+            })
+            
+        }
+        return res.status(200).json(user);
+    }catch (error)
+    {
+        LogService.ErrorLogger.error(error);
+        ExceptionService.handle(error, res);
+    }
+}
+
+
 module.exports = {
     getAllUsers,
     getUserById,
-    getUserByNombre
+    getUserByNombre,
+    getUserByTokenId
 };
