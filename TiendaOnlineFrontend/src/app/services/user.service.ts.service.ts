@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Auth,signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
+import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class UserServiceTsService {
   login({user_email, user_password}: any) {
     return signInWithEmailAndPassword(this.auth, user_email, user_password);
   }
+
 
   logout(){
     return signOut(this.auth);

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-
+errorMessage: string = '';
 /*  constructor(
     private UserServiceTsService: UserServiceTsService,
     private router: Router
@@ -36,6 +36,7 @@ export class LoginComponent {
     sessionStorage.setItem('token',stringValue);
     this.router.navigate(['']);
   }catch(error){
+    this.errorMessage = 'Ha ocurrido un error, por favor inténtalo de nuevo, puede que el correo electrónico o contraseña  sean incorrectos';
     console.log(error);
   }
 

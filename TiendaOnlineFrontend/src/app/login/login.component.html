@@ -23,6 +23,7 @@
           <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" class="form-control" required>
         </div>
         
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
         <button type="button" class="btn btn-secondary float-end" routerLink="/register">Registro</button>
       </form>
