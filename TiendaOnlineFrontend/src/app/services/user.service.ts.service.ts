@@ -17,5 +17,9 @@ export class UserServiceTsService {
     return signOut(this.auth);
   }
 
+  isLoggedIn(): boolean {
+    return this.auth.currentUser !== null;
+  }
+
 
 }

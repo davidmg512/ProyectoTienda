@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { UserServiceTsService } from '../services/user.service.ts.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio',
@@ -7,5 +10,22 @@ import { Component } from '@angular/core';
 })
 export class InicioComponent {
 
+  constructor(private UserServiceTsService: UserServiceTsService,
+    private router: Router, activerouter:ActivatedRoute) {}
 
+  onClick(){
+    this.UserServiceTsService.logout()
+    .then(response =>{ console.log(response);
+      sessionStorage.clear();
+      this.router.navigate(['']);
+})
+    .catch(error => console.log(error));
+
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
 }
+
+
