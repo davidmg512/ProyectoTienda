@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
+import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 
 
 @Component({
@@ -16,9 +17,10 @@ export class PerfilComponent implements OnInit{
   userNombre: string | undefined;
   userApellido: string | undefined;
   userTelefono: string | undefined;
+  resetPasswordString: string = '';
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute) {}
+    private router: Router, activerouter:ActivatedRoute,private auth: Auth) {}
 
   onClick(){
     this.UserServiceTsService.logout()
@@ -49,6 +51,23 @@ export class PerfilComponent implements OnInit{
         console.error('Error al obtener datos del backend:', error);
       });
   }
+
+  async onClickResetPassword() {
+    if (this.userEmail) { // Verifica si this.userEmail está definido
+        const user_email = this.userEmail;
+
+        try {
+            await sendPasswordResetEmail(this.auth, user_email);
+            this.resetPasswordString = 'Se ha enviado un correo electrónico de reseteo de contraseña a su correo personal';
+        } catch (error) {
+            console.error(error);
+            // Maneja el error aquí
+        }
+    } else {
+        console.error('Email no definido'); // Maneja el caso cuando this.userEmail es undefined
+    }
+}
+
 
 
 }

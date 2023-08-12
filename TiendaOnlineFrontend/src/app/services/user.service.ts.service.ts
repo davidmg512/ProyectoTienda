@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider} from '@angular/fire/auth';
+import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class UserServiceTsService {
 
   isLoggedIn(): boolean {
     return this.auth.currentUser !== null;
+  }
+
+  restorePassword({user_email}: any){
+    return sendPasswordResetEmail(this.auth,user_email)
   }
 
 
