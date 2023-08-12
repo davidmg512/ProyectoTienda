@@ -1,35 +1,47 @@
-<h2>Registro de Usuario</h2>
 
-<form (submit)="onSubmit()">
-  <div>
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="formData.user_nombre" required>
-  </div>
-  <div>
-    <label for="apellidos">Apellidos:</label>
-    <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formData.user_apellidos" required>
-  </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" required>
-  </div>
-  <div>
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" required>
-  </div>
-  <div>
-    <label for="telefono">Telefono:</label>
-    <input type="telefono" id="telefono" name="telefono" [(ngModel)]="formData.user_telf" required>
-  </div>
+<head>
+  <!-- ... Otros elementos del encabezado ... -->
   
-  <button type="button" (click)="onSubmit()" routerLink="/login">Registrar</button>
-</form>
+  <!-- Agrega los enlaces a Bootstrap CSS y JavaScript -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-<nav>
-  <a routerLink="/login">Login</a>
-</nav>
-<nav>
-  <a routerLink="">Inicio</a>
-</nav>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title text-center">Registro de Usuario</h2>
+    </div>
+    <div class="card-body">
+      <form (submit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre:</label>
+          <input type="text" id="name" name="name" [(ngModel)]="formData.user_nombre" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="apellidos" class="form-label">Apellidos:</label>
+          <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formData.user_apellidos" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña:</label>
+          <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Telefono:</label>
+          <input type="telefono" id="telefono" name="telefono" [(ngModel)]="formData.user_telf" class="form-control" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" routerLink="/login">Registrar</button>
+        <button type="button" class="btn btn-secondary float-end" routerLink="/login"> Iniciar Sesión </button>
+        <button type="button" class="btn btn-secondary float-end" routerLink=""> Ir al Inicio </button>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 

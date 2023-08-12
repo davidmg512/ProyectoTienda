@@ -50,7 +50,7 @@ module.exports = {
                 tokenFirebaseValid,
                 User.Middlewares.canReadResource,
             ],
-            User.Controller.getUserByTokenId
+            User.Controller.getUserByEmail
         );
     },
 

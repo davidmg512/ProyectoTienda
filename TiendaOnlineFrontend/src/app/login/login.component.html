@@ -1,16 +1,32 @@
 
-
-<h2>Inicio de Sesión</h2>
-
-<form (submit)="onSubmit()">
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" required>
-  </div>
-  <div>
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" required>
-  </div>
+<head>
+  <!-- ... Otros elementos del encabezado ... -->
   
-  <button type="button" (click)="onSubmit()">Log In</button>
-</form>
+  <!-- Agrega los enlaces a Bootstrap CSS y JavaScript -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title text-center">Inicio de Sesión</h2>
+    </div>
+    <div class="card-body">
+      <form (submit)="onSubmit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña:</label>
+          <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" class="form-control" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        <button type="button" class="btn btn-secondary float-end" routerLink="/register">Registro</button>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -2,6 +2,7 @@ const ExceptionService = require("@services/exception.service");
 const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const { ExceptionHandler } = require("winston");
+const admin = require("firebase-admin");
 
 /**
  * Get all users
@@ -104,14 +105,23 @@ async function getUserByNombre(req, res){
 
 
 
-async function getUserByTokenId(req, res){
+async function getUserByEmail(req, res){
     const User = ModelsService.Models.User;
 
-    const auxiliarEmail = "hola1234@gmail.com";
-
+    const authorizationHeader = req.headers.authorization;
+    if (!authorizationHeader) {
+      return res.status(401).json({ message: "Token de autenticación no proporcionado en la cabecera" });
+    }
+  
+    const token = authorizationHeader.split(" ")[1];
     try{
+
+        const  decodedToken = await admin.auth().verifyIdToken(token);
+
+        const userEmail = decodedToken.email;
+
         const user = await User.subModel.findOne({
-            user_email: auxiliarEmail
+            user_email: userEmail
         });
         if(!user){
             throw new User.Exceptions.UserNotFoundException({
@@ -132,5 +142,5 @@ module.exports = {
     getAllUsers,
     getUserById,
     getUserByNombre,
-    getUserByTokenId
+    getUserByEmail
 };

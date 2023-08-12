@@ -14,6 +14,8 @@ export class PerfilComponent implements OnInit{
 
   userEmail: string | undefined;
   userNombre: string | undefined;
+  userApellido: string | undefined;
+  userTelefono: string | undefined;
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute) {}
@@ -29,7 +31,7 @@ export class PerfilComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem('token'); // Reemplaza con tu token real
+    const token = sessionStorage.getItem('token'); 
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -38,8 +40,10 @@ export class PerfilComponent implements OnInit{
   
     axios.get('http://localhost:3000/user/perfil', config)
       .then(response => {
-        console.log(response.data.user_email);
         this.userNombre = response.data.user_nombre;
+        this.userEmail = response.data.user_email;
+        this.userApellido = response.data.user_apellidos;
+        this.userTelefono = response.data.user_telf;
       })
       .catch(error => {
         console.error('Error al obtener datos del backend:', error);

@@ -9,7 +9,7 @@ import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo} from '@angular/
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'register', component: RegisterComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
-  { path: 'perfil', component: PerfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/register']))},
+  { path: 'perfil', component: PerfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   { path: 'login', component: LoginComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))}
 ];
 
