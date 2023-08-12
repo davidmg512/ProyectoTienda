@@ -16,6 +16,7 @@ import {provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionDirective } from './session.directive';
+import { EditarperfilComponent } from './editarperfil/editarperfil.component';
  
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SessionDirective } from './session.directive';
     PerfilComponent,
     InicioComponent,
     LoginComponent,
-    SessionDirective
+    SessionDirective,
+    EditarperfilComponent
   ],
   imports: [
     BrowserModule,

@@ -69,34 +69,6 @@ async function registerUser(req, res) {
 
 }
 
-/*async function registerUser(req, res)
-{
-    const User = ModelsService.Models.User;
-    let transaction = await User.transaction(DbService.get());
-
-    try{
-
-        const user_email = req.body.user_email;
-
-        await User.subModel.UserExistsByEmail(user_email);
-
-        const user = await User.createOne(req.body, { transaction });
-        await transaction.commit();
-        return res.status(201).json(user.toJSON());
-
-    }catch(error){
-        console.log(error);
-        LogService.ErrorLogger.error(error); 
-    
-        await transaction.rollback();
-        
-        ExceptionService.handle(error, res);
-    }
-
-
-}
-*/
-
 module.exports = {
     loginUser,
     registerUser

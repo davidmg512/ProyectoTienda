@@ -15,7 +15,7 @@ module.exports = {
             [
                 deactivateRoute,
                 tokenValid,
-                User.Middlewares.canDeleteResource,
+                //User.Middlewares.canDeleteResource,
             ], 
             User.Controller.deleteUser
         );

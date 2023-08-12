@@ -13,9 +13,7 @@ module.exports = {
         app.put(
             "/user/:user_id/", 
             [
-                deactivateRoute,
-                tokenValid,
-                User.Middlewares.canUpdateResource,
+                User.Middlewares.checkRequiredKeys
             ], 
             User.Controller.updateUser
         );

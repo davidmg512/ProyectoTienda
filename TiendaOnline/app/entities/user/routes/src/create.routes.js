@@ -11,11 +11,11 @@ module.exports = {
 
         // Create new user
         app.post(
-            "/user/",
+            "/user",
             [
                 deactivateRoute,
                 tokenValid,
-                User.Middlewares.canCreateResource,
+                //User.Middlewares.canCreateResource,
                 User.Middlewares.checkRequiredKeys
             ],
             User.Controller.createUser

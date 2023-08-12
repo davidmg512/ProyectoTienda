@@ -5,12 +5,14 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo} from '@angular/fire/auth-guard';
+import { EditarperfilComponent } from './editarperfil/editarperfil.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'register', component: RegisterComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
   { path: 'perfil', component: PerfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
-  { path: 'login', component: LoginComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))}
+  { path: 'login', component: LoginComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
+  { path: 'perfil/editar', component: EditarperfilComponent}
 ];
 
 @NgModule({
