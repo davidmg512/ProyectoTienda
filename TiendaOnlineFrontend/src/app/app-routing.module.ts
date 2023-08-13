@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
   { path: 'perfil', component: PerfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   { path: 'login', component: LoginComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
-  { path: 'perfil/editar', component: EditarperfilComponent}
+  { path: 'perfil/editar', component: EditarperfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))}
 ];
 
 @NgModule({

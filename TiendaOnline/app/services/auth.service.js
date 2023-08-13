@@ -46,10 +46,14 @@ async function tokenFirebaseValid(req, res, next){
         
         // Verifica el token usando el SDK de Firebase
         const decodedToken = await admin.auth().verifyIdToken(token);
+
         
         if (!decodedToken) {
             throw kainda.GenericKaindaExceptions.Kainda401Exception.fromTemplate();
         }
+
+        req.decodedTokenEmail = decodedToken.email;
+
         next();
     } catch (error) {
         console.log(error);

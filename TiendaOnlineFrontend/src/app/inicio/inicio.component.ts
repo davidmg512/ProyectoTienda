@@ -16,7 +16,7 @@ export class InicioComponent {
   onClick(){
     this.UserServiceTsService.logout()
     .then(response =>{ console.log(response);
-      sessionStorage.clear();
+      localStorage.clear();
       this.router.navigate(['']);
 })
     .catch(error => console.log(error));

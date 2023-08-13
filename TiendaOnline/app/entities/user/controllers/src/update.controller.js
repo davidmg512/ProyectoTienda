@@ -39,6 +39,45 @@ async function updateUser(req, res)
     }
 }
 
+async function updateUser(req, res) {
+
+    const User = ModelsService.Models.User;
+    let transaction = await User.transaction(DbService.get());
+
+
+    try {
+
+        const userEmail = req.decodedTokenEmail;
+
+        
+        const numtelfSecure = req.body.user_telf;
+
+        const numValid = await User.subModel.ValidatePhoneNumber(numtelfSecure);
+
+        const dataToUpdate = {
+            user_nombre: req.body.user_nombre,
+            user_apellidos: req.body.user_apellidos,
+            user_telf: req.body.user_telf
+            
+        }
+
+        const user = await User.subModel.updateOne({
+            user_email: userEmail
+        },dataToUpdate);
+
+        await transaction.commit();
+        
+
+        return res.status(201).json({message: "actualizado correctamente"});
+
+    } catch (error) {
+        console.error('Error al actualizar', error);
+        return res.status(500).json(error.message);
+    }
+
+
+}
+
 module.exports = {
     updateUser
 };

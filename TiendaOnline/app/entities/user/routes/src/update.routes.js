@@ -1,5 +1,5 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid, tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
@@ -11,8 +11,9 @@ module.exports = {
 
         // Update user
         app.put(
-            "/user/:user_id/", 
+            "/updateUser", 
             [
+                tokenFirebaseValid,
                 User.Middlewares.checkRequiredKeys
             ], 
             User.Controller.updateUser

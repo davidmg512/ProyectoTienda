@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit{
   onClick(){
     this.UserServiceTsService.logout()
     .then(response =>{ console.log(response);
-      sessionStorage.clear();
+      localStorage.clear();
       this.router.navigate(['']);
 })
     .catch(error => console.log(error));
@@ -33,7 +33,7 @@ export class PerfilComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem('token'); 
+    const token = localStorage.getItem('token'); 
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
