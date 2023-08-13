@@ -69,7 +69,41 @@ async function registerUser(req, res) {
 
 }
 
+
+async function loginUserGoogle(req, res) {
+
+    const User = ModelsService.Models.User;
+    let transaction = await User.transaction(DbService.get());
+
+
+    try {
+
+        const userEmail = req.decodedTokenEmail;
+        const dataToCreate = {
+            
+            user_email: userEmail,
+            user_nombre: 'Jhon Doe',
+            user_apellidos: 'Jhon Doe',
+            user_telf: '000000000'
+            
+        }
+
+        const user = await User.createOne(dataToCreate, {transaction});
+        await transaction.commit();
+        
+
+        return res.status(201).json({message: "El usuairo ha sido creado"});
+
+    } catch (error) {
+        console.error('Error al insertar al usuario en la base de datos', error);
+        return res.status(500).json(error.message);
+    }
+
+
+}
+
 module.exports = {
     loginUser,
-    registerUser
+    registerUser,
+    loginUserGoogle
 };

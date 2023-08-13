@@ -25,5 +25,9 @@ export class UserServiceTsService {
     return sendPasswordResetEmail(this.auth,user_email)
   }
 
+  loginWithGoogle(){
+    return signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
+
 
 }
