@@ -22,7 +22,7 @@
         <button type="button" class="btn btn-info" routerLink="/perfil/editar">Editar perfil</button>
         <button type="button" class="btn btn-secondary float-end" routerLink=""> Ir al Inicio </button>
         <button type="button" class="btn btn-secondary float-end" (click)="onClickResetPassword()" style="margin-right: 10px;"> Cambiar contraseña </button>
-        <div *ngIf="resetPasswordString" class="alert alert-primary">{{ resetPasswordString }}</div>
+        <div style="margin-top: 10px;" *ngIf="resetPasswordString" class="alert alert-primary">{{ resetPasswordString }}</div>
       </div>
     </div>
   </div>

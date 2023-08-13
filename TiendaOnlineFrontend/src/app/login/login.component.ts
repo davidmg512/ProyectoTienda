@@ -79,4 +79,8 @@ async onGoogleClick() {
   
 }
 
+  async resetPassword() {
+    
+    this.router.navigate(['/login/resetpassword']);
+  }
 }

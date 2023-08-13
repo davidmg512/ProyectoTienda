@@ -17,6 +17,7 @@ import {environment} from '../environments/environment'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionDirective } from './session.directive';
 import { EditarperfilComponent } from './editarperfil/editarperfil.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
  
 
 @NgModule({
@@ -27,7 +28,8 @@ import { EditarperfilComponent } from './editarperfil/editarperfil.component';
     InicioComponent,
     LoginComponent,
     SessionDirective,
-    EditarperfilComponent
+    EditarperfilComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
