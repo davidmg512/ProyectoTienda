@@ -30,6 +30,7 @@ module.exports = {
         app.get(
             "/user/usernombre/:user_nombre/",
             [
+                deactivateRoute,
                 User.Middlewares.canReadResource,
             ],
             User.Controller.getUserByNombre

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserServiceTsService } from '../services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class InicioComponent {
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute) {}
+    private router: Router, activerouter:ActivatedRoute,public translate: TranslateService) {}
 
   onClick(){
     this.UserServiceTsService.logout()
@@ -25,6 +26,11 @@ export class InicioComponent {
 
   reloadPage() {
     window.location.reload();
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('lenguaje',lang);
   }
 }
 

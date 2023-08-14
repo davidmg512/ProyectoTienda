@@ -13,6 +13,7 @@ module.exports = {
         app.post(
             "/login",
             [
+                deactivateRoute,
                 User.Middlewares.checkRequiredKeys
             ],
             User.Controller.loginUser

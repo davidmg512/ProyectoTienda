@@ -108,17 +108,19 @@ async function getUserByNombre(req, res){
 async function getUserByEmail(req, res){
     const User = ModelsService.Models.User;
 
-    const authorizationHeader = req.headers.authorization;
+    /*const authorizationHeader = req.headers.authorization;
     if (!authorizationHeader) {
       return res.status(401).json({ message: "Token de autenticación no proporcionado en la cabecera" });
     }
   
-    const token = authorizationHeader.split(" ")[1];
+    const token = authorizationHeader.split(" ")[1]*/;
     try{
 
-        const  decodedToken = await admin.auth().verifyIdToken(token);
+        /*const  decodedToken = await admin.auth().verifyIdToken(token);
 
-        const userEmail = decodedToken.email;
+        const userEmail = decodedToken.email;*/
+
+        const userEmail = req.decodedTokenEmail;
 
         const user = await User.subModel.findOne({
             user_email: userEmail

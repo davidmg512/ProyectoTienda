@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ errorMessage: string = '';
   };
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router) {}
+    private router: Router,public translate: TranslateService) {}
   
 config = {};
 
@@ -81,6 +82,15 @@ async onGoogleClick() {
 
   async resetPassword() {
     
-    this.router.navigate(['/login/resetpassword']);
+    this.router.navigate(['/resetpassword']);
+
   }
+
+ /* ngOnInit(): void {
+    const lenguaje = localStorage.getItem('lenguaje'); 
+    if(lenguaje != null){
+      this.translate.use(lenguaje);
+    }
+    
+  }*/
 }

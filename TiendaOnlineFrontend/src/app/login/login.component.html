@@ -10,7 +10,7 @@
 <div class="container mt-5">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title text-center">Inicio de Sesión</h2>
+      <h2 class="card-title text-center">{{'IniciarSesion' | translate}}</h2>
     </div>
     <div class="card-body">
       <form (submit)="onSubmit()">
@@ -19,19 +19,19 @@
           <input type="email" id="email" name="email" [(ngModel)]="formData.user_email" class="form-control" required>
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Contraseña:</label>
+          <label for="password" class="form-label">{{'Contrasenya' | translate}}</label>
           <input type="password" id="password" name="password" [(ngModel)]="formData.user_password" class="form-control" required>
         </div>
         
         <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        <button type="button" class="btn btn-secondary float-end" routerLink="/register">Registro</button>
+        <button type="submit" class="btn btn-primary">{{'IniciarSesion' | translate}}</button>
+        <button type="button" class="btn btn-secondary float-end" routerLink="/register">{{ 'Registrarse' | translate }}</button>
       </form>
-      <button style="margin-top: 10px;" class="btn btn-primary" (click)="onGoogleClick()">Login With Google</button>
-      <button class="btn btn-secondary float-end" (click)="resetPassword()" style="margin-right: 10px;"> Cambiar contraseña </button>
+      <button style="margin-top: 10px;" class="btn btn-primary" (click)="onGoogleClick()">{{ 'EntrarConGoogle' | translate }}</button>
+      <button class="btn btn-secondary float-end" (click)="resetPassword()"  style="margin-top: 10px;">{{'CambiarContrasenya' | translate}}</button>
     </div>
   </div>
-</div>
+</div> 
 
 
 <router-outlet></router-outlet>

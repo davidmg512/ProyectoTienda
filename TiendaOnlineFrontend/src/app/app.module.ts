@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { RegisterComponent } from './register/register.component';
 
 import { PerfilComponent } from './perfil/perfil.component';
@@ -18,6 +19,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionDirective } from './session.directive';
 import { EditarperfilComponent } from './editarperfil/editarperfil.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+
  
 
 @NgModule({
@@ -36,11 +42,16 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    TranslateModule.forRoot({ loader: { provide: TranslateLoader, useFactory: (http: HttpClient) =>
+    { return new TranslateHttpLoader(http, "./assets/i18n/", ".json"); }, deps: [HttpClient], }, }),
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

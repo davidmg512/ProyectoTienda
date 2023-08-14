@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,13 @@ export class AppComponent {
 
   data: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,public translate: TranslateService) {
+    this.translate.setDefaultLang('es');
+    this.translate.addLangs(['en', 'es']); // Agrega los idiomas admitidos
+    this.translate.use('en')
+   }
+
+  
 
   getData() {
     this.http.get<any>('http://localhost:3000/api/data').subscribe(
