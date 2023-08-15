@@ -13,6 +13,7 @@ export class SessionDirective {
 
   
   @Input() set appSession(condition: boolean) {
+    //console.log(this.authService.isLoggedIn());
     if (condition === this.authService.isLoggedIn()) { // Implementa tu lógica de autenticación aquí
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {

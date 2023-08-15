@@ -9,25 +9,25 @@
   <div class="container mt-5">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title text-center">Editar perfil de usuario</h2>
+        <h2 class="card-title text-center">{{'EditarPerfilUsuario' | translate}}</h2>
       </div>
       <div class="card-body">
         <form (submit)="onSubmit()">
           <div class="mb-3">
-            <label for="name" class="form-label">Nombre:</label>
+            <label for="name" class="form-label">{{'Nombre' | translate}}:</label>
             <input type="text" id="name" name="name" [(ngModel)]="formData.user_nombre" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="apellidos" class="form-label">Apellidos:</label>
+            <label for="apellidos" class="form-label">{{'Apellidos' | translate}}:</label>
             <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formData.user_apellidos" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="telefono" class="form-label">Telefono:</label>
+            <label for="telefono" class="form-label">{{'Telefono' | translate}}:</label>
             <input type="telefono" id="telefono" name="telefono" [(ngModel)]="formData.user_telf" class="form-control" required>
           </div>
           
           <div style="display: flex; justify-content: center;">
-            <button type="submit" class="btn btn-info" routerLink="/perfil" [disabled]="!isValidForm()"> Actualizar </button>
+            <button type="submit" class="btn btn-info" routerLink="/perfil" [disabled]="!isValidForm()"> {{'Actualizar' | translate}} </button>
           </div>
           
           

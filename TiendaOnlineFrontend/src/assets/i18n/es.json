@@ -4,6 +4,21 @@
     "PerfilUsuario": "Perfil",
     "Contrasenya": "Contraseña",
     "CambiarContrasenya": "Cambiar Contraseña",
-    "EntrarConGoogle": "Entrar con Google"
+    "EntrarConGoogle": "Entrar con Google",
+    "RegistroDeUsuario": "Registro de usuario",
+    "Nombre": "Nombre",
+    "Apellidos": "Apellidos",
+    "Telefono":"Teléfono",
+    "Registrar" : "Registrar",
+    "Inicio": "Inicio",
+    "Perfil": "Perfil de usuario",
+    "CerrarSesion": "Cerrar sesión",
+    "EditarPerfil": "Editar perfil",
+    "ContrasenyaCorreo": "Se ha enviado un correo electrónico de reseteo de contraseña a su correo personal",
+    "RecuperarContra": "Recuperar contraseña",
+    "TextoRecuperar": "Introduzca el correo electrónico, se le enviará un email para el cambio de contraseña:",
+    "EnviarCorreo": "Enviar correo",
+    "EditarPerfilUsuario": "Editar perfil de usuario",
+    "Actualizar" : "Actualizar"
 }
   

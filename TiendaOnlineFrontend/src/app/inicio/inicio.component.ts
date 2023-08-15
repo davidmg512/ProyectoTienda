@@ -11,27 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class InicioComponent {
 
-  constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute,public translate: TranslateService) {}
-
-  onClick(){
-    this.UserServiceTsService.logout()
-    .then(response =>{ console.log(response);
-      localStorage.clear();
-      this.router.navigate(['']);
-})
-    .catch(error => console.log(error));
-
-  }
-
-  reloadPage() {
-    window.location.reload();
-  }
-
-  changeLanguage(lang: string) {
-    this.translate.use(lang);
-    localStorage.setItem('lenguaje',lang);
-  }
 }
 
 

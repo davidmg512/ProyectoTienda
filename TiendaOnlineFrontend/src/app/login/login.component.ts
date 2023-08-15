@@ -4,6 +4,7 @@ import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ errorMessage: string = '';
   };
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router,public translate: TranslateService) {}
+    private router: Router,public translate: TranslateService, private navbar: NavbarComponent) {}
   
 config = {};
 
@@ -35,7 +36,10 @@ config = {};
     const response = await this.UserServiceTsService.login(this.formData)
     const stringValue =  await response.user.getIdToken();
     localStorage.setItem('token',stringValue);
+    sessionStorage.setItem('token',stringValue);
+    this.navbar.reloadPage();
     this.router.navigate(['']);
+    
   }catch(error){
     this.errorMessage = 'Ha ocurrido un error, por favor inténtalo de nuevo, puede que el correo electrónico o contraseña  sean incorrectos';
     console.log(error);

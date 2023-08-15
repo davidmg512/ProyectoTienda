@@ -18,7 +18,9 @@ export class UserServiceTsService {
   }
 
   isLoggedIn(): boolean {
-    return this.auth.currentUser !== null;
+    console.log(this.auth.currentUser);
+    //return this.auth.currentUser !== null;
+    return (sessionStorage.getItem('token') !== null);
   }
 
   restorePassword({user_email}: any){

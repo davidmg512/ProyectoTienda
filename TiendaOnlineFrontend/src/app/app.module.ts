@@ -21,6 +21,7 @@ import { EditarperfilComponent } from './editarperfil/editarperfil.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -35,7 +36,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     LoginComponent,
     SessionDirective,
     EditarperfilComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

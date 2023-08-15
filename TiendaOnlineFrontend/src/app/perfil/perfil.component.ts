@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
+import { NavbarComponent } from '../navbar/navbar.component';
 import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 
 
@@ -20,12 +21,14 @@ export class PerfilComponent implements OnInit{
   resetPasswordString: string = '';
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute,private auth: Auth) {}
+    private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent) {}
 
   onClick(){
     this.UserServiceTsService.logout()
     .then(response =>{ console.log(response);
       localStorage.clear();
+      sessionStorage.clear();
+      this.navbar.reloadPage();
       this.router.navigate(['']);
 })
     .catch(error => console.log(error));
