@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+import { UserServiceTsService } from '../services/user.service.ts.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,7 @@ export class RegisterComponent {
     user_telf: ''
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService) {}
 
   onSubmit() {
     // Enviar los datos del formulario al backend
@@ -33,4 +35,8 @@ export class RegisterComponent {
       );
       
   }
+
+  ngOnInit(): void {
+    this.UserServiceTsService.checkLenguaje();
+    }
 }

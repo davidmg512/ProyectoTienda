@@ -32,4 +32,8 @@ export class NavbarComponent {
     this.translate.use(lang);
     localStorage.setItem('lenguaje',lang);
   }
+
+  ngOnInit(): void {
+    this.UserServiceTsService.checkLenguaje();
+    }
 }

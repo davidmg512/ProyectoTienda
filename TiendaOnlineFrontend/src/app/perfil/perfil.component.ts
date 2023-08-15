@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { NavbarComponent } from '../navbar/navbar.component';
 import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class PerfilComponent implements OnInit{
   resetPasswordString: string = '';
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent) {}
+    private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {}
 
   onClick(){
     this.UserServiceTsService.logout()
@@ -53,7 +54,9 @@ export class PerfilComponent implements OnInit{
       .catch(error => {
         console.error('Error al obtener datos del backend:', error);
       });
-  }
+        this.UserServiceTsService.checkLenguaje();
+        
+  };
 
   async onClickResetPassword() {
     if (this.userEmail) { // Verifica si this.userEmail está definido

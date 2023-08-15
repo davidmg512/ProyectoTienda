@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
 import { config } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 
 @Component({
   selector: 'app-editarperfil',
@@ -23,7 +25,7 @@ export class EditarperfilComponent {
     user_telf: ''
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService) {}
 
   config = {};
 
@@ -48,6 +50,11 @@ export class EditarperfilComponent {
       .catch(error => {
         console.error('Error al obtener datos del backend:', error);
       });
+        const lenguaje = localStorage.getItem('lenguaje'); 
+        if(lenguaje != null){
+          this.translate.use(lenguaje);
+        }
+
   }
 
   onSubmit(){

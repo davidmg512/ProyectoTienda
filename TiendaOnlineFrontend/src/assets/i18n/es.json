@@ -19,6 +19,7 @@
     "TextoRecuperar": "Introduzca el correo electrónico, se le enviará un email para el cambio de contraseña:",
     "EnviarCorreo": "Enviar correo",
     "EditarPerfilUsuario": "Editar perfil de usuario",
-    "Actualizar" : "Actualizar"
+    "Actualizar" : "Actualizar",
+    "ErrorEmailyContrasenya": "Ha habido un error con tu email o contraseña"
 }
   

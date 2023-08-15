@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { UserServiceTsService } from '../services/user.service.ts.service';
 
 @Component({
   selector: 'app-resetpassword',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ResetpasswordComponent {
 
-  constructor(private auth: Auth) {}
+  constructor(private UserServiceTsService: UserServiceTsService,private auth: Auth,public translate: TranslateService) {}
 
   formData = {
     user_email: ''
@@ -31,5 +33,9 @@ export class ResetpasswordComponent {
         console.error('Email no definido'); // Maneja el caso cuando this.userEmail es undefined
     }
   }
+
+  ngOnInit(): void {
+    this.UserServiceTsService.checkLenguaje();
+    }
   
 }

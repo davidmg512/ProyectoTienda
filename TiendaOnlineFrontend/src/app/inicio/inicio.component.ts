@@ -11,6 +11,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class InicioComponent {
 
+  constructor(private UserServiceTsService: UserServiceTsService,public translate: TranslateService) {}
+
+  ngOnInit(): void {
+    this.UserServiceTsService.checkLenguaje();
+    }
+
 }
 
 

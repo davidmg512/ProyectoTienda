@@ -13,7 +13,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class LoginComponent {
 
-errorMessage: string = '';
+errorMessage: boolean = false;
 
   formData = {
     user_email: '',
@@ -41,7 +41,7 @@ config = {};
     this.router.navigate(['']);
     
   }catch(error){
-    this.errorMessage = 'Ha ocurrido un error, por favor inténtalo de nuevo, puede que el correo electrónico o contraseña  sean incorrectos';
+    this.errorMessage = true;
     console.log(error);
   }
 }
@@ -51,6 +51,8 @@ async onGoogleClick() {
     const response = await this.UserServiceTsService.loginWithGoogle();
     const stringValue = await response.user.getIdToken();
     await localStorage.setItem('token',stringValue);
+    sessionStorage.setItem('token',stringValue);
+    this.navbar.reloadPage();
     this.router.navigate(['']);
 
     const token = localStorage.getItem('token'); 
@@ -77,7 +79,7 @@ async onGoogleClick() {
     
 
   }catch(error){
-    this.errorMessage = 'Ha ocurrido un error';
+    this.errorMessage = true;
     console.log(this.errorMessage,error);
   }
   
@@ -90,11 +92,7 @@ async onGoogleClick() {
 
   }
 
- /* ngOnInit(): void {
-    const lenguaje = localStorage.getItem('lenguaje'); 
-    if(lenguaje != null){
-      this.translate.use(lenguaje);
+  ngOnInit(): void {
+    this.UserServiceTsService.checkLenguaje();
     }
-    
-  }*/
 }
