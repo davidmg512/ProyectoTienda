@@ -1,10 +1,10 @@
 {
     "Registrarse": "Register",
-    "IniciarSesion": "Log in",
+    "IniciarSesion": "Login",
     "PerfilUsuario": "User Data",
     "Contrasenya": "Password",
-    "CambiarContrasenya": "Forgot password?",
-    "ContinuarConGoogle": "Continue with Google",
+    "CambiarContrasenya": "Change Password",
+    "EntrarConGoogle": "Log In With Google",
     "RegistroDeUsuario": "User register",
     "Nombre": "Name",
     "Apellidos": "Surnames",
@@ -20,9 +20,7 @@
     "EnviarCorreo": "Send email",
     "EditarPerfilUsuario": "Edit user profile",
     "Actualizar" : "Update",
-    "Idioma": "Language",
-    "Ingles": "English",
-    "Espanyol": "Spanish"
+    "ErrorEmailyContrasenya": "There has been a problem with your email or password"
 
 
 }
