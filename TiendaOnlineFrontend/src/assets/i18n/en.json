@@ -1,10 +1,10 @@
 {
     "Registrarse": "Register",
-    "IniciarSesion": "Login",
+    "IniciarSesion": "Log in",
     "PerfilUsuario": "User Data",
     "Contrasenya": "Password",
     "CambiarContrasenya": "Change Password",
-    "EntrarConGoogle": "Log In With Google",
+    "ContinuarConGoogle": "Log in with Google",
     "RegistroDeUsuario": "User register",
     "Nombre": "Name",
     "Apellidos": "Surnames",
@@ -21,9 +21,11 @@
     "EditarPerfilUsuario": "Edit user profile",
     "Actualizar" : "Update",
     "ErrorEmailyContrasenya": "There has been a problem with your email or password",
+    "Idioma": "Language",
+    "Ingles": "English",
+    "Espanyol": "Spanish",
     "ErrorRegistro": "There has been an error in the registration, the email is already in use or a field is missing to be completed.",
-    "resetContrasenya": "A password reset email has been sent to your personal email associated with this account"
-
-
+    "resetContrasenya": "A password reset email has been sent to your personal email associated with this account",
+    "olvidadoContrasenya": "Forgot your password?"
 }
   
