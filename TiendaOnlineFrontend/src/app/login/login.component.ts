@@ -6,12 +6,15 @@ import axios from 'axios';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+hide = true;
 
 errorMessage: boolean = false;
 

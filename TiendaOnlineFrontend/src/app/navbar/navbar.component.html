@@ -19,31 +19,19 @@
 
       <div class="collapse navbar-collapse justify-content-end" *appSession="false" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/register">{{ 'Registrarse' | translate }}</a>
+          <li class="nav-item" style="margin-right: 30px; font-size: 17px;">
+            <a class="nav-link text-white hover-underline-animation" data-underline-color="white" routerLink="/register">{{ 'Registrarse' | translate }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item hover-underline-animation" data-underline-color="white" style="margin-right: 70px; font-size: 17px;">
             <a class="nav-link text-white" routerLink="/login">{{ 'IniciarSesion' | translate }}</a>
           </li>
-
           
-            <button (click)="changeLanguage('en')">English</button>
-          <button (click)="changeLanguage('es')">Español</button>
-          
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="idiomaDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Idioma
-                </a>
-                
-                <div class="dropdown-menu" aria-labelledby="idiomaDropdown">
-                    <a class="dropdown-item" (click)="changeLanguage('es')">Español</a>
-                    <a class="dropdown-item" (click)="changeLanguage('en')">English</a>
-                </div>
-            </li>
-        </ul>
+          <button style="font-size: 15px;" mat-button [matMenuTriggerFor]="menu">{{ 'Idioma' | translate }}</button>
+          <mat-menu #menu="matMenu">
+            <button (click)="changeLanguage('es')" mat-menu-item>{{ 'Espanyol' | translate }}</button>
+            <button (click)="changeLanguage('en')" mat-menu-item>{{ 'Ingles' | translate }}</button>
+          </mat-menu>
             
-          
         </ul>
       </div>
 
