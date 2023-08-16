@@ -23,6 +23,8 @@
     "ErrorEmailyContrasenya": "Ha habido un error con tu email o contraseña",
     "Idioma": "Idioma",
     "Ingles": "Inglés",
-    "Espanyol": "Español"
+    "Espanyol": "Español",
+    "ErrorRegistro": "Ha habido un error en la realización del registro, el email ya está en uso o falta algún campo por completar.",
+    "resetContrasenya": "Un correo electrónico de retauración de contraseña ha sido enviado a su correo personal asociado a esta cuenta"
 }
   

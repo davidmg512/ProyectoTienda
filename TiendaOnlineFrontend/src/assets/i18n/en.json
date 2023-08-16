@@ -20,7 +20,9 @@
     "EnviarCorreo": "Send email",
     "EditarPerfilUsuario": "Edit user profile",
     "Actualizar" : "Update",
-    "ErrorEmailyContrasenya": "There has been a problem with your email or password"
+    "ErrorEmailyContrasenya": "There has been a problem with your email or password",
+    "ErrorRegistro": "There has been an error in the registration, the email is already in use or a field is missing to be completed.",
+    "resetContrasenya": "A password reset email has been sent to your personal email associated with this account"
 
 
 }

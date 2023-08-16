@@ -22,7 +22,7 @@
         <button type="button" class="btn btn-info" routerLink="/perfil/editar">{{ 'EditarPerfil' | translate }}</button>
         <button type="button" class="btn btn-secondary float-end" routerLink=""> {{ 'Inicio' | translate }} </button>
         <button type="button" class="btn btn-secondary float-end" (click)="onClickResetPassword()" style="margin-right: 10px;"> {{ 'CambiarContrasenya' | translate }} </button>
-        <div style="margin-top: 10px;" *ngIf="resetPasswordString" class="alert alert-primary">{{ resetPasswordString }}</div>
+        <div style="margin-top: 10px;" *ngIf="resetPasswordString" class="alert alert-primary">{{ 'resetContrasenya' | translate }}</div>
         
       </div>
     </div>

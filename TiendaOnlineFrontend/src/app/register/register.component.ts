@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { UserServiceTsService } from '../services/user.service.ts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,9 @@ export class RegisterComponent {
     user_telf: ''
   };
 
-  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService) {}
+  errorMessage: boolean = false;
+
+  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService,private router: Router) {}
 
   onSubmit() {
     // Enviar los datos del formulario al backend
@@ -27,9 +30,10 @@ export class RegisterComponent {
         (response) => {
           // Manejar la respuesta del backend
           console.log('Registro exitoso:', response);
+          this.router.navigate(['/login']);
         },
         (error) => {
-          // Manejar errores si ocurre alguno
+          this.errorMessage = true;
           console.error('Error en el registro:', error);
         }
       );

@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit{
   userNombre: string | undefined;
   userApellido: string | undefined;
   userTelefono: string | undefined;
-  resetPasswordString: string = '';
+  resetPasswordString: boolean = false;
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {}
@@ -64,7 +64,7 @@ export class PerfilComponent implements OnInit{
 
         try {
             await sendPasswordResetEmail(this.auth, user_email);
-            this.resetPasswordString = 'Se ha enviado un correo electrónico de reseteo de contraseña a su correo personal';
+            this.resetPasswordString = true;
         } catch (error) {
             console.error(error);
             // Maneja el error aquí
