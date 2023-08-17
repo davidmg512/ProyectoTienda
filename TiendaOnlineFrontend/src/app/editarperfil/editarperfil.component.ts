@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
 import { config } from 'rxjs';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 
@@ -16,6 +17,7 @@ export class EditarperfilComponent {
   userNombre: string = '';
   userApellido: string = '';
   userTelefono: string = '';
+  errorMessage: boolean = false;
 
   
 
@@ -25,7 +27,7 @@ export class EditarperfilComponent {
     user_telf: ''
   };
 
-  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService) {}
+  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService,private router: Router) {}
 
   config = {};
 
@@ -62,8 +64,10 @@ export class EditarperfilComponent {
     .then(
       (response) => {
         console.log("Actualización exitosa: ", response);
+        this.router.navigate(['/perfil']);
       },
       (error) => {
+        this.errorMessage = true;
         console.log("Error en la actualización del perfil: ", error);
       });
   }

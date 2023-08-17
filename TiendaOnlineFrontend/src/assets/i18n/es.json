@@ -16,7 +16,7 @@
     "EditarPerfil": "Editar perfil",
     "ContrasenyaCorreo": "Se ha enviado un correo electrónico de reseteo de contraseña a su correo personal",
     "RecuperarContra": "Recuperar contraseña",
-    "TextoRecuperar": "Introduzca el correo electrónico, se le enviará un email para el cambio de contraseña:",
+    "TextoRecuperar": "Recuperation email",
     "EnviarCorreo": "Enviar correo",
     "EditarPerfilUsuario": "Editar perfil de usuario",
     "Actualizar" : "Actualizar",
@@ -30,6 +30,7 @@
     "DatosUsuario": "Datos de usuario",
     "Direcciones": "Direcciones",
     "Pedidos": "Pedidos",
-    "MetodosPago": "Métodos de pago"
+    "MetodosPago": "Métodos de pago",
+    "TelefonoIncorrecto": "Número de teléfono incorrecto"
 }
   

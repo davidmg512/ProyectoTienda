@@ -16,7 +16,7 @@
     "EditarPerfil": "Edit profile",
     "ContrasenyaCorreo": "A password reset email has been sent to your email account.",
     "RecuperarContra": "Reset password",
-    "TextoRecuperar": "Enter your email and we will send you a password reset email:",
+    "TextoRecuperar": "Recuperation email:",
     "EnviarCorreo": "Send email",
     "EditarPerfilUsuario": "Edit user profile",
     "Actualizar" : "Update",
@@ -30,6 +30,7 @@
     "DatosUsuario": "User data",
     "Direcciones": "Addresses",
     "Pedidos": "Orders",
-    "MetodosPago": "Payment methods"
+    "MetodosPago": "Payment methods",
+    "TelefonoIncorrecto": "Telf number incorrect"
 }
   

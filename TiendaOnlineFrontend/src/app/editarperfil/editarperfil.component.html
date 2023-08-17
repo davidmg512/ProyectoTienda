@@ -6,8 +6,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   
-  <div class="container mt-5">
-    <div class="card">
+ <!-- <div class="register-container">
+    <div class="register-card">
       <div class="card-header">
         <h2 class="card-title text-center">{{'EditarPerfilUsuario' | translate}}</h2>
       </div>
@@ -34,4 +34,40 @@
         </form>
       </div>
     </div>
-  </div>
+  </div>-->
+<div class="edituser-container">
+  <mat-card class="edituser-card">
+    <mat-card-content class="carta">
+      <mat-card-header>
+        <mat-card-title style="font-size: 25px; margin-bottom: 30px;">{{ 'EditarPerfilUsuario' | translate }}</mat-card-title>
+      </mat-card-header>
+      <div class="card-body">
+        <form (submit)="onSubmit()">
+          <div class="mb-3">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'Nombre' | translate }}:</mat-label>
+              <input type="text" id="name" name="name" [(ngModel)]="formData.user_nombre" required matInput placeholder="Placeholder">
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'Apellidos' | translate }}:</mat-label>
+              <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formData.user_apellidos" matInput placeholder="Placeholder">
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'Telefono' | translate }}:</mat-label>
+              <input type="telefono" id="telefono" name="telefono" [(ngModel)]="formData.user_telf" required matInput placeholder="Placeholder">
+            </mat-form-field>
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ 'TelefonoIncorrecto' | translate }}</div>
+
+          <div style="display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-info" [disabled]="!isValidForm()"> {{'Actualizar' | translate}} </button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 
