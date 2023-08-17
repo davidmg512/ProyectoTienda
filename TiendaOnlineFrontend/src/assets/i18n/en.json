@@ -1,7 +1,7 @@
 {
     "Registrarse": "Register",
     "IniciarSesion": "Log in",
-    "PerfilUsuario": "User Data",
+    "PerfilUsuario": "Profile",
     "Contrasenya": "Password",
     "CambiarContrasenya": "Change Password",
     "ContinuarConGoogle": "Log in with Google",
@@ -26,6 +26,10 @@
     "Espanyol": "Spanish",
     "ErrorRegistro": "There has been an error in the registration, the email is already in use or a field is missing to be completed.",
     "resetContrasenya": "A password reset email has been sent to your personal email associated with this account",
-    "olvidadoContrasenya": "Forgot your password?"
+    "olvidadoContrasenya": "Forgot your password?",
+    "DatosUsuario": "User data",
+    "Direcciones": "Addresses",
+    "Pedidos": "Orders",
+    "MetodosPago": "Payment methods"
 }
   

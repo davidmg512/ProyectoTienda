@@ -1,5 +1,13 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+body {
+  background-image: url('images/fondo3.png'); /* Cambia la ruta según la ubicación de tu imagen */
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0; /* Elimina el margen predeterminado del body */
+  padding: 0; /* Elimina el relleno predeterminado del body */
+}
+
 a:hover{
     cursor:pointer;
 }
@@ -30,11 +38,13 @@ a:hover{
 
   .hover-underline-animation[data-underline-color="white"] {
     --underline-color: white;
-    /* Puedes ajustar otros estilos, como el color de fondo, si es necesario */
   }
   .hover-underline-animation[data-underline-color="blue"] {
     --underline-color: #0087ca;
-    /* Puedes ajustar otros estilos, como el color de fondo, si es necesario */
+  }
+
+  .hover-underline-animation[data-underline-color="red"] {
+    --underline-color: #000000;
   }
 
 html, body { height: 100%; }

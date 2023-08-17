@@ -3,7 +3,7 @@
     "IniciarSesion": "Iniciar Sesión",
     "PerfilUsuario": "Perfil",
     "Contrasenya": "Contraseña",
-    "CambiarContrasenya": "CambiarContrasenya",
+    "CambiarContrasenya": "Cambiar Contraseña",
     "ContinuarConGoogle": "Continuar con Google",
     "RegistroDeUsuario": "Registro de usuario",
     "Nombre": "Nombre",
@@ -26,6 +26,10 @@
     "Espanyol": "Español",
     "ErrorRegistro": "Ha habido un error en la realización del registro, el email ya está en uso o falta algún campo por completar.",
     "resetContrasenya": "Un correo electrónico de retauración de contraseña ha sido enviado a su correo personal asociado a esta cuenta",
-    "olvidadoContrasenya": "¿Ha olvidado su contraseña?"
+    "olvidadoContrasenya": "¿Ha olvidado su contraseña?",
+    "DatosUsuario": "Datos de usuario",
+    "Direcciones": "Direcciones",
+    "Pedidos": "Pedidos",
+    "MetodosPago": "Métodos de pago"
 }
   

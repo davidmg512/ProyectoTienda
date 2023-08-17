@@ -1,0 +1,45 @@
+.profile-card {
+    max-width: 1000px;
+    width: 100%;
+    display: flex; /* Agrega display: flex */
+    flex-direction: column; /* Cambia a flex-direction: column */
+    padding: 20px; /* Agrega espaciado interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 50px;
+
+}
+  
+  .profile-header {
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  
+  .detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .detail-value {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  

@@ -1,6 +1,8 @@
 
 <head>
   <!-- ... Otros elementos del encabezado ... -->
+
+  
   
   <!-- Agrega los enlaces a Bootstrap CSS y JavaScript -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -38,7 +40,7 @@
             <div *ngIf="errorMessage" class="alert alert-danger">{{ 'ErrorEmailyContrasenya' | translate }}</div>
             
             <div class="center-button ">
-              <button class="btn btn-primary boton-inicio" type="submit">{{'IniciarSesion' | translate}}</button>
+              <button matRipple class="btn btn-primary boton-inicio" type="submit">{{'IniciarSesion' | translate}}</button>
             </div>
             
             

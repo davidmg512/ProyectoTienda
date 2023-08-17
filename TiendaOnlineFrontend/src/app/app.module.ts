@@ -31,6 +31,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatRippleModule} from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -67,7 +70,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatRippleModule,
+    MatTabsModule
     
 
   ],
