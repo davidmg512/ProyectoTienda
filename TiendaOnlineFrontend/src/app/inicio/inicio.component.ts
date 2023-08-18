@@ -13,6 +13,8 @@ export class InicioComponent {
 
   constructor(private UserServiceTsService: UserServiceTsService,public translate: TranslateService) {}
 
+  stringToken: string | null = '';
+
   ngOnInit(): void {
     this.UserServiceTsService.checkLenguaje();
     }

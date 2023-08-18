@@ -20,6 +20,7 @@ export class PerfilComponent implements OnInit{
   userApellido: string | undefined;
   userTelefono: string | undefined;
   resetPasswordString: boolean = false;
+  stringToken: string | null = '';
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {}
@@ -52,9 +53,17 @@ export class PerfilComponent implements OnInit{
         this.userTelefono = response.data.user_telf;
       })
       .catch(error => {
+        console.log(error);
         console.error('Error al obtener datos del backend:', error);
       });
         this.UserServiceTsService.checkLenguaje();
+        if(localStorage.getItem('token') !== null){
+          this.stringToken = localStorage.getItem('token');
+          if(this.stringToken !== null){
+            sessionStorage.setItem('token',this.stringToken);
+          }
+    
+        }
         
   };
 
