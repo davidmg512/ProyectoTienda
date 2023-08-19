@@ -1,0 +1,260 @@
+{
+    "paths": {
+        "/address/": {
+            "post": {
+                "summary": "Create a new address",
+                "operationId": "createAddress",
+                "tags": [
+                    "Addresss"
+                ],
+                "requestBody": {
+                    "description": "Address object to be created",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Address"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Address created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/ConflictError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "get": {
+                "summary": "Get all addresss",
+                "operationId": "getAllAddresss",
+                "tags": [
+                    "Addresss"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Offset"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                        "description": "TODO: Define filter parameters for Address"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of addresss",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Address"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/address/{address_id}/": {
+            "get": {
+                "summary": "Get a address by id",
+                "operationId": "getAddressById",
+                "tags": [
+                    "Addresss"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/MongoId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a address by id",
+                "operationId": "updateAddress",
+                "tags": [
+                    "Addresss"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/MongoId"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Address object to be updated",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Address"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Address updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a address by id",
+                "operationId": "deleteAddress",
+                "tags": [
+                    "Addresss"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/MongoId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}

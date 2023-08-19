@@ -53,6 +53,7 @@ async function tokenFirebaseValid(req, res, next){
         }
 
         req.decodedTokenEmail = decodedToken.email;
+        req.decodedTokenId =  decodedToken.uid;
 
         next();
     } catch (error) {

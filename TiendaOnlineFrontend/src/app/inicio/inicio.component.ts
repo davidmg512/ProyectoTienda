@@ -14,9 +14,29 @@ export class InicioComponent {
   constructor(private UserServiceTsService: UserServiceTsService,public translate: TranslateService) {}
 
   stringToken: string | null = '';
+  
+  latitude: number | undefined;
+  longitude: number | undefined;
 
   ngOnInit(): void {
     this.UserServiceTsService.checkLenguaje();
+    this.getLocation();
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.latitude = position.coords.latitude;
+          this.longitude = position.coords.longitude;
+        },
+        (error) => {
+          console.error('Error al obtener la ubicación:', error);
+        }
+      );
+    } else {
+      console.error('La geolocalización no está disponible en este navegador.');
+    }
   }
 
 }

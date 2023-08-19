@@ -19,8 +19,10 @@ export class PerfilComponent implements OnInit{
   userNombre: string | undefined;
   userApellido: string | undefined;
   userTelefono: string | undefined;
+  userRol: string | undefined;
   resetPasswordString: boolean = false;
   stringToken: string | null = '';
+  admin: boolean = false;
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {}
@@ -51,12 +53,19 @@ export class PerfilComponent implements OnInit{
         this.userEmail = response.data.user_email;
         this.userApellido = response.data.user_apellidos;
         this.userTelefono = response.data.user_telf;
+        this.userRol = response.data.user_rol;
+        if(this.userRol !== null){
+          if(this.userRol === 'admin'){
+            this.admin = true;          
+          }
+        }
       })
       .catch(error => {
         console.log(error);
         console.error('Error al obtener datos del backend:', error);
       });
         this.UserServiceTsService.checkLenguaje();
+
   };
 
   async onClickResetPassword() {
@@ -74,6 +83,8 @@ export class PerfilComponent implements OnInit{
         console.error('Email no definido'); // Maneja el caso cuando this.userEmail es undefined
     }
 }
+
+
 
 
 

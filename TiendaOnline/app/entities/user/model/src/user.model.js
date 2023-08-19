@@ -28,6 +28,16 @@ const userSchema = new mongoose.Schema({
         required:true
     },
 
+    user_id:{
+        type: String,
+        required: true
+    },
+
+    user_rol:{
+        type: String,
+        required: false
+    }
+
 
     /*user_entrenador:{
         type: mongoose.Schema.Types.ObjectId,
@@ -52,7 +62,6 @@ userSchema.statics.UserExistsByEmail = async (email)=>{
                 error_message: "User already exists"
             })
         }
-
 },
 
 
@@ -62,8 +71,6 @@ userSchema.statics.EncryptMD5 = async (passwordUnencrypted)=>{
     hash.update(passwordUnencrypted);
     const encryptedValue = hash.digest('hex');
     return encryptedValue;
-
-
 }
 
 userSchema.statics.ValidatePhoneNumber = async (numero)=>

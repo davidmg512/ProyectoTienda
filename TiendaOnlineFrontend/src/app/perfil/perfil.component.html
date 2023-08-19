@@ -63,8 +63,18 @@
                 </div>
 
 
-            <button style="margin-right: 10px;" type="button" class="btn btn-info" routerLink="/perfil/editar">{{ 'EditarPerfil' | translate }}</button>
+           <!-- <button style="margin-right: 10px;" type="button" class="btn btn-info" routerLink="/perfil/editar">{{ 'EditarPerfil' | translate }}</button>
             <button type="button" class="btn btn-info" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button><br>
+            <button *ngIf="admin" type="button" class="btn btn-info" >{{ 'PanelAdministracion' | translate}}</button><br>-->
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <button style="margin-right: 10px;" type="button" class="btn btn-info" routerLink="/perfil/editar">{{ 'EditarPerfil' | translate }}</button>
+                <button type="button" class="btn btn-info" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button>
+              </div>
+              <button *ngIf="admin" type="button" class="btn btn-info">{{ 'PanelAdministracion' | translate}}</button>
+            </div>
+            
+            
             <div style="margin-top: 10px;" *ngIf="resetPasswordString" class="alert alert-primary">{{ 'ContrasenyaCorreo' | translate }}</div>
 
           </mat-tab>

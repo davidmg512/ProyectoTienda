@@ -51,9 +51,12 @@ async function registerUser(req, res) {
             password: user_password
         });
 
-        /*const noEncryptPassword = req.body.user_password;
 
-        req.body.user_password = await User.subModel.EncryptMD5(noEncryptPassword);*/
+
+        const uid = userRecord.uid;
+        req.body.user_id = uid;
+        const userRol = 'nada';
+        req.body.user_rol = userRol;
 
         const user = await User.createOne(req.body, {transaction});
         await transaction.commit();
@@ -78,13 +81,16 @@ async function loginUserGoogle(req, res) {
 
     try {
 
+        const userId = req.decodedTokenId;
         const userEmail = req.decodedTokenEmail;
         const dataToCreate = {
             
             user_email: userEmail,
             user_nombre: 'Aquí puedes poner tu nombre y actualizarlo',
             user_apellidos: 'Pon aquí tus apellidos para actualizarlos',
-            user_telf: 'Inserte aquí el número de teléfono con un formato correcto, convenientemente 000000000'
+            user_telf: 'Inserte aquí el número de teléfono con un formato correcto, convenientemente 000000000',
+            user_id: userId,
+            user_rol: 'Nada'
             
         }
 

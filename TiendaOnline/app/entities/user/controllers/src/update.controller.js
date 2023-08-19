@@ -57,8 +57,8 @@ async function updateUser(req, res) {
         const dataToUpdate = {
             user_nombre: req.body.user_nombre,
             user_apellidos: req.body.user_apellidos,
-            user_telf: req.body.user_telf
-            
+            user_telf: req.body.user_telf,
+                    
         }
 
         const user = await User.subModel.updateOne({

@@ -26,7 +26,8 @@ errorMessage: boolean = false;
   datosVaciosParaGoogle = {
     user_nombre: '',
     user_apellidos: '',
-    user_telf: ''
+    user_telf: '',
+    user_id: ''
   };
 
   constructor(private UserServiceTsService: UserServiceTsService,
@@ -42,6 +43,8 @@ config = {};
     sessionStorage.setItem('token',stringValue);
     this.navbar.reloadPage();
     this.router.navigate(['']);
+
+    
     
   }catch(error){
     this.errorMessage = true;
@@ -50,13 +53,12 @@ config = {};
 }
 
 async onGoogleClick() {
+
   try{
     const response = await this.UserServiceTsService.loginWithGoogle();
     const stringValue = await response.user.getIdToken();
     await localStorage.setItem('token',stringValue);
     sessionStorage.setItem('token',stringValue);
-    this.navbar.reloadPage();
-    this.router.navigate(['']);
 
     const token = localStorage.getItem('token'); 
     this.config = {
@@ -64,12 +66,14 @@ async onGoogleClick() {
         'Authorization': `Bearer ${token}`
       }
     };
-
-    axios.get('http://localhost:3000/user/perfil', this.config)
+    
+    await axios.get('http://localhost:3000/user/perfil', this.config)
     .then(response => {
 
+      console.log("Fallo 1");
     })
     .catch(error => {
+      console.log("Fallo 2");
       axios.post('http://localhost:3000/loginGoogle', this.datosVaciosParaGoogle, this.config)
       .then(
         (response) => {
@@ -79,6 +83,11 @@ async onGoogleClick() {
           console.log("Algo ha salido terriblemente mal: ", error);
         });
     });
+
+    this.navbar.reloadPage();
+    this.router.navigate(['']);
+    
+
     
 
   }catch(error){

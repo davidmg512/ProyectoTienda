@@ -4,21 +4,21 @@ const { deactivateRoute } = require("kainda");
 
 module.exports = { 
     
-    create : function (app) 
-    {
+    create : function (app) {
 
-        const User = ModelsService.Models.User;
+        const Address = ModelsService.Models.Address;
 
-        // Create new user
+        // Create new address
         app.post(
-            "/user",
+            "/address/",
             [
                 deactivateRoute,
                 tokenValid,
-                //User.Middlewares.canCreateResource,
-                User.Middlewares.checkRequiredKeys
+                Address.Middlewares.canCreateResource,
+                Address.Middlewares.checkRequiredKeys
             ],
-            User.Controller.createUser
+            Address.Controller.createAddress
         );
     }
+
 };
