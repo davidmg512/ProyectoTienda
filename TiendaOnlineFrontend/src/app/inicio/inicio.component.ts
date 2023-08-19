@@ -17,7 +17,7 @@ export class InicioComponent {
 
   ngOnInit(): void {
     this.UserServiceTsService.checkLenguaje();
-    }
+  }
 
 }
 

@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  stringToken: string | null = "";
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,public translate: TranslateService) {}
@@ -36,5 +37,12 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.UserServiceTsService.checkLenguaje();
+
+      if(localStorage.getItem('token') !== null){
+        this.stringToken = localStorage.getItem('token');
+        if(this.stringToken !== null){
+          sessionStorage.setItem('token',this.stringToken);
+        }
+      }
     }
 }

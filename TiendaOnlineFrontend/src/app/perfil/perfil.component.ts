@@ -57,14 +57,6 @@ export class PerfilComponent implements OnInit{
         console.error('Error al obtener datos del backend:', error);
       });
         this.UserServiceTsService.checkLenguaje();
-        if(localStorage.getItem('token') !== null){
-          this.stringToken = localStorage.getItem('token');
-          if(this.stringToken !== null){
-            sessionStorage.setItem('token',this.stringToken);
-          }
-    
-        }
-        
   };
 
   async onClickResetPassword() {
