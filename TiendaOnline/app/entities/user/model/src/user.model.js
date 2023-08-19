@@ -6,6 +6,7 @@ const mongoose = DbService.get();
 
 const userSchema = new mongoose.Schema({
     
+
     user_email:{
         type: String,
         required: true,
@@ -36,16 +37,7 @@ const userSchema = new mongoose.Schema({
     user_rol:{
         type: String,
         required: false
-    }
-
-
-    /*user_entrenador:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'entrenador',
-        required:false
-    }*/
-
-
+    },
 
 }, {
     timestamps: true,

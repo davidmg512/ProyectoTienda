@@ -12,7 +12,7 @@ const { ExceptionHandler } = require('kainda');
  */
 async function createAddress(req, res) 
 {
-    const User = ModelsService.Models.Address;
+    const Address = ModelsService.Models.Address;
     let transaction = await Address.transaction(DbService.get());
     try 
     {
@@ -22,12 +22,7 @@ async function createAddress(req, res)
     }
     catch (error) 
     {
-        LogService.ErrorLogger.error(error);
-        if (transaction) 
-        {
-            await transaction.rollback();
-        }
-        ExceptionService.handle(error, res);
+        console.log(error);
     }
 }
 

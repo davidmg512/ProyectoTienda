@@ -5,22 +5,22 @@ const mongoose = DbService.get();
 
 const addressSchema = new mongoose.Schema({
 
-    country:{
+    address_country:{
         type: String,
         required: true
     },
 
-    province:{
+    address_province:{
         type: String,
         required: true
     },
 
-    town:{
+    address_town:{
         type: String,
         required: true
     },
 
-    postal_code:{
+    address_postal:{
         type: String,
         required: true
     },
@@ -33,6 +33,12 @@ const addressSchema = new mongoose.Schema({
     additional_data:{
         type: String,
         required: false
+    },
+
+    user_id: {
+        type: String,
+        ref: 'user',
+        required: true,
     }
 
 }, {

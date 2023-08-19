@@ -3,6 +3,7 @@ const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
 const admin = require('firebase-admin');
+const mongoose = require('mongoose');
 //const functions = require('firebase-functions');
 
 /**
@@ -55,6 +56,7 @@ async function registerUser(req, res) {
 
         const uid = userRecord.uid;
         req.body.user_id = uid;
+
         const userRol = 'nada';
         req.body.user_rol = userRol;
 
@@ -82,6 +84,7 @@ async function loginUserGoogle(req, res) {
     try {
 
         const userId = req.decodedTokenId;
+        const objectId = userId;
         const userEmail = req.decodedTokenEmail;
         const dataToCreate = {
             
@@ -89,7 +92,7 @@ async function loginUserGoogle(req, res) {
             user_nombre: 'Aquí puedes poner tu nombre y actualizarlo',
             user_apellidos: 'Pon aquí tus apellidos para actualizarlos',
             user_telf: 'Inserte aquí el número de teléfono con un formato correcto, convenientemente 000000000',
-            user_id: userId,
+            user_id: objectId,
             user_rol: 'Nada'
             
         }

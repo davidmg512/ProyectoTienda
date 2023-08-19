@@ -111,9 +111,10 @@ async function getUserByEmail(req, res){
     try{
 
         const userId = req.decodedTokenId;
+        const objectUserId = userId;
 
         const user = await User.subModel.findOne({
-            user_id: userId
+            user_id: objectUserId
         });
         if(!user){
             throw new User.Exceptions.UserNotFoundException({

@@ -12,9 +12,6 @@ module.exports = {
         app.post(
             "/address/",
             [
-                deactivateRoute,
-                tokenValid,
-                Address.Middlewares.canCreateResource,
                 Address.Middlewares.checkRequiredKeys
             ],
             Address.Controller.createAddress
