@@ -42,4 +42,56 @@
     color: #555;
   }
   
+  .carta{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 50px;
+
+}
   
+.register-card {
+    max-width: 400px;
+    width: 100%;
+    display: flex; /* Agrega display: flex */
+    flex-direction: column; /* Cambia a flex-direction: column */
+    align-items: center; /* Añade alineación vertical al centro */
+    padding: 20px; /* Agrega espaciado interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-container {
+    width: 100%;
+    margin-top: 20px; /* Espaciado superior para el formulario */
+}
+
+.center-button {
+    position: relative;
+    padding-bottom: 40px;
+    padding-top: 15px;
+
+}
+
+.center-button button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    white-space: nowrap;
+}
+
+.error-message{
+  width: 100%;
+  margin-top: 10px;
+  color: red;
+  white-space: normal;
+}

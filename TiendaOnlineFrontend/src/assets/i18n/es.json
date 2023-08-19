@@ -32,6 +32,16 @@
     "Pedidos": "Pedidos",
     "MetodosPago": "Métodos de pago",
     "TelefonoIncorrecto": "Número de teléfono incorrecto",
-    "PanelAdministracion": "Panel de Administración"
+    "PanelAdministracion": "Panel de Administración",
+    "NuevaDireccion": "Añadir nueva dirección",
+    "Pais": "País",
+    "Provincia": "Provincia",
+    "Pueblo": "Pueblo",
+    "CodigoPostal": "Código postal",
+    "CalleyNumero": "Calle,número y piso",
+    "DatosAdicionales": "Datos adicionales",
+    "Cancelar": "Cancelar"
+
+    
 }
   

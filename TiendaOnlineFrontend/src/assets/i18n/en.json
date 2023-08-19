@@ -32,6 +32,19 @@
     "Pedidos": "Orders",
     "MetodosPago": "Payment methods",
     "TelefonoIncorrecto": "Telf number incorrect",
-    "PanelAdministracion": "Admin Panel"
+    "PanelAdministracion": "Admin Panel",
+    "NuevaDireccion": "Add new address",
+    "Pais": "Country",
+    "Provincia": "Province",
+    "Pueblo": "Town",
+    "CodigoPostal": "Postal code",
+    "CalleyNumero": "Street,number and floor",
+    "DatosAdicionales": "Addicional data",
+    "Cancelar": "Cancel"
+
+
+
+
+    
 }
   

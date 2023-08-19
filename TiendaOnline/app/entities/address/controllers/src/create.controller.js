@@ -16,6 +16,8 @@ async function createAddress(req, res)
     let transaction = await Address.transaction(DbService.get());
     try 
     {
+        const user_id = req.decodedTokenId;
+        req.body.user_id = user_id;
         const address = await Address.createOne(req.body, { transaction });
         await transaction.commit();
         return res.status(201).json(address.toJSON());

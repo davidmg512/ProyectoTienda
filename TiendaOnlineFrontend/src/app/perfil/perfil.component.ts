@@ -6,6 +6,7 @@ import axios from 'axios';
 import { NavbarComponent } from '../navbar/navbar.component';
 import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class PerfilComponent implements OnInit{
   resetPasswordString: boolean = false;
   stringToken: string | null = '';
   admin: boolean = false;
+  addNew: boolean = false;
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {}
@@ -67,6 +69,7 @@ export class PerfilComponent implements OnInit{
         this.UserServiceTsService.checkLenguaje();
 
   };
+  
 
   async onClickResetPassword() {
     if (this.userEmail) { // Verifica si this.userEmail está definido
@@ -82,9 +85,49 @@ export class PerfilComponent implements OnInit{
     } else {
         console.error('Email no definido'); // Maneja el caso cuando this.userEmail es undefined
     }
-}
+
+  }
+
+  formData = {
+    address_country: '',
+    address_province: '',
+    address_town: '',
+    address_postal: '',
+    street_and_number: '',
+    additional_data: ''
+  };
+
+  onSubmitAddDirection() {
+    const token = localStorage.getItem('token'); 
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    };
+
+    axios.post('http://localhost:3000/address', this.formData, config)
+    .then(
+      (response) => {
+        // Manejar la respuesta del backend
+        console.log('Registro exitoso:', response);
+        this.router.navigate(['/perfil']);
+        this.addNew = false
+      },
+      (error) => {
+        
+        console.error('Error en el registro:', error);
+      }
+    );
 
 
+  }
+
+  trueNewAdd(){
+    this.addNew = true;
+  }
+  ocultarFormulario(){
+    this.addNew = false;
+  }
 
 
 
