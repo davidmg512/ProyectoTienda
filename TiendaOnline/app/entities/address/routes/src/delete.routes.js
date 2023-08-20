@@ -1,5 +1,5 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid, tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
@@ -12,9 +12,7 @@ module.exports = {
         app.delete(
             "/address/:address_id/", 
             [
-                deactivateRoute,
-                tokenValid,
-                Address.Middlewares.canDeleteResource,
+                tokenFirebaseValid
             ], 
             Address.Controller.deleteAddress
         );

@@ -1,5 +1,5 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid, tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
         app.get(
             "/user/addresses/",
             [
-                
+                tokenFirebaseValid
             ],
             Address.Controller.getAddressesOfUser
         );

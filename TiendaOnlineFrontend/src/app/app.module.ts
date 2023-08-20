@@ -33,6 +33,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
+
 
 
 
@@ -72,7 +74,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatCardModule,
     MatDividerModule,
     MatRippleModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
     
 
   ],

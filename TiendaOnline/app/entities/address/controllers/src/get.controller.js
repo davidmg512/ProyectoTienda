@@ -17,8 +17,10 @@ async function getAddressesOfUser(req, res) {
         const filterableKeys = [];
         const filterQuery = {};
 
-        if (req.body.user_id) {
-            filterQuery.user_id = req.body.user_id;
+        const userId = req.decodedTokenId;
+
+        if (userId) {
+            filterQuery.user_id = userId;
         }
 
         filterableKeys.forEach(key => { if (req.query[key]) { filterQuery[key] = req.query[key]; } });

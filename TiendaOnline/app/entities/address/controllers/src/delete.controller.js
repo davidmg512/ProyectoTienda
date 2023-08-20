@@ -11,6 +11,7 @@ const { ExceptionHandler } = require('kainda');
  * @returns {void}
  */
 async function deleteAddress(req, res) {
+    console.log(req.params.address_id);
     const Address = ModelsService.Models.Address;
     let transaction = await Address.transaction(DbService.get());
     try {
@@ -18,11 +19,8 @@ async function deleteAddress(req, res) {
         await transaction.commit();
         return res.status(200).json(address.toJSON());
     } catch (error) {
-        LogService.ErrorLogger.error(error);
-        if (transaction) {
-            await transaction.rollback();
-        }
-        ExceptionHandler(error, res);
+
+        console.log(error);
     }
 }
 

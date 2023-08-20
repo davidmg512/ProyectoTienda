@@ -1,9 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 body {
-  background-image: url('images/fondo3.png'); /* Cambia la ruta según la ubicación de tu imagen */
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color:#000217 !important;
   margin: 0; /* Elimina el margen predeterminado del body */
   padding: 0; /* Elimina el relleno predeterminado del body */
 }
