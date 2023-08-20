@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,7 +14,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PerfilComponent implements OnInit{
 

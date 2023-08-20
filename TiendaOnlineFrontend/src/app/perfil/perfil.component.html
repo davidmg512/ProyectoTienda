@@ -9,9 +9,6 @@
 
   <div class="profile-container">
     <mat-card class="profile-card">
-
-      <div class="profilebackground-image"></div>
-
       <mat-card-header>
         <div style="text-align: center; width: 100%; margin-bottom: 30px;">
           <mat-card-title style="font-size: 25px;">{{'Perfil' | translate}}</mat-card-title>
@@ -42,10 +39,12 @@
 
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                <button style="margin-right: 10px;" type="button" class="btn btn-info" routerLink="/perfil/editar">{{ 'EditarPerfil' | translate }}</button>
-                <button type="button" class="btn btn-info" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button>
+                <button style="margin-right: 10px" type="button" class="custom-button" routerLink="/perfil/editar">
+                  {{ 'EditarPerfil' | translate }}
+                </button>
+                <button type="button" class="custom-button" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button>
               </div>
-              <button *ngIf="admin" type="button" class="btn btn-info">{{ 'PanelAdministracion' | translate}}</button>
+              <button *ngIf="admin" type="button" class="custom-button">{{ 'PanelAdministracion' | translate}}</button>
             </div>
             
             
@@ -57,12 +56,26 @@
              
             <mat-list>
               <mat-list-item role="listitem" *ngFor="let address of userAddresses">
-                {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.addres_postal}}, {{address.street_and_number}}, {{address.additional_data}}
-                <button class="btn btn-danger" (click)="onDeleteAddress(address)">Borrar direccion</button>
+                <mat-accordion>
+                  <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Dirección 1
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.addres_postal}}, {{address.street_and_number}}, {{address.additional_data}}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>Me cago en tu vieja.</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+                <button style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </mat-list-item>
             </mat-list>  
           
-            <button style="margin-right: 10px;" type="button" class="btn btn-info" (click)="showPopup()">{{ 'NuevaDireccion' | translate }}</button>
+            <button style="margin-right: 10px;" type="button" class="custom-button" (click)="showPopup()">{{ 'NuevaDireccion' | translate }}</button>
             
             <div *ngIf="isPopupVisible" class="popup">
               <form (submit)="onSubmitAddDirection()">
@@ -113,7 +126,7 @@
 
               </form>
               
-              <button class="btn btn-primary" (click)="hidePopup()" >{{ 'Cancelar' | translate }}</button>
+              <button style="margin-top: 10px;" class="btn btn-primary" (click)="hidePopup()" >{{ 'Cancelar' | translate }}</button>
 
 
             </div>

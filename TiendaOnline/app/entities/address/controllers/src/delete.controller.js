@@ -11,7 +11,6 @@ const { ExceptionHandler } = require('kainda');
  * @returns {void}
  */
 async function deleteAddress(req, res) {
-    console.log(req.params.address_id);
     const Address = ModelsService.Models.Address;
     let transaction = await Address.transaction(DbService.get());
     try {

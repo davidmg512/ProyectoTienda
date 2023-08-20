@@ -41,9 +41,26 @@ a:hover{
     --underline-color: #0087ca;
   }
 
-  .hover-underline-animation[data-underline-color="red"] {
-    --underline-color: #000000;
+  .hover-underline-animation[data-underline-color="black"] {
+    --underline-color: #010101;
   }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-button {
+  color: rgb(87, 87, 87);
+  background: transparent;
+  border: 2px solid rgb(87, 87, 87);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  color: rgb(0, 0, 0);
+  background: rgba(37, 37, 37, 0.3); /* Fondo transparente azul al hacer hover */
+  border-color: rgb(0, 0, 0);
+}
