@@ -20,8 +20,6 @@
         <mat-tab-group>
           <mat-tab label="{{ 'DatosUsuario' | translate}}"> 
             
-          
-
                 <div class="detail">
                   <span class="detail-label">{{ 'Nombre' | translate }}:</span>
                   <span class="detail-value">{{ userNombre }}</span>
@@ -51,14 +49,27 @@
             <div style="margin-top: 10px;" *ngIf="resetPasswordString" class="alert alert-primary">{{ 'ContrasenyaCorreo' | translate }}</div>
 
           </mat-tab>
-          <mat-tab label="{{ 'Direcciones' | translate}}">  
+          
+          <mat-tab label="{{ 'Direcciones' | translate}}"> 
+            
+            <div class="align-items-right">
+              <button style="margin-right: 10px;" type="button" class="btn btn-info" (click)="showPopup()">{{ 'NuevaDireccion' | translate }}</button>
+
+            </div>
             <div *ngIf="addNew" class="register-container">
+
+              
+
               <mat-card class="register-card">
+                
                 <mat-card-content class="carta">
+
+                  
                   <mat-card-header>
                     <mat-card-title style="font-size: 25px; margin-bottom: 30px;">{{ 'NuevaDireccion' | translate }}</mat-card-title>
                   </mat-card-header>
-                  <div class="card-body">
+                  
+                  <div *ngIf="isPopupVisible" class="popup card-body">
                     <form (submit)="onSubmitAddDirection()">
                       <div class="mb-3">
                         <mat-form-field appearance="outline">
@@ -101,7 +112,7 @@
                         <div>
                           <button type="submit" class="btn btn-primary" >{{ 'NuevaDireccion' | translate }}</button>
                         </div>
-                        <button class="btn btn-primary" (click)="ocultarFormulario()" >{{ 'Cancelar' | translate }}</button>
+                        <button class="btn btn-primary" (click)="hidePopup()" >{{ 'Cancelar' | translate }}</button>
                       </div>
                       
                     </form>
@@ -109,10 +120,7 @@
                 </mat-card-content>
               </mat-card>
             </div>
-            <div *ngIf="!addNew" class="align-items-right">
-              <button style="margin-right: 10px;" type="button" class="btn btn-info" (click)="trueNewAdd()">{{ 'NuevaDireccion' | translate }}</button>
-
-            </div>
+            
             
           
           </mat-tab>

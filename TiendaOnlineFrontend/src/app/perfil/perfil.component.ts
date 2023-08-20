@@ -125,10 +125,14 @@ export class PerfilComponent implements OnInit{
   trueNewAdd(){
     this.addNew = true;
   }
-  ocultarFormulario(){
-    this.addNew = false;
+  
+  isPopupVisible = false;
+
+  showPopup(): void {
+      this.isPopupVisible = true;
   }
-
-
-
+  
+  hidePopup(): void {
+      this.isPopupVisible = false;
+  }  
 }
