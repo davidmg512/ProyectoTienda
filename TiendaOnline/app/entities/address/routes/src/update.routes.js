@@ -1,5 +1,5 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid,tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
@@ -12,9 +12,8 @@ module.exports = {
         app.put(
             "/address/:address_id/", 
             [
-                deactivateRoute,
-                tokenValid,
-                Address.Middlewares.canUpdateResource,
+                
+                tokenFirebaseValid
             ], 
             Address.Controller.updateAddress
         );

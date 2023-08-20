@@ -31,6 +31,7 @@ export class PerfilComponent implements OnInit{
   userAddresses: any[] = [];
   isPopupVisible: boolean = false;
   panelOpenState = false;
+  addressDataToUpdate: any = {};
 
   addressForm: FormGroup;
   selectedAddress: any = null;
@@ -184,7 +185,7 @@ export class PerfilComponent implements OnInit{
       }
     };
     // Realiza la llamada al backend para borrar la dirección
-    axios.delete(`http://localhost:3000/address/${address._id}`, config)
+     axios.delete(`http://localhost:3000/address/${address._id}`, config)
       .then(
         (response) => {
           // Maneja la respuesta del backend
@@ -202,8 +203,38 @@ export class PerfilComponent implements OnInit{
       );
   }
 
-  onUpdateAddress(address: any){
+  async onUpdateAddress(address: any){
+    const token = localStorage.getItem('token');
+    const formData = this.addressForm.value;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    const adressDataToUpdate = {
 
+      address_country: formData.country,
+      address_province: formData.province,
+      address_town: formData.town,
+      street_and_number: formData.street,
+      additional_data: address.additionalInfo
+    
+    }
+
+
+    try {
+      const response = await axios.put(`http://localhost:3000/address/${address._id}`, adressDataToUpdate, config);
+      
+      // Actualizar los datos en el componente con la respuesta actualizada
+      const updatedAddressIndex = this.userAddresses.findIndex(a => a._id === address._id);
+      if (updatedAddressIndex !== -1) {
+        this.userAddresses[updatedAddressIndex] = response.data; // Actualizar con la respuesta del backend
+      }
+      
+      console.log('Dirección actualizada con éxito:', response);
+    } catch (error) {
+      console.error('Error al actualizar la dirección:', error);
+    }
   }
   
 }
