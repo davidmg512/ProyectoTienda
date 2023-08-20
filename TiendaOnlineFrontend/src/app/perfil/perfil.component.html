@@ -53,25 +53,71 @@
           </mat-tab>
           
           <mat-tab label="{{ 'Direcciones' | translate}}">
+
+            <div style="margin-top: 50px">
+
+              <mat-accordion>
+                <mat-expansion-panel style="margin-top: 10px;" *ngFor="let address of userAddresses">
+                  <mat-expansion-panel-header (click)="fillAddressForm(address)">
+
+                    <mat-panel-title>
+                      Dirección 1
+                    </mat-panel-title>
+                    
+                    <mat-panel-description>
+                      {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.addres_postal}}, {{address.street_and_number}}, {{address.additional_data}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+
+                  <form *ngIf="selectedAddress === address" [formGroup]="addressForm" (submit)="onUpdateAddress(address)" class="address-form">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Pais</mat-label>
+                      <input type="text" matInput formControlName="country" placeholder="Placeholder">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Provincia</mat-label>
+                      <input matInput formControlName="province" placeholder="Provincia">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Población</mat-label>
+                      <input matInput formControlName="town" placeholder="Población">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Calle</mat-label>
+                      <input matInput formControlName="street" placeholder="Calle">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" style="width: 100%;" appearance="outline">
+                      <mat-label>Información Adicional</mat-label>
+                      <textarea matInput formControlName="additionalInfo" placeholder="Información Adicional"></textarea>
+                    </mat-form-field>
+                    <br>
+                    <button class="float-end" style="margin-left: 10px;" mat-mini-fab color="primary" type="submit">
+                      <mat-icon>save</mat-icon>
+                    </button>
+                  </form>
+
+                  
+
+                  <button class="float-end" style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+
+              
+
+            </div>
              
             <mat-list>
               <mat-list-item role="listitem" *ngFor="let address of userAddresses">
-                <mat-accordion>
-                  <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Dirección 1
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.addres_postal}}, {{address.street_and_number}}, {{address.additional_data}}
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>Me cago en tu vieja.</p>
-                  </mat-expansion-panel>
-                </mat-accordion>
-                <button style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
-                  <mat-icon>delete</mat-icon>
-                </button>
+                
+                
               </mat-list-item>
             </mat-list>  
           

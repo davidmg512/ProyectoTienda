@@ -131,5 +131,12 @@
 
 }
 
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-top: 10px;
+  margin-left: 8px;
+}
+
+
+
 
 

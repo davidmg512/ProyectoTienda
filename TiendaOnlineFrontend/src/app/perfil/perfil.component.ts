@@ -30,9 +30,36 @@ export class PerfilComponent implements OnInit{
   addNew: boolean = false;
   userAddresses: any[] = [];
   isPopupVisible: boolean = false;
+  panelOpenState = false;
+
+  addressForm: FormGroup;
+  selectedAddress: any = null;
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {}
+    private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {
+
+      this.addressForm = new FormGroup({
+        country: new FormControl('', Validators.required),
+        province: new FormControl('', Validators.required),
+        town: new FormControl('', Validators.required),
+        street: new FormControl('', Validators.required),
+        additionalInfo: new FormControl('')
+      });
+  
+    }
+
+    fillAddressForm(address: any) {
+      this.selectedAddress = address;
+      this.addressForm.patchValue({
+        country: address.address_country,
+        province: address.address_province,
+        town: address.address_town,
+        street: address.street_and_number,
+        additionalInfo: address.additional_data
+      });
+    }
+    
+
 
   onClick(){
     this.UserServiceTsService.logout()
@@ -173,6 +200,10 @@ export class PerfilComponent implements OnInit{
           console.error('Error al eliminar la dirección:', error);
         }
       );
+  }
+
+  onUpdateAddress(address: any){
+
   }
   
 }
