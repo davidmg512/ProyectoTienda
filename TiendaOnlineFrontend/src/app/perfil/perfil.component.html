@@ -96,14 +96,14 @@
                       <textarea matInput formControlName="additionalInfo" placeholder="Información Adicional"></textarea>
                     </mat-form-field>
                     <br>
-                    <button class="float-end" style="margin-left: 10px;" mat-mini-fab color="primary" type="submit">
+                    <button class="float-end boton-guardar" style="margin-left: 10px;" mat-mini-fab color="primary" type="submit">
                       <mat-icon>save</mat-icon>
                     </button>
                   </form>
 
                   
 
-                  <button class="float-end" style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
+                  <button class="float-end boton-borrar" style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
                     <mat-icon>delete</mat-icon>
                   </button>
 
@@ -124,57 +124,65 @@
             <button style="margin-right: 10px;" type="button" class="custom-button" (click)="showPopup()">{{ 'NuevaDireccion' | translate }}</button>
             
             <div *ngIf="isPopupVisible" class="popup">
-              <form (submit)="onSubmitAddDirection()">
 
-                <div class="mb-3">
-                  <mat-form-field appearance="outline">
-                    <mat-label>{{ 'Pais' | translate }}:</mat-label>
-                    <input type="text" id="country" name="country" [(ngModel)]="formData.address_country" required matInput placeholder="Placeholder">
-                  </mat-form-field>
-                </div>
+              <div class="popup-header">
+                  <h2>{{ 'NuevaDireccion' | translate }}</h2>
+                
 
-                <div class="mb-3">
-                  <mat-form-field appearance="outline">
-                    <mat-label>{{ 'Provincia' | translate }}:</mat-label>
-                    <input type="text" id="province" name="province" [(ngModel)]="formData.address_province" matInput placeholder="Placeholder">
-                  </mat-form-field>
-                </div>
+                <button mat-icon-button class="popup-close" (click)="hidePopup()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+              
 
-                <div class="mb-3">
-                  <mat-form-field appearance="outline">
-                    <mat-label>{{ 'Pueblo' | translate }}</mat-label>
-                    <input type="text" id="town" name="town" [(ngModel)]="formData.address_town" required matInput placeholder="Placeholder">
-                  </mat-form-field>
-                </div>
+              <mat-divider></mat-divider>
 
-                <div class="mb-3">
-                  <mat-form-field appearance="outline">
-                    <mat-label>{{ 'CodigoPostal' | translate }}:</mat-label>
-                    <input type="text" id="postal" name="postal" [(ngModel)]="formData.address_postal" required matInput placeholder="Placeholder">
-                  </mat-form-field>
-                </div>
+              <form style="margin-top: 16px;" (submit)="onSubmitAddDirection()">
 
-                <div class="mb-3">
-                  <mat-form-field appearance="outline">
-                    <mat-label>{{ 'CalleyNumero' | translate }}:</mat-label>
-                    <input type="text" id="streetandnumber" name="streetandnumber" [(ngModel)]="formData.street_and_number" required matInput placeholder="Placeholder">
-                  </mat-form-field>
-                </div>
-
-                <div class="mb-3">
-                  <mat-form-field appearance="outline">
-                    <mat-label>{{ 'DatosAdicionales' | translate }}:</mat-label>
-                    <input type="text" id="additionaldata" name="additionaldata" [(ngModel)]="formData.additional_data" required matInput placeholder="Placeholder">
-                  </mat-form-field>
-                </div>
-
-                <button style="margin-right: 10px;" type="submit" class="btn btn-primary" >{{ 'NuevaDireccion' | translate }}</button>
+                    <mat-form-field  class="full-width" appearance="outline">
+                      <mat-label>{{ 'Pais' | translate }}:</mat-label>
+                      <input type="text" id="country" name="country" [(ngModel)]="formData.address_country" required matInput placeholder="Placeholder">
+                    </mat-form-field>
+                  
+                  
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>{{ 'Provincia' | translate }}:</mat-label>
+                      <input type="text" id="province" name="province" [(ngModel)]="formData.address_province" matInput placeholder="Placeholder">
+                    </mat-form-field>
+                  
+                  
+                    <mat-form-field  class="full-width" appearance="outline">
+                      <mat-label>{{ 'Pueblo' | translate }}</mat-label>
+                      <input type="text" id="town" name="town" [(ngModel)]="formData.address_town" required matInput placeholder="Placeholder">
+                    </mat-form-field>
+                  
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>{{ 'CodigoPostal' | translate }}:</mat-label>
+                      <input type="text" id="postal" name="postal" [(ngModel)]="formData.address_postal" required matInput placeholder="Placeholder">
+                    </mat-form-field>
+                  
+                    <mat-form-field class="full-width" style="width: 95%;" appearance="outline">
+                      <mat-label>{{ 'CalleyNumero' | translate }}:</mat-label>
+                      <input type="text" id="streetandnumber" name="streetandnumber" [(ngModel)]="formData.street_and_number" required matInput placeholder="Placeholder">
+                    </mat-form-field>
+                  
+                    <mat-form-field style="width: 95%;" appearance="outline">
+                      <mat-label>{{ 'DatosAdicionales' | translate }}:</mat-label>
+                      <textarea id="additionaldata" name="additionaldata" [(ngModel)]="formData.additional_data" required matInput placeholder="Placeholder" matTextareaAutosize matAutosizeMinRows="3"></textarea>
+                    </mat-form-field>
+                
+              
+                  <div style="margin-top: 10px; margin-bottom: 10px;">
+                    <button style="margin-right: 15px;" type="submit" class="btn btn-primary">{{ 'NuevaDireccion' | translate }}</button>
+                    <button  class="btn btn-primary" (click)="hidePopup()" >{{ 'Cancelar' | translate }}</button>
+                  </div>
+                  
 
               </form>
               
-              <button style="margin-top: 10px;" class="btn btn-primary" (click)="hidePopup()" >{{ 'Cancelar' | translate }}</button>
+              
 
-
+              
             </div>
             
           </mat-tab>
