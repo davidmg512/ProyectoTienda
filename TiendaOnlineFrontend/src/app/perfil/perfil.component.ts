@@ -217,7 +217,7 @@ export class PerfilComponent implements OnInit{
       address_province: formData.province,
       address_town: formData.town,
       street_and_number: formData.street,
-      additional_data: address.additionalInfo
+      additional_data: formData.additionalInfo
     
     }
 
@@ -226,10 +226,11 @@ export class PerfilComponent implements OnInit{
       const response = await axios.put(`http://localhost:3000/address/${address._id}`, adressDataToUpdate, config);
       
       // Actualizar los datos en el componente con la respuesta actualizada
-      const updatedAddressIndex = this.userAddresses.findIndex(a => a._id === address._id);
+      /*const updatedAddressIndex = this.userAddresses.findIndex(a => a._id === address._id);
       if (updatedAddressIndex !== -1) {
         this.userAddresses[updatedAddressIndex] = response.data; // Actualizar con la respuesta del backend
-      }
+      }*/
+      window.location.reload();
       
       console.log('Dirección actualizada con éxito:', response);
     } catch (error) {

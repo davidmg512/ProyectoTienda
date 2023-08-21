@@ -44,7 +44,7 @@
                 </button>
                 <button type="button" class="custom-button" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button>
               </div>
-              <button *ngIf="admin" type="button" class="custom-button">{{ 'PanelAdministracion' | translate}}</button>
+              <button *ngIf="admin" type="button" class="custom-button"  routerLink="/panelAdministracion">{{ 'PanelAdministracion' | translate}}</button>
             </div>
             
             
@@ -57,11 +57,11 @@
             <div style="margin-top: 50px">
 
               <mat-accordion>
-                <mat-expansion-panel style="margin-top: 10px;" *ngFor="let address of userAddresses">
+                <mat-expansion-panel style="margin-top: 10px;" *ngFor="let address of userAddresses; let i = index">
                   <mat-expansion-panel-header (click)="fillAddressForm(address)">
 
                     <mat-panel-title>
-                      Dirección 1
+                      Dirección {{ i + 1 }}
                     </mat-panel-title>
                     
                     <mat-panel-description>

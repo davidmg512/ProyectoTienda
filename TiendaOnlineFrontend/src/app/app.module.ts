@@ -35,6 +35,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { PanelAdministracionComponent } from './panel-administracion/panel-administracion.component';
 
 
 
@@ -54,6 +55,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     EditarperfilComponent,
     ResetpasswordComponent,
     NavbarComponent,
+    PanelAdministracionComponent,
   ],
   imports: [
     BrowserModule,

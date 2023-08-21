@@ -1,0 +1,142 @@
+.profile-card {
+    /*background-image: url('../../assets/images/fondoperfil.png'); /* Cambia la ruta según la ubicación de tu imagen */
+    /*background: linear-gradient(90deg,#ffffff,#757575 75%);*/
+    border-color: transparent !important;
+    background-size: cover;
+    background-position: center;
+    max-width: 1000px;
+    width: 100%;
+    display: flex; /* Agrega display: flex */
+    flex-direction: column; /* Cambia a flex-direction: column */
+    padding: 20px; /* Agrega espaciado interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.profile-container {
+    color:rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 50px;
+
+}
+  
+  .profile-header {
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  
+  .detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .detail-value {
+    font-size: 0.9rem;
+    color: rgb(0, 0, 0);
+  }
+  
+  .carta{
+  padding-left: 60px;
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;*/
+  text-align: center;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 50px;
+
+}
+  
+.register-card {
+    max-width: 400px;
+    width: 100%;
+    display: flex; /* Agrega display: flex */
+    flex-direction: column; /* Cambia a flex-direction: column */
+    align-items: center; /* Añade alineación vertical al centro */
+    padding: 20px; /* Agrega espaciado interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-container {
+    width: 100%;
+    margin-top: 20px; /* Espaciado superior para el formulario */
+}
+
+.center-button {
+    position: relative;
+    padding-bottom: 40px;
+    padding-top: 15px;
+
+}
+
+.center-button button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    white-space: nowrap;
+}
+
+.error-message{
+  width: 100%;
+  margin-top: 10px;
+  color: red;
+  white-space: normal;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.large-icon{
+  size: 20px;
+}
+
+.ubicacion-card{
+  border: 2px solid black;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-top: 10px;
+  margin-left: 8px;
+}
+
+
+
+
+
