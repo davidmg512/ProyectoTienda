@@ -156,6 +156,7 @@ export class PerfilComponent implements OnInit{
         this.userAddresses.push(this.formData);
 
         this.addNew = false
+        window.location.reload();
       },
       (error) => {
         
