@@ -39,5 +39,20 @@ module.exports = {
     },
 
 
+    getAllUsers : function (app)
+    {
+        const User= ModelsService.Models.User;
+
+        app.get(
+            "/user/all",
+            [
+                tokenFirebaseValid
+            ],
+
+            User.Controller.getAllUsers
+        );
+    },
+
+
 
 };

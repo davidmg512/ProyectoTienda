@@ -40,7 +40,11 @@
     "CodigoPostal": "Postal code",
     "CalleyNumero": "Street,number and floor",
     "DatosAdicionales": "Addicional data",
-    "Cancelar": "Cancel"
+    "Cancelar": "Cancel",
+    "BuscarUsuario": "Search User",
+    "CambiarRolAdministrativo": "Quit/Give admin",
+    "UsuariosRegistrados": "Registered Users"
+    
 
 
 

@@ -23,6 +23,27 @@ async function deleteAddress(req, res) {
     }
 }
 
+async function deleteAddressesByUserId(req, res) {
+    const Address = ModelsService.Models.Address;
+    let transaction = await Address.transaction(DbService.get());
+    
+    try {
+        const userId = req.params.user_id; 
+        const result = await Address.deleteMany({ user_id: userId });
+
+        await transaction.commit();
+        
+        return res.status(200).json({
+            message: `${result.deletedCount} direcciones eliminadas para el usuario ${userId}`
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+}
+
+
 module.exports = {
-    deleteAddress
+    deleteAddress,
+    deleteAddressesByUserId
 };

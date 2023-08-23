@@ -10,7 +10,7 @@ const DbService = require("@services/db.service");
  * @param {Express.Response} res
  * @returns {void}
  */
-async function updateUser(req, res) 
+/*async function updateUser(req, res) 
 {
     const User = ModelsService.Models.User;
     let transaction = await User.transaction(DbService.get());
@@ -37,7 +37,7 @@ async function updateUser(req, res)
         }
         ExceptionService.handle(error, res);
     }
-}
+}*/
 
 async function updateUser(req, res) {
 
@@ -78,7 +78,50 @@ async function updateUser(req, res) {
 
 }
 
+async function updateAdmin(req, res){
+
+    const User = ModelsService.Models.User;
+    let transaction = await User.transaction(DbService.get());
+
+try {
+
+    const userId = req.params.user_id;
+
+    // Obtener el usuario actual
+    const currentUser = await User.subModel.findOne({ user_id: userId });
+
+    console.log(currentUser.user_rol);
+
+    let updatedUserRol = "";
+
+    if(currentUser.user_rol == "admin"){
+         updatedUserRol = "noAdmin";
+    }else if(currentUser.user_rol != "admin"){
+         updatedUserRol = "admin";
+    }
+
+    const dataToUpdate = {
+        user_rol: updatedUserRol,
+    };
+
+    const user = await User.subModel.updateOne(
+        { user_id: userId },
+        dataToUpdate
+    );
+
+    await transaction.commit();
+    return res.status(201).json({ message: "actualizado correctamente" });
+
+} catch (error) {
+    console.error('Error al actualizar', error);
+    return res.status(500).json(error.message);
+}
+
+
+}
+
 
 module.exports = {
-    updateUser
+    updateUser,
+    updateAdmin
 };

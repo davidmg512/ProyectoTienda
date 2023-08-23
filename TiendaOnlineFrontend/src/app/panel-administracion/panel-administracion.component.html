@@ -12,22 +12,54 @@
     <mat-card class="profile-card">
       <mat-card-header>
         <div style="text-align: center; width: 100%; margin-bottom: 30px;">
-          <mat-card-title style="font-size: 25px;">{{'Perfil' | translate}}</mat-card-title>
+          <mat-card-title style="font-size: 25px;">{{'PanelAdministracion' | translate}}</mat-card-title>
         </div>
       </mat-card-header>
 
       <mat-card-content class="carta">
       
         <mat-tab-group>
-          <mat-tab label="{{ 'Usuarios' | translate}}"> 
+          <mat-tab label="{{ 'UsuariosRegistrados' | translate}}"> 
+
+            <div style="margin-top: 50px">
+              
+              <div class="mb-3">
+                <input type="text" [(ngModel)]="searchQuery" class="form-control" placeholder="{{ 'BuscarUsuario' | translate}}">
+              </div>
+
+              <mat-accordion>
+                <mat-expansion-panel style="margin-top: 10px;" *ngFor="let users of filterUsers()">
+                  <mat-expansion-panel-header>
+
+                    <mat-panel-title>
+                      {{ users.user_email }}
+                    </mat-panel-title>
+                    
+                    <mat-panel-description>
+                      <p><strong>Email:</strong> {{ users.user_email }}</p>
+                      <p><strong>Nombre:</strong> {{ users.user_nombre }}</p>
+                      <p><strong>Apellidos:</strong> {{ users.user_apellidos }}</p>
+                      <p><strong>Teléfono:</strong> {{ users.user_telf }}</p>
+                      <p><strong>Rol:</strong> {{ users.user_rol }}</p>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  
+
+                  <button class="float-end boton-borrar" style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteUser(users)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                  <button type="button" class="custom-button" (click)="onChangeAdmin(users)">{{ 'CambiarRolAdministrativo' | translate}}</button>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+
+              
+
+            </div>
 
           </mat-tab>
-          
-          <mat-tab label="{{ 'Direcciones' | translate}}">
-            
-          </mat-tab>
-
-
         </mat-tab-group>
 
       </mat-card-content>

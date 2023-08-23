@@ -1,5 +1,5 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid, tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
@@ -19,6 +19,23 @@ module.exports = {
             ], 
             User.Controller.deleteUser
         );
+    },
+
+
+    deleteUserFromAll : function (app){
+
+        const User = ModelsService.Models.User;
+
+        app.delete(
+            "/user/delete/:user_id",
+
+            [
+                tokenFirebaseValid
+            ],
+            User.Controller.deleteUserFull
+        );
+
+
     }
 
 };

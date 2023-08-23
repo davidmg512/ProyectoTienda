@@ -40,7 +40,10 @@
     "CodigoPostal": "Código postal",
     "CalleyNumero": "Calle,número y piso",
     "DatosAdicionales": "Datos adicionales",
-    "Cancelar": "Cancelar"
+    "Cancelar": "Cancelar",
+    "BuscarUsuario": "Buscar usuario",
+    "CambiarRolAdministrativo": "Dar/Quitar administrador",
+    "UsuariosRegistrados": "Usuarios Registrados"
 
     
 }

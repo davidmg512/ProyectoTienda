@@ -16,6 +16,21 @@ module.exports = {
             ], 
             Address.Controller.deleteAddress
         );
+    },
+
+    deleteAll : function (app) {
+
+        const Address = ModelsService.Models.Address;
+
+        // Delete address by id
+        app.delete(
+            "/deleteAllAddressofUser/:user_id/", 
+            [
+                tokenFirebaseValid
+            ], 
+            Address.Controller.deleteAddressesByUserId
+        );
     }
+
 
 };
