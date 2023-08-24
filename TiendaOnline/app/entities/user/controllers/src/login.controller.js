@@ -89,9 +89,9 @@ async function loginUserGoogle(req, res) {
         const dataToCreate = {
             
             user_email: userEmail,
-            user_nombre: 'Aquí puedes poner tu nombre y actualizarlo',
-            user_apellidos: 'Pon aquí tus apellidos para actualizarlos',
-            user_telf: 'Inserte aquí el número de teléfono con un formato correcto, convenientemente 000000000',
+            user_nombre: 'Nombre/Name',
+            user_apellidos: 'Apellidos/Surnames',
+            user_telf: 'Telf Ex: 12345678',
             user_id: objectId,
             user_rol: 'Nada'
             

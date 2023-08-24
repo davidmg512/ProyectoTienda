@@ -72,27 +72,27 @@
 
                   <form *ngIf="selectedAddress === address" [formGroup]="addressForm" (submit)="onUpdateAddress(address)" class="address-form">
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Pais</mat-label>
+                      <mat-label>{{ 'Pais' | translate }}</mat-label>
                       <input type="text" matInput formControlName="country" placeholder="Placeholder">
                     </mat-form-field>
 
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Provincia</mat-label>
+                      <mat-label>{{ 'Provincia' | translate }}</mat-label>
                       <input matInput formControlName="province" placeholder="Provincia">
                     </mat-form-field>
 
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Población</mat-label>
+                      <mat-label>{{ 'Pueblo' | translate }}</mat-label>
                       <input matInput formControlName="town" placeholder="Población">
                     </mat-form-field>
 
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Calle</mat-label>
+                      <mat-label>{{ 'CalleyNumero' | translate }}</mat-label>
                       <input matInput formControlName="street" placeholder="Calle">
                     </mat-form-field>
 
                     <mat-form-field class="full-width" style="width: 100%;" appearance="outline">
-                      <mat-label>Información Adicional</mat-label>
+                      <mat-label>{{ 'DatosAdicionales' | translate }}</mat-label>
                       <textarea matInput formControlName="additionalInfo" placeholder="Información Adicional"></textarea>
                     </mat-form-field>
                     <br>
