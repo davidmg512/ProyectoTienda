@@ -48,13 +48,7 @@ async function updateAddress(req, res) {
     }
 }
 
-/**
- * Update address
- * @async
- * @param {Express.Request} req 
- * @param {Express.Response} res
- * @returns {void}
- */
+
 async function setMainAddress(req,res){
     const Address = ModelsService.Models.Address;
     const ObjectID = mongoose.Types.ObjectId;
@@ -78,9 +72,6 @@ async function setMainAddress(req,res){
         res.status(200).json({ message: 'Dirección principal actualizada exitosamente' });
 
     }catch (error) {
-        console.log(error);
-        await transaction.rollback();
-        console.log(error);
         throw new Address.Exceptions.AddressNotFoundException({
             error_type: 'DIRECCION_NO_ENCONTRADA',
             error_message: 'La dirección no fue encontrada'

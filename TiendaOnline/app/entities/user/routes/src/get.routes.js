@@ -15,7 +15,6 @@ module.exports = {
             [
                 
                 tokenFirebaseValid,
-                User.Middlewares.canReadResource,
             ],
             User.Controller.getUserByEmail
         );
@@ -31,7 +30,6 @@ module.exports = {
             "/user/usernombre/:user_nombre/",
             [
                 deactivateRoute,
-                User.Middlewares.canReadResource,
             ],
             User.Controller.getUserByNombre
         );

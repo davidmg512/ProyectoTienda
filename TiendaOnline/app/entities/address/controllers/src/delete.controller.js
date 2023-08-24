@@ -14,9 +14,9 @@ async function deleteAddress(req, res) {
     const Address = ModelsService.Models.Address;
     let transaction = await Address.transaction(DbService.get());
     try {
-        const address = await Address.Controller.__deleteAddress(req.params.address_id ?? req.body.address_id, { transaction });
+        const address = await Address.deleteOne({_id: req.params.address_id});
         await transaction.commit();
-        return res.status(200).json(address.toJSON());
+        return res.status(200).json("Se ha eliminado la dirección correctamente");
     } catch (error) {
 
         console.log(error);
