@@ -18,6 +18,13 @@ async function createAddress(req, res)
     {
         const user_id = req.decodedTokenId;
         req.body.user_id = user_id;
+        const userAddresses = await Address.findAll({ user_id });
+
+        if(userAddresses.length === 0){
+            req.body.main_address = true;
+        }
+
+    
         const address = await Address.createOne(req.body, { transaction });
         await transaction.commit();
         return res.status(201).json(address.toJSON());
