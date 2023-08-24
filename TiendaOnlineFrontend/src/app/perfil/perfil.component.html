@@ -61,11 +61,12 @@
                   <mat-expansion-panel-header (click)="fillAddressForm(address)">
 
                     <mat-panel-title>
-                      Dirección {{ i + 1 }}
+                      {{'Direccion' | translate}} {{ i + 1 }} &nbsp; &nbsp;
+                      <span *ngIf="address.main_address" style="color: rgb(98, 194, 1);">{{'DireccionPrincipal' | translate}}</span>
                     </mat-panel-title>
                     
                     <mat-panel-description>
-                      {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.addres_postal}}, {{address.street_and_number}}, {{address.additional_data}}
+                      {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.address_postal}}, {{address.street_and_number}}, {{address.additional_data}}
                     </mat-panel-description>
                   </mat-expansion-panel-header>
 
@@ -79,7 +80,7 @@
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>{{ 'Provincia' | translate }}</mat-label>
                       <input matInput formControlName="province" placeholder="Provincia">
-                    </mat-form-field>
+                    </mat-form-field><br>
 
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>{{ 'Pueblo' | translate }}</mat-label>
@@ -87,6 +88,11 @@
                     </mat-form-field>
 
                     <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>{{ 'CodigoPostal' | translate }}</mat-label>
+                      <input matInput formControlName="postal" placeholder="Población">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" style="width: 100%;" appearance="outline">
                       <mat-label>{{ 'CalleyNumero' | translate }}</mat-label>
                       <input matInput formControlName="street" placeholder="Calle">
                     </mat-form-field>
@@ -94,34 +100,34 @@
                     <mat-form-field class="full-width" style="width: 100%;" appearance="outline">
                       <mat-label>{{ 'DatosAdicionales' | translate }}</mat-label>
                       <textarea matInput formControlName="additionalInfo" placeholder="Información Adicional"></textarea>
-                    </mat-form-field>
-                    <br>
+                    </mat-form-field><br>
+
+                    <button style="margin-left: 100px; margin-bottom: 15px;" class="custom-button" (click)="onSetMainAddress(address)">
+                      {{'DireccionPrincipal' | translate}}
+                    </button>
+
                     <button class="float-end boton-guardar" style="margin-left: 10px;" mat-mini-fab color="primary" type="submit">
                       <mat-icon>save</mat-icon>
+                    </button>
+
+                    <button class="float-end boton-borrar" style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
+                      <mat-icon>delete</mat-icon>
                     </button>
                   </form>
 
                   
 
-                  <button class="float-end boton-borrar" style="margin-left: 10px;" mat-mini-fab color="warn" (click)="onDeleteAddress(address)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
+                  
 
                 </mat-expansion-panel>
               </mat-accordion>
 
               
 
-            </div>
-             
-            <mat-list>
-              <mat-list-item role="listitem" *ngFor="let address of userAddresses">
-                
-                
-              </mat-list-item>
-            </mat-list>  
+            </div>  
           
-            <button style="margin-right: 10px;" type="button" class="custom-button" (click)="showPopup()">{{ 'NuevaDireccion' | translate }}</button>
+            <button style="margin-right: 10px; margin-top:50px;" type="button" class="custom-button" (click)="showPopup()">{{ 'NuevaDireccion' | translate }}</button>
+
             
             <div *ngIf="isPopupVisible" class="popup">
 

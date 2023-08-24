@@ -43,7 +43,9 @@
     "Cancelar": "Cancel",
     "BuscarUsuario": "Search User",
     "CambiarRolAdministrativo": "Quit/Give admin",
-    "UsuariosRegistrados": "Registered Users"
+    "UsuariosRegistrados": "Registered Users",
+    "DireccionPrincipal": "Main address",
+    "Direccion": "Address"
     
 
 

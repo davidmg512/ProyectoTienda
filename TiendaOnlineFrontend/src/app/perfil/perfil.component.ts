@@ -43,6 +43,7 @@ export class PerfilComponent implements OnInit{
         country: new FormControl('', Validators.required),
         province: new FormControl('', Validators.required),
         town: new FormControl('', Validators.required),
+        postal: new FormControl('',Validators.required),
         street: new FormControl('', Validators.required),
         additionalInfo: new FormControl('')
       });
@@ -55,6 +56,7 @@ export class PerfilComponent implements OnInit{
         country: address.address_country,
         province: address.address_province,
         town: address.address_town,
+        postal: address.address_postal,
         street: address.street_and_number,
         additionalInfo: address.additional_data
       });
@@ -217,6 +219,7 @@ export class PerfilComponent implements OnInit{
       address_country: formData.country,
       address_province: formData.province,
       address_town: formData.town,
+      address_postal: formData.postal,
       street_and_number: formData.street,
       additional_data: formData.additionalInfo
     
@@ -231,6 +234,27 @@ export class PerfilComponent implements OnInit{
       if (updatedAddressIndex !== -1) {
         this.userAddresses[updatedAddressIndex] = response.data; // Actualizar con la respuesta del backend
       }*/
+      window.location.reload();
+      
+      console.log('Dirección actualizada con éxito:', response);
+    } catch (error) {
+      console.error('Error al actualizar la dirección:', error);
+    }
+  }
+
+  async onSetMainAddress(address: any){
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    };
+
+    const stringVacio = "";
+
+    try {
+      const response = await axios.put(`http://localhost:3000/main_address/${address._id}`,stringVacio, config);
+      
       window.location.reload();
       
       console.log('Dirección actualizada con éxito:', response);

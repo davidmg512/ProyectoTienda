@@ -39,6 +39,12 @@ const addressSchema = new mongoose.Schema({
         type: String,
         ref: 'user',
         required: true,
+    },
+
+    main_address: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 
 }, {

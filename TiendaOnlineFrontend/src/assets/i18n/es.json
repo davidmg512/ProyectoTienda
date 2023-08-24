@@ -43,8 +43,9 @@
     "Cancelar": "Cancelar",
     "BuscarUsuario": "Buscar usuario",
     "CambiarRolAdministrativo": "Dar/Quitar administrador",
-    "UsuariosRegistrados": "Usuarios Registrados"
-
+    "UsuariosRegistrados": "Usuarios Registrados",
+    "DireccionPrincipal": "Dirección principal",
+    "Direccion": "Dirección"
     
 }
   
