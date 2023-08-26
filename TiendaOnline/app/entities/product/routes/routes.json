@@ -1,0 +1,260 @@
+{
+    "paths": {
+        "/product/": {
+            "post": {
+                "summary": "Create a new product",
+                "operationId": "createProduct",
+                "tags": [
+                    "Products"
+                ],
+                "requestBody": {
+                    "description": "Product object to be created",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/ConflictError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "get": {
+                "summary": "Get all products",
+                "operationId": "getAllProducts",
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Offset"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                        "description": "TODO: Define filter parameters for Product"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/product/{product_id}/": {
+            "get": {
+                "summary": "Get a product by id",
+                "operationId": "getProductById",
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/MongoId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a product by id",
+                "operationId": "updateProduct",
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/MongoId"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Product object to be updated",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Product updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a product by id",
+                "operationId": "deleteProduct",
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/MongoId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "418": {
+                        "$ref": "#/components/responses/TeapotError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequestsError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}
