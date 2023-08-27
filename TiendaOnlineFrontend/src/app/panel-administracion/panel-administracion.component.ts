@@ -38,9 +38,7 @@ export class PanelAdministracionComponent {
 
     }
 
-    onFileSelected(event: any){
-      this.selectedImages = event.target.files;
-    }
+
 
     
     ngOnInit(): void {
@@ -132,6 +130,10 @@ export class PanelAdministracionComponent {
           }
         );
 
+    }
+
+    onFileSelected(event: any){
+      this.selectedImages = event.target.files;
     }
 
     async onCreateProduct(){

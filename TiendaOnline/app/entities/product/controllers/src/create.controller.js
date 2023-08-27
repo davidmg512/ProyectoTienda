@@ -2,7 +2,11 @@ const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
 const { ExceptionHandler } = require('kainda');
-const cloudflare = require('cloudflare');
+const cloudflare = require('cloudflare-api');
+/*const cf = cloudflare({
+    email: 'susojeruso2000@gmail.com',
+    key: 't4gF1lEDe9K1SnqtZRCm0rLL6K4Bhwca'
+});*/
 
 /**
  * Create new product
@@ -11,7 +15,7 @@ const cloudflare = require('cloudflare');
  * @param {Express.Response} res
  * @returns {void}
  */
-async function createProduct(req, res) {
+/*async function createProduct(req, res) {
     const Product = ModelsService.Models.Product;
     let transaction = await Product.transaction(DbService.get());
     try {
@@ -25,29 +29,54 @@ async function createProduct(req, res) {
         }
         ExceptionHandler(error, res);
     }
-}
+}*/
 
-const cf = cloudflare({
-    email: 'susojeruso2000@gmail.com',
-    key: 't4gF1lEDe9K1SnqtZRCm0rLL6K4Bhwca'
-})
 
-async function nuevoProducto(req, res){
+
+async function createProduct(req, res){
     const Product = ModelsService.Models.Product;
+    const cf = require('cloudflare')({
+        token: '316430a42c83770acd2388043d75ca80b8169'
+      });
+
     let transaction = await Product.transaction(DbService.get());
 
     try{
 
+    const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
+    const imageUrls = [];
+
+    for(const imageFile of req.files){
+        const imageStream = imageFile.buffer;
+        const mediaType = imageFile.mimetype;
+        const imageUpload = await cf.images.v1.upload({
+            data: imageStream,
+            account_id: '7487b224e6bdb241146084a2bd8da49d',
+            media_type: mediaType
+        })
+        imageUrls.push(imageUpload.result.url);
+    }
+
+    const newProduct = new Product({
+        producto_nombre,
+        producto_descripcion,
+        producto_precio,
+        producto_categoria,
+        producto_imagenes: imageUrls
+    })
+
     
-    const product = await Address.createOne(req.body, { transaction });
+    const product = await Product.createOne(newProduct, { transaction });
 
     transaction.commit();
     return res.status(201).json(product.toJSON());
 
-
-
     }catch(error){
         console.log(error);
+        LogService.ErrorLogger.error(error);
+        if (transaction) {
+            await transaction.rollback();
+        }
     }
 
 }
@@ -55,6 +84,5 @@ async function nuevoProducto(req, res){
 
 
 module.exports = {
-    createProduct,
-    nuevoProducto
+    createProduct
 };

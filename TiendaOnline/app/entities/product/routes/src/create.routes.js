@@ -10,14 +10,16 @@ module.exports = {
 
         // Create new product
         app.post(
-            "/addProduct/",
+            "/addProduct",
             [
 
                 tokenFirebaseValid,
                 Product.Middlewares.checkRequiredKeys
             ],
-            Product.Controller.nuevoProducto
+            Product.Controller.createProduct
         );
     }
+
+
 
 };

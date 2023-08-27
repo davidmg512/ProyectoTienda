@@ -61,7 +61,7 @@
 
           </mat-tab>
           <mat-tab label="{{ 'Productos' | translate}}">
-            <form [formGroup]="productForm" (ngSubmit)="onCreateProduct()">
+            <form [formGroup]="productForm" (submit)="onCreateProduct()">
               <label for="name">Nombre:</label>
               <input type="text" id="name" formControlName="name">
             
