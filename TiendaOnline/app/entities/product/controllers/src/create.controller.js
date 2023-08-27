@@ -2,6 +2,7 @@ const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
 const { ExceptionHandler } = require('kainda');
+const cloudflare = require('cloudflare');
 
 /**
  * Create new product
@@ -25,6 +26,11 @@ async function createProduct(req, res) {
         ExceptionHandler(error, res);
     }
 }
+
+const cf = cloudflare({
+    email: 'susojeruso2000@gmail.com',
+    key: 't4gF1lEDe9K1SnqtZRCm0rLL6K4Bhwca'
+})
 
 async function nuevoProducto(req, res){
     const Product = ModelsService.Models.Product;

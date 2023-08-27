@@ -36,6 +36,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { PanelAdministracionComponent } from './panel-administracion/panel-administracion.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -56,6 +59,7 @@ import { PanelAdministracionComponent } from './panel-administracion/panel-admin
     ResetpasswordComponent,
     NavbarComponent,
     PanelAdministracionComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,8 +84,9 @@ import { PanelAdministracionComponent } from './panel-administracion/panel-admin
     MatRippleModule,
     MatTabsModule,
     MatListModule,
-    MatExpansionModule
-    
+    MatExpansionModule,
+    MatGridListModule,
+    MatChipsModule
 
   ],
   providers: [],

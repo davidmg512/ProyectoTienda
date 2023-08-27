@@ -1,0 +1,11 @@
+.producto-card {
+    color:rgb(0, 0, 0);
+    background-color: white;
+    width: 500px;
+    margin: 10px;
+    height: 300px;
+  }
+
+.producto-imagen{
+    width: 200px;
+  }

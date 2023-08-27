@@ -45,7 +45,9 @@
     "CambiarRolAdministrativo": "Dar/Quitar administrador",
     "UsuariosRegistrados": "Usuarios Registrados",
     "DireccionPrincipal": "Dirección principal",
-    "Direccion": "Dirección"
+    "Direccion": "Dirección",
+    "Productos": "Productos",
+    "NuevoProducto": "Nuevo producto"
     
 }
   

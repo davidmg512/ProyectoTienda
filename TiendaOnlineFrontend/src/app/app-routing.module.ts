@@ -8,6 +8,7 @@ import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo} from '@angular/
 import { EditarperfilComponent } from './editarperfil/editarperfil.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { PanelAdministracionComponent } from './panel-administracion/panel-administracion.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
   { path: 'perfil/editar', component: EditarperfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   { path: 'resetpassword', component: ResetpasswordComponent, ...canActivate(() => redirectLoggedInTo(['/perfil']))},
-  {path: 'panelAdministracion', component: PanelAdministracionComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))}
+  {path: 'panelAdministracion', component: PanelAdministracionComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  { path: 'productos', component: ProductListComponent }
 ];
 
 @NgModule({

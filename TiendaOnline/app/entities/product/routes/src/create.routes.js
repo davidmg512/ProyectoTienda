@@ -1,5 +1,5 @@
 const ModelsService = require("@services/models.service");
-const { tokenValid } = require("@services/auth.service");
+const { tokenValid, tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = { 
@@ -10,11 +10,10 @@ module.exports = {
 
         // Create new product
         app.post(
-            "/product/",
+            "/addProduct/",
             [
-                deactivateRoute,
-                tokenValid,
-                Product.Middlewares.canCreateResource,
+
+                tokenFirebaseValid,
                 Product.Middlewares.checkRequiredKeys
             ],
             Product.Controller.nuevoProducto
