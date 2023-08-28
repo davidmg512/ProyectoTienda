@@ -27,14 +27,14 @@ export class PanelAdministracionComponent {
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService,private formBuilder: FormBuilder) {
 
-
-      this.productForm = this.formBuilder.group({
-        producto_nombre: ['', Validators.required],
-        producto_description: [''],
-        producto_precio: ['', Validators.required],
-        producto_categoria: ['',Validators.required],
-        producto_imagenes:[null]
+      this.productForm = new FormGroup({
+        producto_nombre: new FormControl('', Validators.required),
+        producto_descripcion: new FormControl(''), // Corregido el nombre del control
+        producto_precio: new FormControl('', Validators.required),
+        producto_categoria: new FormControl('', Validators.required), // Corregido el nombre del control
+        producto_imagenes: new FormControl(null),
       });
+      
 
     }
 
@@ -146,6 +146,7 @@ export class PanelAdministracionComponent {
         
 
         for(let i = 0; i < this.selectedImages.length; i++){
+          console.log('Imagen', i + 1, ':', this.selectedImages[i]);
           formData.append('producto_imagenes',this.selectedImages[i]);
         }
 

@@ -3,6 +3,7 @@ const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
 const { ExceptionHandler } = require('kainda');
 const cloudflare = require('cloudflare-api');
+
 /*const cf = cloudflare({
     email: 'susojeruso2000@gmail.com',
     key: 't4gF1lEDe9K1SnqtZRCm0rLL6K4Bhwca'
@@ -35,16 +36,17 @@ const cloudflare = require('cloudflare-api');
 
 async function createProduct(req, res){
     const Product = ModelsService.Models.Product;
-    const cf = require('cloudflare')({
-        token: '316430a42c83770acd2388043d75ca80b8169'
-      });
-
     let transaction = await Product.transaction(DbService.get());
 
     try{
 
     const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
     const imageUrls = [];
+
+    const cf = cloudflare({
+        email: 'susojeruso2000@gmail.com',
+        token: '316430a42c83770acd2388043d75ca80b8169'
+      });
 
     for(const imageFile of req.files){
         const imageStream = imageFile.buffer;
