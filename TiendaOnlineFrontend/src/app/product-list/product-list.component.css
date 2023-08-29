@@ -1,11 +1,30 @@
 .producto-card {
-    color:rgb(0, 0, 0);
-    background-color: white;
-    width: 500px;
-    margin: 10px;
-    height: 300px;
+  align-items: center;
+  padding: 16px;
+}
+  
+  .producto-imagen {
+    max-width: 100%;
+    max-height: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .producto-titulo {
+    font-size: 1.2rem;
+    margin: 8px 0;
+  }
+  
+  .producto-categorias,
+  .producto-precio {
+    margin-bottom: 8px;
+  }
+  
+  .producto-descripcion {
+    margin-bottom: 16px;
+  }
+  
+  .producto-precio {
+    margin-top: auto;
   }
 
-.producto-imagen{
-    width: 200px;
-  }
+  

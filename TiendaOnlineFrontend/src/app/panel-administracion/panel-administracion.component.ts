@@ -137,6 +137,18 @@ export class PanelAdministracionComponent {
     }
 
     async onCreateProduct(){
+
+      axios.get(`http://localhost:3000/imageUrl/`)
+      .then(response => {
+        const uploadUrl = response.data.uploadUrl;
+        console.log(uploadUrl);
+      },
+      (error) => {
+        console.error('Error al obtener el Url:', error);
+      }
+      )
+
+      /*
       if(this.productForm.valid) {
         const formData = new FormData();
         formData.append('producto_nombre',this.productForm.value.producto_nombre);
@@ -169,6 +181,6 @@ export class PanelAdministracionComponent {
         );
 
 
-      }
+      }*/
     }
 }

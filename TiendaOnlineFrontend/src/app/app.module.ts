@@ -39,6 +39,7 @@ import { PanelAdministracionComponent } from './panel-administracion/panel-admin
 import { ProductListComponent } from './product-list/product-list.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 
@@ -86,7 +87,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatListModule,
     MatExpansionModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSliderModule
 
   ],
   providers: [],

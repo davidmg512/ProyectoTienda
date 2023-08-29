@@ -33,6 +33,22 @@ module.exports = {
             ],
             Product.Controller.getProductById
         );
+    },
+
+    getUrl : function (app) {
+
+        const Product = ModelsService.Models.Product;
+
+        // Get product by id
+        app.get(
+            "/imageUrl",
+            [
+
+            ],
+            Product.Controller.getUrl
+        );
     }
+
+    
 
 };

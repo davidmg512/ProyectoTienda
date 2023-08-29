@@ -1,29 +1,49 @@
 
 
-<div style="padding: 40px; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+<div class="container" >
+    
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-bottom: 25px; margin-top:30px">
+        <!-- Elemento a la izquierda -->
+        <div style="grid-column: 1;">
+            <input style="width: 300px;" type="text"  [(ngModel)]="searchQuery" (ngModelChange)="aplicarFiltros()" class="form-control" placeholder="{{ 'Buscar producto' | translate}}">
+        </div>
+    
+        <!-- Chips en el centro -->
+        <div style="grid-column: 2; text-align: center;">
+            <mat-chip-listbox aria-label="Category selection" multiple>
+                <mat-chip-option *ngFor="let categoria of categorias" (click)="toggleFiltro(categoria)">
+                    {{ categoria }}
+                </mat-chip-option>
+            </mat-chip-listbox>
+        </div>
+    
+        <!-- Slider a la derecha -->
+        <div style="grid-column: 3; text-align: right;">
+            <mat-slider discrete showTickMarks min="0" max="1000" style="width: 200px;">
+                <input value="0" [(ngModel)]="precioMin" (ngModelChange)="aplicarFiltros()" matSliderStartThumb>
+                <input value="1000" [(ngModel)]="precioMax" (ngModelChange)="aplicarFiltros()" matSliderEndThumb>
+            </mat-slider>
+        </div>
+    </div>
     
     
-    <mat-chip-listbox aria-label="Fish selection" multiple style="margin-bottom: 30px;">
-        <mat-chip-option (click)="toggleFiltro('todo')" selected>Todo</mat-chip-option>
-        <mat-chip-option *ngFor="let categoria of categorias" (click)="toggleFiltro(categoria)">{{ categoria }}</mat-chip-option>
-    </mat-chip-listbox>
+    
  
-    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px" style="width: 100%; height: 100%;">
-        <mat-grid-tile *ngFor="let product of productosFiltrados;">
-            <mat-card class="producto-card">
-                <!-- Contenido de la card del producto -->
-                <mat-card-header>
-                    <img [src]="product.imagen" alt="Imagen del producto" class="producto-imagen"><br>
-                </mat-card-header>
-                <mat-card-content>
-                    <h2>{{ product.nombre }}</h2>
-                    <p>Categorias: {{product.categorias}}</p>
-                    <p>{{ product.descripcion }}</p>
-                    <p>Precio: {{ product.precio }}</p>
-                </mat-card-content>
-                <!-- Agrega aquí botones u otros elementos relacionados con el producto -->
-            </mat-card>
-            
-        </mat-grid-tile>
-    </mat-grid-list>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 mb-4" *ngFor="let product of productosFiltrados;">
+          <mat-card class="producto-card">
+            <mat-card-header>
+              <img [src]="product.imagen" alt="Imagen del producto" class="producto-imagen"><br>
+            </mat-card-header>
+            <mat-card-content>
+              <h4 class="fw-bold">{{ product.nombre }}</h4>
+              <p>Categorias: {{ product.categorias.join(', ') }}</p>
+              <p>{{ product.descripcion }}</p>
+              <p class="fw-bold">Precio: {{ product.precio }}</p>
+            </mat-card-content>
+
+            <button mat-raised-button class="custom-button mat-small" style="margin-top:15px">Añadir a la cesta</button>
+          </mat-card>
+        </div>
+      </div>
 </div>

@@ -1,6 +1,7 @@
 const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const { ExceptionHandler } = require('kainda');
+const cloudflare = require('cloudflare-api');
 
 /**
  * Get all products
@@ -52,8 +53,39 @@ async function getProductById(req, res) {
         ExceptionHandler(error, res);
     }
 }
+    
+
+    const cf = cloudflare({
+        email: 'susojeruso2000@gmail.com',
+        token: '316430a42c83770acd2388043d75ca80b8169'
+      });
+      
+    
+    async function getUrl(req, res){
+
+        try{
+    
+            const uploadResponse = await cf.request('POST','/images/v1/upload', {
+    
+                account_id: '7487b224e6bdb241146084a2bd8da49d',
+                media_type: image/jpg,
+    
+            });
+    
+            const uploadUrl = uploadResponse.result.upload_url;
+            return uploadUrl;
+
+    
+        }catch(error){
+            console.log(error);
+        }
+    
+    }
+
+
 
 module.exports = {
     getAllProducts,
-    getProductById
+    getProductById,
+    getUrl
 };

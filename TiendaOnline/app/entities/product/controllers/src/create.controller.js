@@ -32,15 +32,32 @@ const cloudflare = require('cloudflare-api');
     }
 }*/
 
-
+const cf = cloudflare({
+    email: 'susojeruso2000@gmail.com',
+    token: 'BG1n8RakSRs_zs9yyHBvyg93KagSowaF9bYVod_a'
+  });
+  
 
 async function createProduct(req, res){
+    /*
     const Product = ModelsService.Models.Product;
-    let transaction = await Product.transaction(DbService.get());
+    let transaction = await Product.transaction(DbService.get());*/ç
+
+
 
     try{
 
-    const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
+        const uploadResponse = await cf.request('POST','/images/v1/upload', {
+
+            account_id: '7487b224e6bdb241146084a2bd8da49d',
+            media_type: image/jpg,
+
+        });
+
+        const uploadUrl = uploadResponse.result.upload_url;
+        return uploadUrl;
+
+    /*const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
     const imageUrls = [];
 
     const cf = cloudflare({
@@ -71,14 +88,10 @@ async function createProduct(req, res){
     const product = await Product.createOne(newProduct, { transaction });
 
     transaction.commit();
-    return res.status(201).json(product.toJSON());
+    return res.status(201).json(product.toJSON());*/
 
     }catch(error){
         console.log(error);
-        LogService.ErrorLogger.error(error);
-        if (transaction) {
-            await transaction.rollback();
-        }
     }
 
 }
