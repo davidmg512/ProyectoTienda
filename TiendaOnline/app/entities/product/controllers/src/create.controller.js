@@ -2,13 +2,16 @@ const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
 const { ExceptionHandler } = require('kainda');
-const cloudflare = require('cloudflare-api');
-
-/*const cf = cloudflare({
+//const cloudflare = require('cloudflare-api');
+const fetch = require('node-fetch').default;
+const FormData = require('form-data');
+const fs = require('fs')
+/*
+const cf = cloudflare({
     email: 'susojeruso2000@gmail.com',
-    key: 't4gF1lEDe9K1SnqtZRCm0rLL6K4Bhwca'
-});*/
-
+    token: '316430a42c83770acd2388043d75ca80b8169'
+});
+*/
 /**
  * Create new product
  * @async
@@ -32,63 +35,54 @@ const cloudflare = require('cloudflare-api');
     }
 }*/
 
-const cf = cloudflare({
-    email: 'susojeruso2000@gmail.com',
-    token: 'BG1n8RakSRs_zs9yyHBvyg93KagSowaF9bYVod_a'
-  });
   
 
 async function createProduct(req, res){
-    /*
+    
     const Product = ModelsService.Models.Product;
-    let transaction = await Product.transaction(DbService.get());*/ç
+    let transaction = await Product.transaction(DbService.get());
 
 
 
     try{
 
-        const uploadResponse = await cf.request('POST','/images/v1/upload', {
-
-            account_id: '7487b224e6bdb241146084a2bd8da49d',
-            media_type: image/jpg,
-
-        });
-
-        const uploadUrl = uploadResponse.result.upload_url;
-        return uploadUrl;
-
-    /*const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
+    const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
+    console.log(producto_nombre)
     const imageUrls = [];
+    const imageFile = req.body.producto_imagenes.nombre;
+    console.log(imageFile);
+    const imageStream = fs.readFile(imageFile.path);
 
-    const cf = cloudflare({
-        email: 'susojeruso2000@gmail.com',
-        token: '316430a42c83770acd2388043d75ca80b8169'
-      });
+    const cloudflareApiToken = "316430a42c83770acd2388043d75ca80b8169";
+    
+    const cloudflarePostBody = new FormData();
+    cloudflarePostBody.append("file", imageStream);
+    
+    const cloudflareResponse = await fetch("https://api.cloudflare.com/client/v4/accounts/7487b224e6bdb241146084a2bd8da49d/images/v1", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${cloudflareApiToken}`,
+            "Content-Type": "multipart/form-data"
+        },
+        body: cloudflarePostBody,
+    });
 
-    for(const imageFile of req.files){
-        const imageStream = imageFile.buffer;
-        const mediaType = imageFile.mimetype;
-        const imageUpload = await cf.images.v1.upload({
-            data: imageStream,
-            account_id: '7487b224e6bdb241146084a2bd8da49d',
-            media_type: mediaType
-        })
-        imageUrls.push(imageUpload.result.url);
-    }
+    const cloudflareResponseBody = await cloudflareResponse.json();
+    const imageUrl = cloudflareResponseBody.result.url;
 
     const newProduct = new Product({
         producto_nombre,
         producto_descripcion,
         producto_precio,
         producto_categoria,
-        producto_imagenes: imageUrls
+        producto_imagenes: imageUrl
     })
 
     
     const product = await Product.createOne(newProduct, { transaction });
 
     transaction.commit();
-    return res.status(201).json(product.toJSON());*/
+    return res.status(201).json(product.toJSON());
 
     }catch(error){
         console.log(error);

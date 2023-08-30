@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 import { NavbarComponent } from '../navbar/navbar.component';
 import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,6 +24,8 @@ export class PanelAdministracionComponent {
   infoRelleno: string = ';'
   productForm: FormGroup;
   selectedImages: File[] = [];
+  selectedImage: File | null = null;
+
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService,private formBuilder: FormBuilder) {
@@ -136,51 +139,46 @@ export class PanelAdministracionComponent {
       this.selectedImages = event.target.files;
     }
 
-    async onCreateProduct(){
 
-      axios.get(`http://localhost:3000/imageUrl/`)
-      .then(response => {
-        const uploadUrl = response.data.uploadUrl;
-        console.log(uploadUrl);
-      },
-      (error) => {
-        console.error('Error al obtener el Url:', error);
+
+
+
+      async onCreateProduct() {
+          if (this.selectedImages.length === 0) {
+            return;
+          }
+      
+          const productData = {
+            producto_nombre: 'Nombre del producto',
+            producto_descripcion: 'Descripción del producto',
+            producto_precio: 100,
+            producto_categoria: 'Categoría del producto',
+          };
+      
+          const formData = new FormData();
+      
+          for (const image of this.selectedImages) {
+            formData.append('producto_imagenes', image);
+          }
+      
+          formData.append('producto_nombre', productData.producto_nombre);
+          formData.append('producto_descripcion', productData.producto_descripcion);
+          formData.append('producto_precio', productData.producto_precio.toString());
+          formData.append('producto_categoria', productData.producto_categoria);
+      
+          try {
+            const token = localStorage.getItem('token'); 
+            const response = await axios.post('http://localhost:3000/addProduct/', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+              },
+            });
+      
+            console.log('Respuesta del servidor:', response.data);
+          } catch (error) {
+            console.error('Error al enviar la solicitud:', error);
+          }
       }
-      )
-
-      /*
-      if(this.productForm.valid) {
-        const formData = new FormData();
-        formData.append('producto_nombre',this.productForm.value.producto_nombre);
-        formData.append('producto_descripcion',this.productForm.value.producto_descripcion);
-        formData.append('producto_precio',this.productForm.value.producto_precio);
-        formData.append('producto_categoria',this.productForm.value.producto_categoria);
-        
-
-        for(let i = 0; i < this.selectedImages.length; i++){
-          console.log('Imagen', i + 1, ':', this.selectedImages[i]);
-          formData.append('producto_imagenes',this.selectedImages[i]);
-        }
-
-        const token = localStorage.getItem('token'); 
-        const config = {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        };
-
-        axios.post(`http://localhost:3000/addProduct/`,formData ,config)
-        .then(
-          (response) => {
-            console.log('El nuevo producto se ha añdido con éxito:', response);
-            window.location.reload();
-          },
-          (error) => {
-            console.error('Ha habido un fallo al añadir el producto:', error);
-          }
-        );
-
-
-      }*/
-    }
 }
+

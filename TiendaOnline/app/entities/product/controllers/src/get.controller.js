@@ -1,7 +1,6 @@
 const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const { ExceptionHandler } = require('kainda');
-const cloudflare = require('cloudflare-api');
 
 /**
  * Get all products
@@ -54,15 +53,15 @@ async function getProductById(req, res) {
     }
 }
     
-
+/*
     const cf = cloudflare({
         email: 'susojeruso2000@gmail.com',
         token: '316430a42c83770acd2388043d75ca80b8169'
       });
-      
+      */
     
     async function getUrl(req, res){
-
+/*
         try{
     
             const uploadResponse = await cf.request('POST','/images/v1/upload', {
@@ -79,7 +78,7 @@ async function getProductById(req, res) {
         }catch(error){
             console.log(error);
         }
-    
+    */
     }
 
 
