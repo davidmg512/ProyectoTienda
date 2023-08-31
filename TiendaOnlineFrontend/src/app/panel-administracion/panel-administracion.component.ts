@@ -140,45 +140,106 @@ export class PanelAdministracionComponent {
     }
 
 
+    async uploadImagesToCloudflare(images:  File[]) {
+      const cloudflareApiToken = '316430a42c83770acd2388043d75ca80b8169';
+      const cloudflareApiUrl = 'https://api.cloudflare.com/client/v4/accounts/7487b224e6bdb241146084a2bd8da49d/images/v1';
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${cloudflareApiToken}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+    
+      const uploadPromises = images.map(async image => {
+        const formData = new FormData();
+        formData.append('file', image);
+        try {
+          const response = await axios.post(cloudflareApiUrl, formData, config);
+          return response.data.result.url;
+        } catch (error) {
+          console.error(`Error al subir la imagen "${image.name}" a Cloudflare:`, error);
+          return null;
+        }
+      });
+    
+      return Promise.all(uploadPromises);
+    }
+    
+    async onCreateProduct() {
 
+    
+      const imagesArray = Array.from(this.selectedImages);
 
-
-      async onCreateProduct() {
-          if (this.selectedImages.length === 0) {
-            return;
-          }
-      
-          const productData = {
-            producto_nombre: 'Nombre del producto',
-            producto_descripcion: 'Descripción del producto',
-            producto_precio: 100,
-            producto_categoria: 'Categoría del producto',
-          };
-      
-          const formData = new FormData();
-      
-          for (const image of this.selectedImages) {
-            formData.append('producto_imagenes', image);
-          }
-      
-          formData.append('producto_nombre', productData.producto_nombre);
-          formData.append('producto_descripcion', productData.producto_descripcion);
-          formData.append('producto_precio', productData.producto_precio.toString());
-          formData.append('producto_categoria', productData.producto_categoria);
-      
-          try {
-            const token = localStorage.getItem('token'); 
-            const response = await axios.post('http://localhost:3000/addProduct/', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-              },
-            });
-      
-            console.log('Respuesta del servidor:', response.data);
-          } catch (error) {
-            console.error('Error al enviar la solicitud:', error);
-          }
+      if (!Array.isArray(imagesArray) || this.selectedImages.length === 0) {
+        console.log("cositas")
+        return;
       }
+    
+      const uploadedImageUrls = await this.uploadImagesToCloudflare(imagesArray);
+    
+      const formData = new FormData();
+      const { producto_nombre, producto_descripcion, producto_precio, producto_categoria } = this.productForm.value;
+    
+      formData.append('producto_nombre', producto_nombre);
+      formData.append('producto_descripcion', producto_descripcion);
+      formData.append('producto_precio', producto_precio);
+      formData.append('producto_categoria', producto_categoria);
+    
+      for (const imageUrl of uploadedImageUrls) {
+        if (imageUrl) {
+          formData.append('producto_imagenes', imageUrl);
+        }
+      }
+    
+      try {
+        const token = localStorage.getItem('token');
+        const config = {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        };
+    
+        const response = await axios.post('http://localhost:3000/addProduct/', formData, config);
+        console.log('Respuesta del servidor:', response.data);
+      } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    }
+    
+
+    /*async onCreateProduct() {
+      if (this.selectedImages.length === 0) {
+        return;
+      }
+    
+      const formData = new FormData();
+      const { producto_nombre, producto_descripcion, producto_precio, producto_categoria } = this.productForm.value;
+    
+      formData.append('producto_nombre', producto_nombre);
+      formData.append('producto_descripcion', producto_descripcion);
+      formData.append('producto_precio', producto_precio);
+      formData.append('producto_categoria', producto_categoria);
+    
+      for (const image of this.selectedImages) {
+        formData.append('producto_imagenes', image);
+      }
+
+      
+      try {
+        const token = localStorage.getItem('token');
+        const config = {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data' // No es necesario agregar los headers de FormData aquí
+          }
+        };
+    
+        const response = await axios.post('http://localhost:3000/addProduct/', formData, config);
+        console.log('Respuesta del servidor:', response.data);
+      } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    }*/
 }
 
