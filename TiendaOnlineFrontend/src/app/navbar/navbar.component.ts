@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { UserServiceTsService } from '../services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CarritoComponent } from '../carrito/carrito.component';
+import { CarritoServiceService } from '../services/carrito-service.service';
+import { CarritoListaComponent } from '../carrito-lista/carrito-lista.component';
+
 
 
 @Component({
@@ -11,9 +15,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class NavbarComponent {
   stringToken: string | null = "";
+  cartItemCount: number = 0;
+  isCarritoListaVisible: boolean = false;
 
   constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute,public translate: TranslateService) {}
+    private router: Router, activerouter:ActivatedRoute,public translate: TranslateService, private carritoService: CarritoServiceService) {
+      this.carritoService.cartItems$.subscribe(items => {
+        this.cartItemCount = items.length;
+      });
+    }
 
   onClick(){
     this.UserServiceTsService.logout()
@@ -45,4 +55,15 @@ export class NavbarComponent {
         }
       }
     }
+
+    showCarritoLista() {
+      console.log("hola");
+      this.isCarritoListaVisible = true;
+    }
+  
+    hideCarritoLista() {
+      this.isCarritoListaVisible = false;
+    }
+
+    
 }

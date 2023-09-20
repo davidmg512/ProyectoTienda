@@ -11,3 +11,38 @@
   border: none;
   box-shadow: none;
 }
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+}
+
+.tooltip {
+  color:black;
+  position: absolute;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* Asegura que esté en la parte superior */
+  visibility: hidden; /* Oculta inicialmente */
+  opacity: 0; /* Oculta inicialmente */
+  transition: visibility 0s, opacity 0.5s linear; /* Transición suave */
+}
+
+a:hover .tooltip {
+  visibility: visible; /* Muestra cuando el enlace está en hover */
+  opacity: 1; /* Muestra con opacidad completa */
+}
+
+.tooltip app-carrito-lista {
+  max-height: 200px; /* Establece la altura máxima del listado de productos */
+  overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+}

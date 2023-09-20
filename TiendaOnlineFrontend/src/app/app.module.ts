@@ -40,6 +40,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSliderModule} from '@angular/material/slider';
+import { CarritoComponent } from './carrito/carrito.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CarritoListaComponent } from './carrito-lista/carrito-lista.component';
 
 
 
@@ -61,6 +64,8 @@ import {MatSliderModule} from '@angular/material/slider';
     NavbarComponent,
     PanelAdministracionComponent,
     ProductListComponent,
+    CarritoComponent,
+    CarritoListaComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +93,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatExpansionModule,
     MatGridListModule,
     MatChipsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatTooltipModule
 
   ],
   providers: [],

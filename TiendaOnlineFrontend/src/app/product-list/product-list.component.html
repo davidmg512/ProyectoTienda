@@ -42,7 +42,8 @@
               <p class="fw-bold">Precio: {{ product.precio }}</p>
             </mat-card-content>
 
-            <button mat-raised-button class="custom-button mat-small" style="margin-top:15px">Añadir a la cesta</button>
+            <button (click)="addToCart(product)" mat-raised-button class="custom-button mat-small" style="margin-top:15px">Añadir a la cesta</button>
+            
           </mat-card>
         </div>
       </div>
