@@ -5,6 +5,7 @@ import { config } from 'rxjs';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
+import { PerfilService } from '../services/perfil.service';
 
 @Component({
   selector: 'app-editarperfil',
@@ -27,7 +28,13 @@ export class EditarperfilComponent {
     user_telf: ''
   };
 
-  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService,private router: Router) {}
+  constructor(
+    private UserServiceTsService: UserServiceTsService,
+    private http: HttpClient,
+    public translate: TranslateService,
+    private router: Router,
+    private perfilService: PerfilService
+  ) {}
 
   config = {};
 
@@ -40,6 +47,20 @@ export class EditarperfilComponent {
       }
     };
 
+    this.perfilService.getPerfil().subscribe(
+      data => {
+        this.userNombre = data.data.user_nombre;
+        this.userApellido = data.data.user_apellidos;
+        this.userTelefono = data.data.user_telf;
+        this.formData.user_nombre = this.userNombre;
+        this.formData.user_apellidos = this.userApellido;
+        this.formData.user_telf = this.userTelefono;
+      },
+      error => {
+        console.error('Error al obtener datos del backend:', error);
+      }
+    )
+    /*
     axios.get('http://localhost:3000/user/perfil', this.config)
       .then(response => {
         this.userNombre = response.data.user_nombre;
@@ -51,7 +72,7 @@ export class EditarperfilComponent {
       })
       .catch(error => {
         console.error('Error al obtener datos del backend:', error);
-      });
+      });*/
         const lenguaje = localStorage.getItem('lenguaje'); 
         if(lenguaje != null){
           this.translate.use(lenguaje);
@@ -60,6 +81,7 @@ export class EditarperfilComponent {
   }
 
   onSubmit(){
+    /*
     axios.put('http://localhost:3000/updateUser', this.formData, this.config)
     .then(
       (response) => {
@@ -69,7 +91,18 @@ export class EditarperfilComponent {
       (error) => {
         this.errorMessage = true;
         console.log("Error en la actualización del perfil: ", error);
-      });
+      });*/
+
+      this.perfilService.updatePerfil(this.formData).subscribe(
+        data => {
+          console.log("Actualización exitosa: ", data);
+          this.router.navigate(['/perfil']);
+        },
+        error => {
+          this.errorMessage = true;
+          console.log("Error en la actualización del perfil: ", error);
+        }
+      )
   }
 
   isValidForm(): boolean {

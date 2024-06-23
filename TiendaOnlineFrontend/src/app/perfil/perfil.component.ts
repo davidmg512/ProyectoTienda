@@ -8,6 +8,8 @@ import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthPro
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PerfilService } from '../services/perfil.service';
+import { AddressService } from '../services/address.service';
 
 
 
@@ -36,8 +38,16 @@ export class PerfilComponent implements OnInit{
   addressForm: FormGroup;
   selectedAddress: any = null;
 
-  constructor(private UserServiceTsService: UserServiceTsService,
-    private router: Router, activerouter:ActivatedRoute,private auth: Auth, private navbar: NavbarComponent,public translate: TranslateService) {
+  constructor(
+    private UserServiceTsService: UserServiceTsService,
+    private router: Router, 
+    activerouter:ActivatedRoute,
+    private auth: Auth, 
+    private navbar: NavbarComponent,
+    public translate: TranslateService,
+    private perfilService: PerfilService,
+    private addressService: AddressService
+  ) {
 
       this.addressForm = new FormGroup({
         country: new FormControl('', Validators.required),
@@ -83,7 +93,27 @@ export class PerfilComponent implements OnInit{
         'Authorization': `Bearer ${token}`
       }
     };
+
+    this.perfilService.getPerfil().subscribe(
+      data => {
+        this.userNombre = data.data.user_nombre;
+        this.userEmail = data.data.user_email;
+        this.userApellido = data.data.user_apellidos;
+        this.userTelefono = data.data.user_telf;
+        this.userRol = data.data.user_rol;
+        if(this.userRol !== null){
+          if(this.userRol === 'admin'){
+            this.admin = true;          
+          }
+        }
+      },
+      error => {
+        console.log(error);
+        console.error('Error al obtener datos del backend:', error);
+      }
+    )
   
+    /*
     axios.get('http://localhost:3000/user/perfil', config)
       .then(response => {
         this.userNombre = response.data.user_nombre;
@@ -101,9 +131,20 @@ export class PerfilComponent implements OnInit{
         console.log(error);
         console.error('Error al obtener datos del backend:', error);
       });
+      */
         this.UserServiceTsService.checkLenguaje();
 
 
+      this.addressService.getAddresses().subscribe(
+        data => {
+          this.userAddresses = data.data.data;
+        },
+        error => {
+          console.log(error);
+          console.error('Error al obtener datos del backend:', error);
+        }
+      )
+      /*
       axios.get('http://localhost:3000/user/addresses/', config)
       .then(response => {
         this.userAddresses = response.data.data;
@@ -111,7 +152,7 @@ export class PerfilComponent implements OnInit{
       .catch(error => {
         console.log(error);
         console.error('Error al obtener datos del backend:', error);
-      });
+      });*/
 
   };
   

@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceTsService {
 
-  constructor(private auth: Auth,public translate: TranslateService) { }
+  config = {};
+  url:string = 'http://localhost:3000/';
+
+  constructor(private auth: Auth,public translate: TranslateService, private http: HttpClient) { }
 
   login({user_email, user_password}: any) {
     return signInWithEmailAndPassword(this.auth, user_email, user_password);
@@ -29,6 +34,16 @@ export class UserServiceTsService {
 
   loginWithGoogle(){
     return signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
+
+  postEmptyGoogleData(data: any): Observable<any> {
+    const token = localStorage.getItem('token'); 
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<any>(`${this.url}/loginGoogle`, data, { headers });
   }
 
   checkLenguaje(){
