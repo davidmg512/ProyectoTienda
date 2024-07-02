@@ -81,8 +81,8 @@ export class PerfilComponent implements OnInit{
       sessionStorage.clear();
       this.navbar.reloadPage();
       this.router.navigate(['']);
-})
-    .catch(error => console.log(error));
+
+    }).catch(error => console.log(error));
 
   }
 
@@ -96,11 +96,12 @@ export class PerfilComponent implements OnInit{
 
     this.perfilService.getPerfil().subscribe(
       data => {
-        this.userNombre = data.data.user_nombre;
-        this.userEmail = data.data.user_email;
-        this.userApellido = data.data.user_apellidos;
-        this.userTelefono = data.data.user_telf;
-        this.userRol = data.data.user_rol;
+        console.log(data);
+        this.userNombre = data.user_nombre;
+        this.userEmail = data.user_email;
+        this.userApellido = data.user_apellidos;
+        this.userTelefono = data.user_telf;
+        this.userRol = data.user_rol;
         if(this.userRol !== null){
           if(this.userRol === 'admin'){
             this.admin = true;          
@@ -137,7 +138,7 @@ export class PerfilComponent implements OnInit{
 
       this.addressService.getAddresses().subscribe(
         data => {
-          this.userAddresses = data.data.data;
+          this.userAddresses = data.data;
         },
         error => {
           console.log(error);
@@ -191,21 +192,18 @@ export class PerfilComponent implements OnInit{
       }
     };
 
-    axios.post('http://localhost:3000/address', this.formData, config)
-    .then(
-      (response) => {
-        // Manejar la respuesta del backend
-        console.log('Dirección añadida con éxito:', response);
+    this.addressService.addAdress(this.formData).subscribe(
+      data =>{
+        console.log('Dirección añadida con éxito:', data);
         this.userAddresses.push(this.formData);
 
         this.addNew = false
-        window.location.reload();
+        //window.location.reload();
       },
-      (error) => {
-        
-        console.error('Error en el registro:', error);
+      error =>{
+        console.error('Error al añadir la dirección:', error);
       }
-    );
+    )
 
     this.isPopupVisible = false;
 
@@ -228,6 +226,7 @@ export class PerfilComponent implements OnInit{
         'Authorization': `Bearer ${token}`
       }
     };
+    /*
     // Realiza la llamada al backend para borrar la dirección
      axios.delete(`http://localhost:3000/address/${address._id}`, config)
       .then(
@@ -244,7 +243,23 @@ export class PerfilComponent implements OnInit{
         (error) => {
           console.error('Error al eliminar la dirección:', error);
         }
-      );
+      );*/
+
+      this.addressService.deleteAddress(address._id).subscribe(
+        data => {
+          // Maneja la respuesta del backend
+          console.log('Dirección eliminada:', data);
+  
+          // Remueve la dirección del array userAddresses
+          const index = this.userAddresses.indexOf(address);
+          if (index !== -1) {
+            this.userAddresses.splice(index, 1);
+          }
+        },
+        error => {
+          console.error('Error al eliminar la dirección:', error);
+        }
+      )
   }
 
   async onUpdateAddress(address: any){
@@ -266,7 +281,7 @@ export class PerfilComponent implements OnInit{
     
     }
 
-
+    /*
     try {
       const response = await axios.put(`http://localhost:3000/address/${address._id}`, adressDataToUpdate, config);
       
@@ -274,13 +289,23 @@ export class PerfilComponent implements OnInit{
       /*const updatedAddressIndex = this.userAddresses.findIndex(a => a._id === address._id);
       if (updatedAddressIndex !== -1) {
         this.userAddresses[updatedAddressIndex] = response.data; // Actualizar con la respuesta del backend
-      }*/
+      }
       window.location.reload();
       
       console.log('Dirección actualizada con éxito:', response);
     } catch (error) {
       console.error('Error al actualizar la dirección:', error);
-    }
+    }*/
+
+    this.addressService.updateAddress(adressDataToUpdate, address._id).subscribe(
+      data => {
+        //window.location.reload();
+        console.log('Dirección actualizada con éxito:', data);
+      },
+      error =>{
+        console.error('Error al actualizar la dirección:', error);
+      }
+    )
   }
 
   async onSetMainAddress(address: any){
@@ -293,6 +318,7 @@ export class PerfilComponent implements OnInit{
 
     const stringVacio = "";
 
+    /*
     try {
       const response = await axios.put(`http://localhost:3000/main_address/${address._id}`,stringVacio, config);
       
@@ -301,7 +327,18 @@ export class PerfilComponent implements OnInit{
       console.log('Dirección actualizada con éxito:', response);
     } catch (error) {
       console.error('Error al actualizar la dirección:', error);
-    }
+    }*/
+
+    this.addressService.setMainAddress(address._id).subscribe(
+      data => {
+        window.location.reload();
+      
+        console.log('Dirección actualizada con éxito:', data);
+      },
+      error => {
+        console.error('Error al actualizar la dirección:', error);
+      }
+    )
   }
   
 }

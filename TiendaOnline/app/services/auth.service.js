@@ -40,7 +40,9 @@ async function tokenValid(req, res, next)
 async function tokenFirebaseValid(req, res, next){
     try {
         const token = getTokenFromHeaders(req);
+        //console.log(token);
         if (!token) {
+            console.log("holaaaaaaaaaa");
             throw kainda.GenericKaindaExceptions.Kainda401Exception.fromTemplate();
         }
         
@@ -49,6 +51,7 @@ async function tokenFirebaseValid(req, res, next){
 
         
         if (!decodedToken) {
+            console.log("holaaaaaaaa222222")
             throw kainda.GenericKaindaExceptions.Kainda401Exception.fromTemplate();
         }
 

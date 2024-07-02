@@ -2,7 +2,7 @@
     "databases": [
         {
             "description": "critical",
-            "uri": "mongodb+srv://SusoJeruso:IiQzx4ZKn8iiySp8@basedatosfit.shmcegj.mongodb.net/BaseDatosLocal",
+            "uri": "mongodb+srv://davidmgaspe:A6U3YSAGmsH1sDDd@tiendaonline.l1ktg4w.mongodb.net/BaseDatosLocal",
             "dialect":"mongo",
             "database_name": "BaseDatosLocal",
             "pool": {

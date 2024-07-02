@@ -54,7 +54,7 @@ async function setMainAddress(req,res){
     const ObjectID = mongoose.Types.ObjectId;
 
 
-    const user_id = req.decodedTokenId;    
+    const user_id = req.decodedTokenId;
 
     let transaction = await Address.transaction(DbService.get());
 

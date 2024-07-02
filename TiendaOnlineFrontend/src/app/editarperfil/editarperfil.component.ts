@@ -49,9 +49,9 @@ export class EditarperfilComponent {
 
     this.perfilService.getPerfil().subscribe(
       data => {
-        this.userNombre = data.data.user_nombre;
-        this.userApellido = data.data.user_apellidos;
-        this.userTelefono = data.data.user_telf;
+        this.userNombre = data.user_nombre;
+        this.userApellido = data.user_apellidos;
+        this.userTelefono = data.user_telf;
         this.formData.user_nombre = this.userNombre;
         this.formData.user_apellidos = this.userApellido;
         this.formData.user_telf = this.userTelefono;
