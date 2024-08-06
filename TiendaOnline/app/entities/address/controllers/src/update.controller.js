@@ -49,35 +49,41 @@ async function updateAddress(req, res) {
 }
 
 
-async function setMainAddress(req,res){
+async function setMainAddress(req, res) {
     const Address = ModelsService.Models.Address;
     const ObjectID = mongoose.Types.ObjectId;
-
-
+  
     const user_id = req.decodedTokenId;
-
-    let transaction = await Address.transaction(DbService.get());
-
-    const objectId = new ObjectID(req.params.address_id);
-
-    try {
-        // Establecer la dirección seleccionada como main_address
-        await Address.subModel.updateOne({ _id: objectId, user_id }, { main_address: true });
-
-        // Establecer todas las demás direcciones para el mismo usuario en main_address: false
-        await Address.subModel.updateMany({ user_id, _id: { $ne: objectId } }, { main_address: false });
-
-        await transaction.commit();
-
-        res.status(200).json({ message: 'Dirección principal actualizada exitosamente' });
-
-    }catch (error) {
-        throw new Address.Exceptions.AddressNotFoundException({
-            error_type: 'DIRECCION_NO_ENCONTRADA',
-            error_message: 'La dirección no fue encontrada'
-        });
+  
+    // Validar address_id
+    if (!ObjectID.isValid(req.params.address_id)) {
+      return res.status(400).json({ message: 'ID de dirección no válido' });
     }
-}
+  
+    const objectId = new ObjectID(req.params.address_id);
+  
+    let transaction;
+    try {
+      transaction = await Address.transaction(DbService.get());
+  
+      // Establecer la dirección seleccionada como main_address
+      await Address.subModel.updateOne({ _id: objectId, user_id }, { main_address: true });
+  
+      // Establecer todas las demás direcciones para el mismo usuario en main_address: false
+      await Address.subModel.updateMany({ user_id, _id: { $ne: objectId } }, { main_address: false });
+  
+      await transaction.commit();
+  
+      res.status(200).json({ message: 'Dirección principal actualizada exitosamente' });
+    } catch (error) {
+      if (transaction) {
+        await transaction.rollback();
+      }
+      console.error('Error actualizando dirección principal:', error);
+      res.status(500).json({ message: 'Error actualizando dirección principal' });
+    }
+  }
+  
 
 module.exports = {
     updateAddress,

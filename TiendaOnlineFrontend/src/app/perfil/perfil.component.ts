@@ -195,7 +195,7 @@ export class PerfilComponent implements OnInit{
     this.addressService.addAdress(this.formData).subscribe(
       data =>{
         console.log('Dirección añadida con éxito:', data);
-        this.userAddresses.push(this.formData);
+        this.userAddresses.push(data);
 
         this.addNew = false
         //window.location.reload();
@@ -281,25 +281,14 @@ export class PerfilComponent implements OnInit{
     
     }
 
-    /*
-    try {
-      const response = await axios.put(`http://localhost:3000/address/${address._id}`, adressDataToUpdate, config);
-      
-      // Actualizar los datos en el componente con la respuesta actualizada
-      /*const updatedAddressIndex = this.userAddresses.findIndex(a => a._id === address._id);
-      if (updatedAddressIndex !== -1) {
-        this.userAddresses[updatedAddressIndex] = response.data; // Actualizar con la respuesta del backend
-      }
-      window.location.reload();
-      
-      console.log('Dirección actualizada con éxito:', response);
-    } catch (error) {
-      console.error('Error al actualizar la dirección:', error);
-    }*/
-
     this.addressService.updateAddress(adressDataToUpdate, address._id).subscribe(
       data => {
         //window.location.reload();
+        const index = this.userAddresses.findIndex(addr => addr._id === address._id);
+        if (index !== -1) {
+          this.userAddresses[index] = data;  // Reemplaza el objeto antiguo con el nuevo
+          this.userAddresses[index]._id = address._id;
+        }
         console.log('Dirección actualizada con éxito:', data);
       },
       error =>{
@@ -309,6 +298,11 @@ export class PerfilComponent implements OnInit{
   }
 
   async onSetMainAddress(address: any){
+    if (!address || !address._id) {
+      console.error('Dirección no válida:', address);
+      return;
+    }
+
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -318,20 +312,16 @@ export class PerfilComponent implements OnInit{
 
     const stringVacio = "";
 
-    /*
-    try {
-      const response = await axios.put(`http://localhost:3000/main_address/${address._id}`,stringVacio, config);
-      
-      window.location.reload();
-      
-      console.log('Dirección actualizada con éxito:', response);
-    } catch (error) {
-      console.error('Error al actualizar la dirección:', error);
-    }*/
-
     this.addressService.setMainAddress(address._id).subscribe(
       data => {
-        window.location.reload();
+        //window.location.reload();
+        console.log(address._id);
+        console.log(this.userAddresses);
+        this.userAddresses.forEach(addr => {
+          console.log(addr._id);
+          
+          addr.main_address = (addr._id === address._id);
+        });
       
         console.log('Dirección actualizada con éxito:', data);
       },
