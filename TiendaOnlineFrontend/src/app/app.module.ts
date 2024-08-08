@@ -43,6 +43,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import { CarritoComponent } from './carrito/carrito.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CarritoListaComponent } from './carrito-lista/carrito-lista.component';
+import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
+import { RecomendacionesComponent } from './recomendaciones/recomendaciones.component';
 
 
 
@@ -65,7 +67,9 @@ import { CarritoListaComponent } from './carrito-lista/carrito-lista.component';
     PanelAdministracionComponent,
     ProductListComponent,
     CarritoComponent,
-    CarritoListaComponent
+    CarritoListaComponent,
+    CarouselProductsComponent,
+    RecomendacionesComponent
   ],
   imports: [
     BrowserModule,
