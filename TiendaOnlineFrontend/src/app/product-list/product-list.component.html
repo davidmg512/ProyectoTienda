@@ -5,7 +5,7 @@
     <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-bottom: 25px; margin-top:30px">
         <!-- Elemento a la izquierda -->
         <div style="grid-column: 1;">
-            <input style="width: 300px;" type="text"  [(ngModel)]="searchQuery" (ngModelChange)="aplicarFiltros()" class="form-control" placeholder="{{ 'Buscar producto' | translate}}">
+            <input style="width: 300px;" type="text"  [(ngModel)]="searchQuery" (ngModelChange)="aplicarFiltros()" class="form-control" placeholder="{{ 'BuscarProducto' | translate }}">
         </div>
     
         <!-- Chips en el centro -->
@@ -33,16 +33,17 @@
         <div class="col-md-3 col-sm-6 mb-4" *ngFor="let product of productosFiltrados;">
           <mat-card class="producto-card">
             <mat-card-header>
-              <img [src]="product.imagen" alt="Imagen del producto" class="producto-imagen"><br>
+              <!--<img [src]="product.imagen" alt="Imagen del producto" class="producto-imagen"><br>-->
+              <img [src]="'assets/images/' + product.imagen" alt="Imagen del producto" class="producto-imagen" [routerLink]="['/productos', product.Id]" (error)="replaceImage($event)"><br>
             </mat-card-header>
             <mat-card-content>
-              <h4 class="fw-bold">{{ product.nombre }}</h4>
-              <p>Categorias: {{ product.categorias.join(', ') }}</p>
-              <p>{{ product.descripcion }}</p>
-              <p class="fw-bold">Precio: {{ product.precio }}</p>
+              <h4 class="fw-bold mt-3">{{ product.Nombre }}</h4>
+              <p>{{ 'Categoria' | translate}}: {{ product.Categorias.join(', ') }}</p>
+              <!--<p>{{ product.descripcion }}</p>-->
+              <p class="fw-bold">{{ 'Precio' | translate}}: {{ product.Precio }} €</p>
             </mat-card-content>
 
-            <button (click)="addToCart(product)" mat-raised-button class="custom-button mat-small" style="margin-top:15px">Añadir a la cesta</button>
+            <button (click)="addToCart(product)" mat-raised-button class="custom-button mat-small" style="margin-top:15px">{{ 'Cesta' | translate}}</button>
             
           </mat-card>
         </div>

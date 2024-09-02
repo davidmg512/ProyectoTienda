@@ -42,12 +42,16 @@
     "DatosAdicionales": "Addicional data",
     "Cancelar": "Cancel",
     "BuscarUsuario": "Search User",
+    "BuscarProducto": "Search product",
     "CambiarRolAdministrativo": "Quit/Give admin",
     "UsuariosRegistrados": "Registered Users",
     "DireccionPrincipal": "Main address",
     "Direccion": "Address",
     "Productos": "Products",
-    "NuevoProducto": "New product"
+    "NuevoProducto": "New product",
+    "Categoria": "Category",
+    "Precio": "Price",
+    "Cesta": "Add to cart"
     
 
 

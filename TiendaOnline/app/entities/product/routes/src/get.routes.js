@@ -10,10 +10,8 @@ module.exports = {
 
         // Get all products. // TODO: Secure this route, only admins should use it.
         app.get(
-            "/product/",
+            "/product",
             [
-                deactivateRoute,
-                tokenValid,
             ],
             Product.Controller.getAllProducts
         );
@@ -46,6 +44,17 @@ module.exports = {
 
             ],
             Product.Controller.getUrl
+        );
+    },
+
+    getDestacados : function (app) {
+        const Product = ModelsService.Models.Product;
+
+        app.get(
+            "/product/destacados",
+            [
+            ],
+            Product.Controller.getProductosDestacados
         );
     }
 

@@ -5,30 +5,41 @@ const mongoose = DbService.get();
 
 const productSchema = new mongoose.Schema({
 
-    producto_nombre: {
+    Nombre: {
         type: String,
         required: true
     },
 
-    producto_descripcion: {
+    Descripcion: {
         type: String
     },
 
-    producto_precio: {
+    Precio: {
         type: Number,
         required: true
     },
 
-    producto_categoria: {
+    Categorias: [{
         type: String,
+        required: true
+    }],
+
+    Stock: {
+        type: Number,
         required: true
     },
 
 
-    producto_imagenes: [{
+    Imagenes: {
         type: String,
         required: true
-    }]
+    },
+
+    Ventas: {
+        type: Number,
+        default: 0,
+        required: true
+    }
     
 
 

@@ -1,4 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Producto } from '../model/producto';
+import { ProductoService } from '../services/producto.service';
 
 @Component({
   selector: 'app-carousel-products',
@@ -12,8 +14,25 @@ export class CarouselProductsComponent implements AfterViewInit{
   private cellCount: number = 9;
   private selectedIndex: number = 0;
 
+  productos:Producto[] = [];
+
+  constructor(private productoService: ProductoService) {}
+
   ngAfterViewInit() {
+    this.obtenerProductos();
     this.initCarousel();
+  }
+
+  obtenerProductos(){
+    this.productoService.obtenerDestacados().subscribe(
+      (response: any) => {
+        this.productos = response.data;
+        console.log(this.productos);
+      },
+      (error: any) => {
+        console.log('Error al obtener los productos:', error);
+      }
+    );
   }
 
   private initCarousel() {

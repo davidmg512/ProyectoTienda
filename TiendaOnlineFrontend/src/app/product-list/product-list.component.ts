@@ -2,6 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CarritoServiceService } from '../services/carrito-service.service';
+import { ProductoService } from '../services/producto.service';
+import { Producto } from '../model/producto';
 
 
 
@@ -27,40 +29,55 @@ import { CarritoServiceService } from '../services/carrito-service.service';
   ]
 })
 
-export class ProductListComponent {
+export class ProductListComponent{
 
-  constructor(private navbarComponent: NavbarComponent, private carritoService: CarritoServiceService) { }
-
-  //shopProducts: any[] = [];
   animationState: string = 'start';
   productToAdd: any;
-
-  shopProducts = [
-    {id:1, nombre: 'Producto 1', descripcion: 'Descripción del producto 1',categorias:["a"], precio: 500, imagen:'/assets/images/caja.png' },
-    {id:2, nombre: 'Producto 2', descripcion: 'Descripción del producto 2',categorias:["b"], precio: 500, imagen:'/assets/images/caja.png' },
-    {id:3, nombre: 'Producto 3', descripcion: 'Descripción del producto 2',categorias:["c"], precio: 100, imagen:'/assets/images/caja.png' },
-    {id:4, nombre: 'Producto 4', descripcion: 'Descripción del producto 2',categorias:["a","b"], precio: 400, imagen:'/assets/images/caja.png' },
-    {id:5, nombre: 'Producto 5', descripcion: 'Descripción del producto 2',categorias:["b","c"], precio: 800, imagen:'/assets/images/caja.png' },
-    {id:6, nombre: 'Producto 6', descripcion: 'Descripción del producto 2',categorias:["c","d"], precio: 900, imagen:'/assets/images/caja.png' },
-
-  ];
-
-  // Inicialmente muestra todos los productos
-
-  categorias = ['a', 'b', 'c', 'd']; // Agrega aquí todas las categorías disponibles
+  productos: Producto[] = [];
+  categorias = ['casual', 'streetwear', 'deportes', 'running']; // Agrega aquí todas las categorías disponibles
   categoriasSeleccionadas: string[] = [];
-
-  productosFiltrados: any[] = this.shopProducts;
+  productosFiltrados: any[] = this.productos;
   precioMin:number = 0;
   precioMax:number = 1000;
   searchQuery: string = '';
 
+  page: number = 1;
+  limit: number = 20;
+  total: number = 0;
+
+  constructor(private navbarComponent: NavbarComponent, private carritoService: CarritoServiceService, private productoService: ProductoService) { }
+
   ngOnInit(): void {
-    this.aplicarFiltros();
+    this.obtenerProductos();
   }
 
   addToCart(producto: any){
     this.carritoService.addToCart(producto);
+  }
+
+
+  obtenerProductos(): void {
+    this.productoService.getAllProductos(this.page, this.limit)
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          this.productos = response.data;
+          this.total = response.count;
+          this.productosFiltrados = this.productos;
+          this.aplicarFiltros();
+          console.log(this.productos);
+        },
+        error => {
+          console.log('Error al obtener los productos:', error);
+        }
+      );
+  }
+
+  loadMore(): void {
+    if (this.page * this.limit < this.total) {
+      this.page++;
+      this.obtenerProductos();
+    }
   }
 
   
@@ -77,39 +94,48 @@ export class ProductListComponent {
 
 
   aplicarFiltros() {
-    let productosFiltradosCategoria = this.shopProducts;
-    
+    // Asegúrate de que `this.productos` sea un array antes de filtrar
+    if (!Array.isArray(this.productos)) {
+      console.error('`this.productos` no es un array:', this.productos);
+      return;
+    }
+
+    let productosFiltradosCategoria = this.productos;
+
     if (this.categoriasSeleccionadas.length > 0) {
-      productosFiltradosCategoria = this.shopProducts.filter(producto =>
-        producto.categorias.some(categoria =>
+      productosFiltradosCategoria = this.productos.filter(producto =>
+        producto.Categorias.some(categoria =>
           this.categoriasSeleccionadas.includes(categoria)
         )
       );
     }
 
     let productosFiltradosPrecio = productosFiltradosCategoria.filter(
-      product => product.precio >= this.precioMin && product.precio <= this.precioMax
+      product => product.Precio >= this.precioMin && product.Precio <= this.precioMax
     );
 
-    console.log(this.searchQuery);
     this.productosFiltrados = this.filterProducts(productosFiltradosPrecio);
   }
 
-  filterProducts(lista:any) : any[] {
-    this.productosFiltrados = lista;
+  filterProducts(lista:Producto[]) : Producto[] {
+    //this.productosFiltrados = lista;
     if (!this.searchQuery) {
       return lista;
     }else{
         const query = this.searchQuery.toLowerCase();
-        return this.productosFiltrados.filter(product => {
+        return lista.filter(product => {
           return (
-            product.nombre.toLowerCase().includes(query) ||
-            product.descripcion.toLowerCase().includes(query)
+            product.Nombre.toLowerCase().includes(query) ||
+            product.Descripcion.toLowerCase().includes(query)
           );
         });
     }
   };
 
+  replaceImage(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = '/assets/placeholder.jpg';
+  }
   
 }
 

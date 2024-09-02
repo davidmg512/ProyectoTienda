@@ -42,12 +42,15 @@
     "DatosAdicionales": "Datos adicionales",
     "Cancelar": "Cancelar",
     "BuscarUsuario": "Buscar usuario",
+    "BuscarProducto": "Buscar producto",
     "CambiarRolAdministrativo": "Dar/Quitar administrador",
     "UsuariosRegistrados": "Usuarios Registrados",
     "DireccionPrincipal": "Dirección principal",
     "Direccion": "Dirección",
     "Productos": "Productos",
-    "NuevoProducto": "Nuevo producto"
-    
+    "NuevoProducto": "Nuevo producto",
+    "Categoria": "Categoria",
+    "Precio": "Precio",
+    "Cesta": "Añadir a la cesta"
 }
   

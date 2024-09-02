@@ -45,6 +45,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CarritoListaComponent } from './carrito-lista/carrito-lista.component';
 import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
 import { RecomendacionesComponent } from './recomendaciones/recomendaciones.component';
+import { DetallesProductoComponent } from './detalles-producto/detalles-producto.component';
 
 
 
@@ -69,7 +70,8 @@ import { RecomendacionesComponent } from './recomendaciones/recomendaciones.comp
     CarritoComponent,
     CarritoListaComponent,
     CarouselProductsComponent,
-    RecomendacionesComponent
+    RecomendacionesComponent,
+    DetallesProductoComponent
   ],
   imports: [
     BrowserModule,

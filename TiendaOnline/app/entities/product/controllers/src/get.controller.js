@@ -52,6 +52,32 @@ async function getProductById(req, res) {
         ExceptionHandler(error, res);
     }
 }
+
+/**
+ * Get productos destacados
+ * @async
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ * @returns {void}
+ */
+async function getProductosDestacados(req,res) {
+    const Product = ModelsService.Models.Product;
+
+    try{
+        const topProducts = await Product.findPaginated({})
+            .sort({ ventas: -1 })
+            .limit(9)
+            .exec();
+        
+        return res.status(200).json({
+            success: true,
+            data: topProducts.map(product => product.toJSON())
+        });
+    }catch (error) {
+        LogService.ErrorLogger.error(error);
+        ExceptionService.handle(error, res);
+    }
+}
     
 /*
     const cf = cloudflare({
@@ -86,5 +112,6 @@ async function getProductById(req, res) {
 module.exports = {
     getAllProducts,
     getProductById,
-    getUrl
+    getUrl,
+    getProductosDestacados
 };
