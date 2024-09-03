@@ -1,1 +1,46 @@
-<p>carrito works!</p>
+<div class="container">
+  
+    <h1 style="color:white;">Cesta</h1>
+    <div class="mt-5 mb-5" *ngIf="productos.length > 0; else vacio">
+      <div class="cart-item" *ngFor="let item of productos">
+        <img [src]="'assets/images/' + item.imagen" alt="{{ item.Nombre }}" class="product-image" [routerLink]="['/productos', item.Id]">
+        <mat-card class="product-card">
+          <mat-card-content>
+            <div class="product-details">
+              <div class="row">
+                <div class="col-7">
+                  <h3>{{ item.Nombre }}</h3>
+                  <p>{{ item.Descripcion }}</p>
+                </div>
+                <div class="col-5">
+                  <div class="quantity-controls">
+                    <button class="quantity-button" mat-icon-button (click)="disminuirCantidad(item)">
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                    <span class="quantity">{{ item.cantidad }}</span>
+                    <button class="quantity-button" mat-icon-button (click)="aumentarCantidad(item)">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="space-between">
+                <p>Precio: {{ item.Precio * item.cantidad }} €</p>
+                <button mat-mini-fab (click)="eliminarProducto(item)" class="delete-button">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="total">
+        <p class="textoTotal">Total: {{ calcularTotal() }} €</p>
+        <button mat-stroked-button (click)="pagar()" class="pay-button">Pagar</button>
+      </div>
+    </div>
+    <ng-template #vacio>
+      <p class="empty-text">No hay productos en la cesta</p>
+    </ng-template>
+  </div>
+  

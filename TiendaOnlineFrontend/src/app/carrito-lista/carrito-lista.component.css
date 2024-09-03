@@ -1,12 +1,38 @@
 .cart-card {
-    width: 300px; /* Ancho deseado del card */
-    max-height: 400px; /* Altura máxima para evitar un card excesivamente alto */
-    overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
-    margin: 10px; /* Margen alrededor del card */
-  }
-  
-  .cart-image {
-    width: 50px; /* Ancho de la imagen */
-    height: auto; /* Altura automática para mantener la proporción */
-  }
+  width: 300px; /* Ancho deseado del card */
+  max-height: 400px; /* Altura máxima para evitar un card excesivamente alto */
+  overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+  margin: 10px; /* Margen alrededor del card */
+}
+
+.cart-image {
+  width: 50px; /* Ancho de la imagen */
+  object-fit: cover;
+  border-radius:6px;
+  height: 50px;
+}
+
+.total-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-button {
+  margin-left: auto;
+}
+
+.total-text{
+  font-size: large;
+  padding: 10px;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  vertical-align: baseline;
+}
   

@@ -9,11 +9,13 @@ import { EditarperfilComponent } from './editarperfil/editarperfil.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { PanelAdministracionComponent } from './panel-administracion/panel-administracion.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'register', component: RegisterComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
   { path: 'perfil', component: PerfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  { path: 'carrito', component: CarritoComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   { path: 'login', component: LoginComponent,  ...canActivate(() => redirectLoggedInTo(['/perfil']))},
   { path: 'perfil/editar', component: EditarperfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   { path: 'resetpassword', component: ResetpasswordComponent, ...canActivate(() => redirectLoggedInTo(['/perfil']))},

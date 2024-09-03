@@ -54,7 +54,7 @@
 
           <li class="nav-item" style="margin-right: 70px;">
             <a id="cart-button" class="nav-link text-white hover-underline-animation" data-underline-color="white" (mouseenter)="showCarritoLista()" (mouseleave)="hideCarritoLista()" >
-              <mat-icon class="large-icon">shopping_cart</mat-icon>
+              <mat-icon class="large-icon" routerLink="/carrito">shopping_cart</mat-icon>
               <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
               <div class="tooltip" *ngIf="isCarritoListaVisible">
                 <app-carrito-lista></app-carrito-lista>

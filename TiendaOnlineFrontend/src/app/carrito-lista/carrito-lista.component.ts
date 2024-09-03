@@ -23,14 +23,20 @@ export class CarritoListaComponent {
 
   actualizarCarrito(){
     this.productos = this.carritoService.getCarritoItems();
-    this.reducirLista();
   }
 
   calcularCantidadProductos(producto: any): number {
     return this.productos.filter(p => p.nombre === producto.nombre).length;
   }
 
-  reducirLista(){
-    this.productosMostrar = this.productos.filter((item, index) => this.productos.indexOf(item) === index);
+  calcularTotal(): number {
+    var total = 0;
+    for (let product of this.productos) {
+      
+      total += parseFloat(product.Precio) * product.cantidad;
+    }
+    return total;
   }
+
+  pagar(){}
 }

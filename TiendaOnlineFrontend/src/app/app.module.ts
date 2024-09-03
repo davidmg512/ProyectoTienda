@@ -71,7 +71,7 @@ import { DetallesProductoComponent } from './detalles-producto/detalles-producto
     CarritoListaComponent,
     CarouselProductsComponent,
     RecomendacionesComponent,
-    DetallesProductoComponent
+    DetallesProductoComponent,
   ],
   imports: [
     BrowserModule,

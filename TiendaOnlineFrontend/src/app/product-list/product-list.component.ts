@@ -51,8 +51,8 @@ export class ProductListComponent{
     this.obtenerProductos();
   }
 
-  addToCart(producto: any){
-    this.carritoService.addToCart(producto);
+  addToCart(producto: Producto){
+    this.carritoService.addToCart(producto, 1);
   }
 
 
@@ -60,8 +60,19 @@ export class ProductListComponent{
     this.productoService.getAllProductos(this.page, this.limit)
       .subscribe(
         (response: any) => {
-          console.log(response);
-          this.productos = response.data;
+          
+          this.productos = response.data.map((dbProducto: any) => {
+            return {
+              Id: dbProducto._id,
+              Nombre: dbProducto.Nombre,
+              Descripcion: dbProducto.Descripcion,
+              Precio: dbProducto.Precio,
+              Stock: dbProducto.Stock,
+              imagen: dbProducto.imagen,
+              Categorias: dbProducto.Categorias
+            };
+          });
+
           this.total = response.count;
           this.productosFiltrados = this.productos;
           this.aplicarFiltros();
@@ -71,6 +82,18 @@ export class ProductListComponent{
           console.log('Error al obtener los productos:', error);
         }
       );
+  }
+
+  mapProducto(dbProducto: any): Producto {
+    return {
+        Id: dbProducto._id,
+        Nombre: dbProducto.Nombre,
+        Descripcion: dbProducto.Descripcion,
+        Precio: dbProducto.Precio,
+        Stock: dbProducto.Stock,
+        imagen: dbProducto.imagen,
+        Categorias: dbProducto.Categorias
+    };
   }
 
   loadMore(): void {

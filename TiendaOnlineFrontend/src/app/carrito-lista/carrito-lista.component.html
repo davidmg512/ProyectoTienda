@@ -1,12 +1,14 @@
 <div>
   <div *ngIf="productos.length > 0">
-    <div *ngFor="let product of productosMostrar;">
+    <div *ngFor="let product of productos;">
       <mat-card class="cart-card">
         <mat-card-content>
-          <img [src]="product.imagen" alt="Imagen del producto" class="cart-image">
+          <img [src]="'assets/images/' + product.imagen" alt="Imagen del producto" class="cart-image" [routerLink]="['/productos', product.Id]">
           <span style="margin-left: 15px;" class="fw-bold"> {{ product.nombre }} &nbsp;</span>
-          <span>x&nbsp; {{ calcularCantidadProductos(product) }}</span>
-          <a class="float-end" style="margin-top: 9px;" (click)="borrarItem(product.id)">Eliminar</a>
+          <span>{{product.cantidad}} x {{product.Precio}} €</span>
+          <button mat-mini-fab (click)="borrarItem(product.Id)" class="delete-button float-end">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-card-content>
       </mat-card>
     </div>
@@ -14,5 +16,10 @@
 
   <div *ngIf="productos.length === 0">
     <span>Vacío</span>
+  </div>
+
+  <div *ngIf="productos.length > 0" class="total-container">
+    <span class="total-text">Total: {{ calcularTotal() }} €</span>
+    <button (click)="pagar()" class="custom-button">Pagar</button>
   </div>
 </div>
