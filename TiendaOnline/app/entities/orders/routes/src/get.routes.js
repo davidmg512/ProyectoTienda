@@ -13,8 +13,8 @@ module.exports = {
         app.get(
             "/orders/",
             [
-                deactivateRoute,
-                tokenValid,
+                //deactivateRoute,
+                tokenFirebaseValid,
             ],
             Orders.Controller.getAllOrderss
         );

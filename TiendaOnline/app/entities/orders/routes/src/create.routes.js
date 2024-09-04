@@ -11,7 +11,7 @@ module.exports = {
 
         // Create new orders
         app.post(
-            "/orders/",
+            "/orders",
             [
                 tokenFirebaseValid,
                 Orders.Middlewares.checkRequiredKeys

@@ -12,46 +12,38 @@ const DbService = require("@services/db.service");
  */
 async function createOrders(req, res) 
 {
-    /*
+    
     const Orders = ModelsService.Models.Orders;
     let transaction = await Orders.transaction(DbService.get());
-    try 
-    {
-        const orders = await Orders.createOne(req.body, { transaction });
-        await transaction.commit();
-        return res.status(201).json(orders.toJSON());
-    }
-    catch (error) 
-    {
-        LogService.ErrorLogger.error(error);
-        if (transaction) 
-        {
-            await transaction.rollback();
-        }
-        ExceptionService.handle(error, res);
-    }*/
-
-    const Orders = ModelsService.Models.Orders;
-    const mongoose = DbService.get();
-    const session = await mongoose.startSession(); // Inicia una sesión de Mongoose para la transacción
 
     try {
-        session.startTransaction(); // Comienza la transacción
+        const user_id = req.decodedTokenId;  // Suponiendo que el ID del usuario viene del token
+        const productos = req.body.items.map(item => ({
+            producto_id: item.Id,
+            nombre: item.Nombre,
+            cantidad: item.cantidad,
+            precio: item.Precio
+        }));
 
-        // Crea el nuevo pedido usando el método `create` de Mongoose
-        const orders = await Orders.create([req.body], { session });
+        const total = productos.reduce((acc, item) => acc + (item.cantidad * item.precio), 0);
 
-        await session.commitTransaction(); // Compromete la transacción
-        session.endSession(); // Finaliza la sesión
+        const orderData = {
+            user_id: user_id,  // Suponiendo que el ID del usuario se almacena como ObjectId
+            productos: productos,
+            total: total,
+            fecha: new Date(),  // Fecha actual
+            estado: 'Pendiente'
+        };
 
-        return res.status(201).json(orders); // Devuelve el pedido creado
+        // Crear el pedido usando `createOne` con la transacción
+        const order = await Orders.createOne(orderData, { transaction });
+
+        await transaction.commit();
+        return res.status(201).json(order.toJSON());
     } catch (error) {
-        // En caso de error, realiza un rollback
-        await session.abortTransaction(); // Aborta la transacción
-        session.endSession(); // Finaliza la sesión
-
-        LogService.ErrorLogger.error(error); // Registra el error
-        ExceptionService.handle(error, res); // Maneja el error
+        await transaction.rollback();  // Revertir la transacción en caso de error
+        console.log(error);
+        return res.status(500).json({ error: 'Internal Server Error' });  // Manejar la respuesta de error
     }
 }
 

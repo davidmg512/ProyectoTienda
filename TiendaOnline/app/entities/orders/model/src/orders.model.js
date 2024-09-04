@@ -6,15 +6,19 @@ const mongoose = DbService.get();
 const ordersSchema = new mongoose.Schema({
     
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'User', // Referencia al modelo de usuario
         required: true
     },
 
     productos: [{
         producto_id: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             ref: 'Product', // Referencia al modelo de producto
+            required: true
+        },
+        nombre: {
+            type: String,
             required: true
         },
         cantidad: {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Producto, CarritoProducto } from '../model/producto';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,20 @@ export class CarritoServiceService {
 
   cartItems$ = this.cartItemsSubject.asObservable();
 
-  constructor(){
+  private baseUrl = "http://localhost:3000/";
+  config = {};
+  token: string | null;
+
+  constructor(private http:HttpClient){
+
+    this.token = localStorage.getItem('token'); 
+
+    this.config = {
+      headers: {
+        'Authorization': `Bearer ${this.token}`
+      }
+    };
+
     const storedCartItems = localStorage.getItem('cartItems');
     if (storedCartItems) {
       this.cartItems = JSON.parse(storedCartItems);
@@ -56,5 +70,33 @@ export class CarritoServiceService {
   private updateCartState() {
     this.cartItemsSubject.next(this.cartItems);
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  pagarPedido(){
+    const cartItems = localStorage.getItem('cartItems');
+
+    if (cartItems) {
+      // Parsear los items del carrito a un objeto
+      const parsedCartItems = JSON.parse(cartItems);
+  
+      // Realizar la solicitud POST al backend con los datos del pedido
+      return this.http.post(`${this.baseUrl}orders`, {
+        items: parsedCartItems
+      }, this.config).subscribe(
+        response => {
+          console.log('Pedido creado con éxito.');
+          localStorage.removeItem('cartItems');
+          window.location.reload();
+        },
+        error => {
+          console.error('Error al crear el pedido');
+        }
+      );
+    } else {
+      // Manejar el caso en que no haya elementos en el carrito
+      console.error('No hay elementos en el carrito');
+      return null;
+    }
+
   }
 }

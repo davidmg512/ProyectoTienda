@@ -46,6 +46,7 @@ import { CarritoListaComponent } from './carrito-lista/carrito-lista.component';
 import { CarouselProductsComponent } from './carousel-products/carousel-products.component';
 import { RecomendacionesComponent } from './recomendaciones/recomendaciones.component';
 import { DetallesProductoComponent } from './detalles-producto/detalles-producto.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 
 
@@ -72,6 +73,7 @@ import { DetallesProductoComponent } from './detalles-producto/detalles-producto
     CarouselProductsComponent,
     RecomendacionesComponent,
     DetallesProductoComponent,
+    PedidosComponent,
   ],
   imports: [
     BrowserModule,

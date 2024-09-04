@@ -38,5 +38,7 @@ export class CarritoListaComponent {
     return total;
   }
 
-  pagar(){}
+  pagar(){
+    this.carritoService.pagarPedido();
+  };
 }
