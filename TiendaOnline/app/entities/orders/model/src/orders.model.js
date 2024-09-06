@@ -1,5 +1,6 @@
 const { KaindaModel } = require("kainda");
 const DbService = require("@services/db.service");
+const Address = require("../../../address/model/src/address.model");
 
 const mongoose = DbService.get();
 
@@ -9,6 +10,33 @@ const ordersSchema = new mongoose.Schema({
         type: String,
         ref: 'User', // Referencia al modelo de usuario
         required: true
+    },
+
+    address:{
+        address_country:{
+            type: String,
+            required: true
+        },
+    
+        address_province:{
+            type: String,
+            required: true
+        },
+    
+        address_town:{
+            type: String,
+            required: true
+        },
+    
+        address_postal:{
+            type: String,
+            required: true
+        },
+    
+        street_and_number:{
+            type: String,
+            required: true
+        },
     },
 
     productos: [{
@@ -27,6 +55,10 @@ const ordersSchema = new mongoose.Schema({
         },
         precio: {
             type: Number,
+            required: true
+        },
+        imagen: {
+            type: String,
             required: true
         }
     }],

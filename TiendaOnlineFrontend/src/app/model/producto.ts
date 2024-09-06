@@ -1,11 +1,11 @@
 export interface Producto {
-    Id?: number;
-    Nombre: string;
-    Descripcion: string;
-    Precio: number;
-    Stock: number;
+    id?: number;
+    nombre: string;
+    descripcion: string;
+    precio: number;
+    stock: number;
     imagen: string;
-    Categorias: string[];
+    categorias: string[];
 }
 
 export interface CarritoProducto extends Producto {

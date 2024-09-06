@@ -25,6 +25,10 @@ export class AddressService {
     return this.http.get(`${this.url}user/addresses/`, this.config);
   }
 
+  getMainAddress(): Observable<any>{
+    return this.http.get(`${this.url}main_address`, this.config);
+  }
+
   addAdress(formData:any): Observable<any>{
     return this.http.post(`${this.url}address/`,formData, this.config);
   }

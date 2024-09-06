@@ -63,13 +63,13 @@ export class ProductListComponent{
           
           this.productos = response.data.map((dbProducto: any) => {
             return {
-              Id: dbProducto._id,
-              Nombre: dbProducto.Nombre,
-              Descripcion: dbProducto.Descripcion,
-              Precio: dbProducto.Precio,
-              Stock: dbProducto.Stock,
+              id: dbProducto._id,
+              nombre: dbProducto.nombre,
+              descripcion: dbProducto.descripcion,
+              precio: dbProducto.precio,
+              stock: dbProducto.stock,
               imagen: dbProducto.imagen,
-              Categorias: dbProducto.Categorias
+              categorias: dbProducto.categorias
             };
           });
 
@@ -86,13 +86,13 @@ export class ProductListComponent{
 
   mapProducto(dbProducto: any): Producto {
     return {
-        Id: dbProducto._id,
-        Nombre: dbProducto.Nombre,
-        Descripcion: dbProducto.Descripcion,
-        Precio: dbProducto.Precio,
-        Stock: dbProducto.Stock,
+        id: dbProducto._id,
+        nombre: dbProducto.nombre,
+        descripcion: dbProducto.descripcion,
+        precio: dbProducto.precio,
+        stock: dbProducto.stock,
         imagen: dbProducto.imagen,
-        Categorias: dbProducto.Categorias
+        categorias: dbProducto.categorias
     };
   }
 
@@ -127,14 +127,14 @@ export class ProductListComponent{
 
     if (this.categoriasSeleccionadas.length > 0) {
       productosFiltradosCategoria = this.productos.filter(producto =>
-        producto.Categorias.some(categoria =>
+        producto.categorias.some(categoria =>
           this.categoriasSeleccionadas.includes(categoria)
         )
       );
     }
 
     let productosFiltradosPrecio = productosFiltradosCategoria.filter(
-      product => product.Precio >= this.precioMin && product.Precio <= this.precioMax
+      product => product.precio >= this.precioMin && product.precio <= this.precioMax
     );
 
     this.productosFiltrados = this.filterProducts(productosFiltradosPrecio);
@@ -148,8 +148,8 @@ export class ProductListComponent{
         const query = this.searchQuery.toLowerCase();
         return lista.filter(product => {
           return (
-            product.Nombre.toLowerCase().includes(query) ||
-            product.Descripcion.toLowerCase().includes(query)
+            product.nombre.toLowerCase().includes(query) ||
+            product.descripcion.toLowerCase().includes(query)
           );
         });
     }

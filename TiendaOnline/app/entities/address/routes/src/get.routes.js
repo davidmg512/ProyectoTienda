@@ -16,6 +16,18 @@ module.exports = {
             ],
             Address.Controller.getAddressesOfUser
         );
+    },
+
+    getMainAddress: function (app) {
+        const Address = ModelsService.Models.Address;
+
+        app.get(
+            "/main_address",
+            [
+                tokenFirebaseValid
+            ],
+            Address.Controller.getMainAddress
+        );
     }
 
 };

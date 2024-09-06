@@ -30,6 +30,7 @@
     "DatosUsuario": "User data",
     "Direcciones": "Addresses",
     "Pedidos": "Orders",
+    "Pedido": "Order",
     "MetodosPago": "Payment methods",
     "TelefonoIncorrecto": "Telf number incorrect",
     "PanelAdministracion": "Admin Panel",
@@ -38,7 +39,7 @@
     "Provincia": "Province",
     "Pueblo": "Town",
     "CodigoPostal": "Postal code",
-    "CalleyNumero": "Street,number and floor",
+    "CalleyNumero": "Street, number and floor",
     "DatosAdicionales": "Addicional data",
     "Cancelar": "Cancel",
     "BuscarUsuario": "Search User",
@@ -51,7 +52,10 @@
     "NuevoProducto": "New product",
     "Categoria": "Category",
     "Precio": "Price",
-    "Cesta": "Add to cart"
+    "Cesta": "Add to cart",
+    "Cantidad": "Quantity",
+    "Pendiente": "Pending",
+    "Vacio": "Empty"
     
 
 

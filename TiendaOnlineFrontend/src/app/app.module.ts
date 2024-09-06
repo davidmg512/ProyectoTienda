@@ -47,6 +47,8 @@ import { CarouselProductsComponent } from './carousel-products/carousel-products
 import { RecomendacionesComponent } from './recomendaciones/recomendaciones.component';
 import { DetallesProductoComponent } from './detalles-producto/detalles-producto.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -102,7 +104,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     MatGridListModule,
     MatChipsModule,
     MatSliderModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
 
   ],
   providers: [],

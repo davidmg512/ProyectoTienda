@@ -64,18 +64,26 @@ async function getProductosDestacados(req,res) {
     const Product = ModelsService.Models.Product;
 
     try{
-        const topProducts = await Product.findPaginated({})
-            .sort({ ventas: -1 })
-            .limit(9)
-            .exec();
+        const filterQuery = {};
+
+        // La opción de paginación se maneja manualmente aquí:
+        const queryOptions = {
+            page: 1,
+            limit: 100
+        };
+
+        const response = await Product.findPaginated(filterQuery, queryOptions);
+
+        const sortedProducts = response.data.sort((a, b) => b.ventas - a.ventas).slice(0, 9);
         
         return res.status(200).json({
-            success: true,
-            data: topProducts.map(product => product.toJSON())
+            ...response,
+            data: sortedProducts.map(product => product.toJSON()),
         });
     }catch (error) {
         LogService.ErrorLogger.error(error);
-        ExceptionService.handle(error, res);
+        console.log(error);
+        ExceptionHandler(error, res);
     }
 }
     

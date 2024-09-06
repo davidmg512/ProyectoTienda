@@ -19,20 +19,24 @@ async function createOrders(req, res)
     try {
         const user_id = req.decodedTokenId;  // Suponiendo que el ID del usuario viene del token
         const productos = req.body.items.map(item => ({
-            producto_id: item.Id,
-            nombre: item.Nombre,
+            producto_id: item.id,
+            nombre: item.nombre,
             cantidad: item.cantidad,
-            precio: item.Precio
+            precio: item.precio,
+            imagen: item.imagen
         }));
 
         const total = productos.reduce((acc, item) => acc + (item.cantidad * item.precio), 0);
+
+        const address = req.body.address;
 
         const orderData = {
             user_id: user_id,  // Suponiendo que el ID del usuario se almacena como ObjectId
             productos: productos,
             total: total,
             fecha: new Date(),  // Fecha actual
-            estado: 'Pendiente'
+            estado: 'Pendiente',
+            address: address
         };
 
         // Crear el pedido usando `createOne` con la transacción

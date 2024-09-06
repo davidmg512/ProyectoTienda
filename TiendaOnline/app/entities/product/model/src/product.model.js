@@ -5,37 +5,37 @@ const mongoose = DbService.get();
 
 const productSchema = new mongoose.Schema({
 
-    Nombre: {
+    nombre: {
         type: String,
         required: true
     },
 
-    Descripcion: {
+    descripcion: {
         type: String
     },
 
-    Precio: {
+    precio: {
         type: Number,
         required: true
     },
 
-    Categorias: [{
+    categorias: [{
         type: String,
         required: true
     }],
 
-    Stock: {
+    stock: {
         type: Number,
         required: true
     },
 
 
-    Imagenes: {
+    imagenes: {
         type: String,
         required: true
     },
 
-    Ventas: {
+    ventas: {
         type: Number,
         default: 0,
         required: true
@@ -48,6 +48,6 @@ const productSchema = new mongoose.Schema({
 
 });
 
-const tmpModel = mongoose.model('Product', productSchema);
-const Product = new KaindaModel(tmpModel);
-module.exports = Product;
+const tmpModelProduct = mongoose.model('Product', productSchema);
+const Product = new KaindaModel(tmpModelProduct);
+module.exports = Product, tmpModelProduct;

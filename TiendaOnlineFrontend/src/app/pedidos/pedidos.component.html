@@ -4,13 +4,43 @@
       <mat-expansion-panel style="margin-top: 10px;" *ngFor="let pedido of pedidos; let i = index">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{'Direccion' | translate}} {{ i + 1 }} &nbsp; &nbsp;
+            {{ pedido.fecha | date:'dd/MM/yyyy HH:mm:ss' }} - {{ pedido.estado | translate }}
             
           </mat-panel-title>
           
           <mat-panel-description>
+            <span style="margin-left: auto; margin-right: 20px;">{{pedido.total}} €</span>
           </mat-panel-description>
         </mat-expansion-panel-header>
+
+        <div *ngFor="let producto of pedido.productos" style="display: flex; align-items: stretch; padding: 10px;">
+          <!-- Imagen del producto -->
+          <img [src]="'/assets/images/' + producto.imagen" alt="{{producto.nombre}}"
+               style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px; margin-right: 20px;">
+          
+          <!-- Información del producto -->
+          <mat-card style="flex-grow: 1; height: 100%;">
+            <mat-card-content style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+              <div><strong>{{ 'Nombre' | translate}}:</strong> {{producto.nombre}}</div>
+              <div><strong>{{ 'Cantidad' | translate}}:</strong> {{producto.cantidad}}</div>
+              <div><strong>{{ 'Precio' | translate}}:</strong> {{producto.precio}} €</div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div style="margin: 20px;">
+          <mat-card style="padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+              <mat-card-content>
+                  <div class="address-info">
+                      <div><strong>{{ 'Pais' | translate }}:</strong> {{pedido.address.address_country}}</div>
+                      <div><strong>{{ 'Provincia' | translate }}:</strong> {{pedido.address.address_province}}</div>
+                      <div><strong>{{ 'Pueblo' | translate }}:</strong> {{pedido.address.address_town}}</div>
+                      <div><strong>{{ 'CodigoPostal' | translate }}:</strong> {{pedido.address.address_postal}}</div>
+                      <div><strong>{{ 'CalleyNumero' | translate }}:</strong> {{pedido.address.street_and_number}}</div>
+                  </div>
+              </mat-card-content>
+          </mat-card>
+      </div>
 
       </mat-expansion-panel>
     </mat-accordion>

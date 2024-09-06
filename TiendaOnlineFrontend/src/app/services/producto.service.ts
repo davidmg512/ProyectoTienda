@@ -32,7 +32,7 @@ export class ProductoService {
   {
     
       let numero = Math.floor(Math.random() * 20) + 1
-      var datos = {Nombre: data.Nombre, Descripcion: data.Descripcion, Precio: data.Precio, Stock: data.Stock, Imagen: "producto_"+numero+".jpg"};
+      var datos = {nombre: data.nombre, descripcion: data.descripcion, precio: data.precio, stock: data.stock, imagen: "producto_"+numero+".jpg"};
       return this.http.post<any>(`${this.baseUrl}/`, datos);
     
   }

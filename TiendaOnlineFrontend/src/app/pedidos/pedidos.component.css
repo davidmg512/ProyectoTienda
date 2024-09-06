@@ -1,0 +1,16 @@
+.address-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Espacio entre las líneas de texto */
+}
+
+.address-info div {
+    display: flex;
+    justify-content: space-between; /* Alinea el texto a los extremos */
+    padding: 8px 0; /* Espacio superior e inferior */
+    border-bottom: 1px solid #eee; /* Línea divisoria entre campos */
+}
+
+.address-info div:last-child {
+    border-bottom: none; /* Elimina la línea divisoria del último campo */
+}

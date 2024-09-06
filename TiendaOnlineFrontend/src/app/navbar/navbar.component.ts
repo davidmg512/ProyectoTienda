@@ -57,7 +57,6 @@ export class NavbarComponent {
     }
 
     showCarritoLista() {
-      console.log("hola");
       this.isCarritoListaVisible = true;
     }
   

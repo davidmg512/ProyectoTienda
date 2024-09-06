@@ -86,4 +86,18 @@
     font-size: 18px;
     color: #ffffff;
   }
+
+  .full-width {
+    width: 100%;
+  }
+  
+  .address-select {
+    margin-top: 1rem;
+    margin-left: 119px;
+  }
+
+  .pay-button[disabled] {
+    opacity: 0.5; /* Ajusta la opacidad cuando el botón está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor para indicar que el botón está deshabilitado */
+  }
   

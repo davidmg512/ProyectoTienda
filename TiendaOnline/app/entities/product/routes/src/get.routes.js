@@ -16,6 +16,17 @@ module.exports = {
             Product.Controller.getAllProducts
         );
     },
+    
+    getDestacados : function (app) {
+        const Product = ModelsService.Models.Product;
+
+        app.get(
+            "/product/destacados",
+            [
+            ],
+            Product.Controller.getProductosDestacados
+        );
+    },
 
     get : function (app) {
 
@@ -47,16 +58,7 @@ module.exports = {
         );
     },
 
-    getDestacados : function (app) {
-        const Product = ModelsService.Models.Product;
-
-        app.get(
-            "/product/destacados",
-            [
-            ],
-            Product.Controller.getProductosDestacados
-        );
-    }
+    
 
     
 

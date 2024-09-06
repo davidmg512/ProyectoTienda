@@ -30,6 +30,7 @@
     "DatosUsuario": "Datos de usuario",
     "Direcciones": "Direcciones",
     "Pedidos": "Pedidos",
+    "Pedido": "Pedido",
     "MetodosPago": "Métodos de pago",
     "TelefonoIncorrecto": "Número de teléfono incorrecto",
     "PanelAdministracion": "Panel de Administración",
@@ -38,7 +39,7 @@
     "Provincia": "Provincia",
     "Pueblo": "Pueblo",
     "CodigoPostal": "Código postal",
-    "CalleyNumero": "Calle,número y piso",
+    "CalleyNumero": "Calle, número y piso",
     "DatosAdicionales": "Datos adicionales",
     "Cancelar": "Cancelar",
     "BuscarUsuario": "Buscar usuario",
@@ -51,6 +52,10 @@
     "NuevoProducto": "Nuevo producto",
     "Categoria": "Categoria",
     "Precio": "Precio",
-    "Cesta": "Añadir a la cesta"
+    "Cesta": "Añadir a la cesta",
+    "Cantidad": "Cantidad",
+    "Pendiente": "Pendiente",
+    "Vacio": "Vacio"
+
 }
   

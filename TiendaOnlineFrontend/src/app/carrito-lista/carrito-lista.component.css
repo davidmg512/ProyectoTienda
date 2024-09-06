@@ -1,5 +1,5 @@
 .cart-card {
-  width: 300px; /* Ancho deseado del card */
+  width: 400px; /* Ancho deseado del card */
   max-height: 400px; /* Altura máxima para evitar un card excesivamente alto */
   overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
   margin: 10px; /* Margen alrededor del card */

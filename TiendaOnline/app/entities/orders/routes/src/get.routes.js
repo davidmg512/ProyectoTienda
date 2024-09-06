@@ -11,7 +11,7 @@ module.exports = {
 
         // Get all orderss. // TODO: Secure this route, only admins should use it.
         app.get(
-            "/orders/",
+            "/orders",
             [
                 //deactivateRoute,
                 tokenFirebaseValid,

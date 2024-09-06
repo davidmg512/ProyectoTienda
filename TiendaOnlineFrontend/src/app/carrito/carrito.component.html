@@ -3,14 +3,14 @@
     <h1 style="color:white;">Cesta</h1>
     <div class="mt-5 mb-5" *ngIf="productos.length > 0; else vacio">
       <div class="cart-item" *ngFor="let item of productos">
-        <img [src]="'assets/images/' + item.imagen" alt="{{ item.Nombre }}" class="product-image" [routerLink]="['/productos', item.Id]">
+        <img [src]="'assets/images/' + item.imagen" alt="{{ item.nombre }}" class="product-image" [routerLink]="['/productos', item.id]">
         <mat-card class="product-card">
           <mat-card-content>
             <div class="product-details">
               <div class="row">
                 <div class="col-7">
-                  <h3>{{ item.Nombre }}</h3>
-                  <p>{{ item.Descripcion }}</p>
+                  <h3>{{ item.nombre }}</h3>
+                  <p>{{ item.descripcion }}</p>
                 </div>
                 <div class="col-5">
                   <div class="quantity-controls">
@@ -25,7 +25,7 @@
                 </div>
               </div>
               <div class="space-between">
-                <p>Precio: {{ item.Precio * item.cantidad }} €</p>
+                <p>Precio: {{ item.precio * item.cantidad }} €</p>
                 <button mat-mini-fab (click)="eliminarProducto(item)" class="delete-button">
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -34,9 +34,24 @@
           </mat-card-content>
         </mat-card>
       </div>
+
+      <div class="address-select mt-4">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'Selecciona tu dirección' | translate }}</mat-label>
+          <mat-select [(ngModel)]="selectedAddress" [disabled]="direcciones.length === 0">
+            <mat-option *ngIf="direcciones.length === 0" disabled>
+              {{ 'Por favor añade primero una direccion en tu perfil' | translate }}
+            </mat-option>
+            <mat-option *ngFor="let address of direcciones" [value]="address">
+              {{ address.street_and_number }}, {{ address.address_town }}, {{ address.address_province }}, {{ address.address_country }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <div class="total">
         <p class="textoTotal">Total: {{ calcularTotal() }} €</p>
-        <button mat-stroked-button (click)="pagar()" class="pay-button">Pagar</button>
+        <button mat-stroked-button (click)="pagar()" disabled="!selectedAddress" class="pay-button">Pagar</button>
       </div>
     </div>
     <ng-template #vacio>

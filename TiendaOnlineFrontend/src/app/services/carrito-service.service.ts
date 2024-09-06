@@ -35,7 +35,7 @@ export class CarritoServiceService {
   }
 
   addToCart(product: Producto, cantidad: number = 1) {
-    const existingItem = this.cartItems.find(cartItem => cartItem.Id === product.Id);
+    const existingItem = this.cartItems.find(cartItem => cartItem.id === product.id);
     if (existingItem) {
       console.log(existingItem);
       existingItem.cantidad += cantidad;
@@ -50,12 +50,12 @@ export class CarritoServiceService {
   }
 
   deleteCarritoItem(id: number) {
-    this.cartItems = this.cartItems.filter(producto => producto.Id !== id);
+    this.cartItems = this.cartItems.filter(producto => producto.id !== id);
     this.updateCartState();
   }
 
   updateCartItem(id: number, cantidad: number) {
-    const existingItem = this.cartItems.find(cartItem => cartItem.Id === id);
+    const existingItem = this.cartItems.find(cartItem => cartItem.id === id);
     if (existingItem) {
       existingItem.cantidad = cantidad;
       this.updateCartState();
@@ -72,7 +72,7 @@ export class CarritoServiceService {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
-  pagarPedido(){
+  pagarPedido(address:any){
     const cartItems = localStorage.getItem('cartItems');
 
     if (cartItems) {
@@ -81,7 +81,8 @@ export class CarritoServiceService {
   
       // Realizar la solicitud POST al backend con los datos del pedido
       return this.http.post(`${this.baseUrl}orders`, {
-        items: parsedCartItems
+        items: parsedCartItems,
+        address
       }, this.config).subscribe(
         response => {
           console.log('Pedido creado con éxito.');

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CarritoServiceService } from '../services/carrito-service.service';
+import { AddressService } from '../services/address.service';
 
 @Component({
   selector: 'app-carrito-lista',
@@ -10,7 +11,7 @@ export class CarritoListaComponent {
   productos: any[] = [];
   productosMostrar: any[] = [];
 
-  constructor(private carritoService: CarritoServiceService) { }
+  constructor(private carritoService: CarritoServiceService, private addressService: AddressService) { }
 
   ngOnInit(): void {
     this.actualizarCarrito();
@@ -33,12 +34,27 @@ export class CarritoListaComponent {
     var total = 0;
     for (let product of this.productos) {
       
-      total += parseFloat(product.Precio) * product.cantidad;
+      total += parseFloat(product.precio) * product.cantidad;
     }
     return total;
   }
 
   pagar(){
-    this.carritoService.pagarPedido();
+    this.addressService.getMainAddress().subscribe(
+      response => {
+        
+        if(!response.message || response.message != "Main address not found"){
+          this.carritoService.pagarPedido(response);
+        }
+        
+       
+      },
+      error => {
+        console.log(error);
+        console.log("No se ha podido obtener la dirección principal.");
+      }
+    );
+
+    
   };
 }
