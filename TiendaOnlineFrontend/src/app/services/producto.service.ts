@@ -24,8 +24,9 @@ export class ProductoService {
     return this.http.get(`${this.baseUrl}product`, { params });  
   }
 
-  getProductById(id:number){
-    return this.http.get(`${this.baseUrl}/producto` + id);
+  getProductById(id:string){
+    
+    return this.http.get(`${this.baseUrl}product/${id}`);
   }
 
   crearProducto(data: any): Observable<any>

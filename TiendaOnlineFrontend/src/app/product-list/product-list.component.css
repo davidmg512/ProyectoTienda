@@ -52,4 +52,9 @@
     }
   }
 
+  .custom-button[disabled] {
+    opacity: 0.5; /* Ajusta la opacidad cuando el botón está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor para indicar que el botón está deshabilitado */
+  }
+
   

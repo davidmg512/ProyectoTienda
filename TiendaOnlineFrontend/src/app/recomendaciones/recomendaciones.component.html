@@ -1,9 +1,33 @@
-<div class="container">
+<div class="container"> 
+    <h2></h2>
     <div class="row">
-        <div class="">
+        <div class="col-6 mt-4" *ngFor="let categoria of categorias">
+            <mat-card appearance="outlined">
+                <mat-card-header style="align-items: center; justify-content:center;">
+                    <h2>{{ 'recomendaciones' | translate}} {{categoria.nombre}}</h2>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="producto-container">
+                        <button class="recomendaciones-boton prev" (click)="prevSlide()">
+                            <mat-icon>keyboard_arrow_left</mat-icon>
+                        </button>
 
+                        <div #productosSlider class="productos-slider">
+                            <div *ngFor="let producto of productos">
+                                <div class="producto">
+                                    <img [src]="'assets/images/' + producto.imagen" alt="Imagen del producto" class="recomendaciones-imagen">
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <button class="recomendaciones-boton next" (click)="nextSlide()">
+                            <mat-icon>keyboard_arrow_right</mat-icon>
+                        </button>
+                    </div>
+                    
+                </mat-card-content>
+            </mat-card>
         </div>
-
     </div>
-
 </div>

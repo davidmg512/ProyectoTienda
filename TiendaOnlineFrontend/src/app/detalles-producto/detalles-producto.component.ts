@@ -2,8 +2,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { CarritoServiceService } from '../services/carrito-service.service';
-import { MatDialog } from '@angular/material/dialog';
 import { Producto } from '../model/producto';
+import { UserServiceTsService } from '../services/user.service.ts.service';
 
 @Component({
   selector: 'app-detalles-producto',
@@ -15,14 +15,27 @@ export class DetallesProductoComponent {
   producto!: Producto;
   error: boolean = false;
 
-  constructor(private route: ActivatedRoute, private productoService: ProductoService, private cestaService: CarritoServiceService, public dialog: MatDialog) {}
+  isLoggedIn:boolean = false;
 
-  ngOnInit(): void {
-    const productId = Number(this.route.snapshot.paramMap.get('id'));
-    this.loadProductDetails(productId);
+  constructor(private route: ActivatedRoute, 
+    private productoService: ProductoService, 
+    private cestaService: CarritoServiceService, 
+    private userService:UserServiceTsService) {
+
+    this.isLoggedIn = userService.isLoggedIn();
   }
 
-  loadProductDetails(id: number): void {
+  ngOnInit(): void {
+    const productId = this.route.snapshot.paramMap.get('id');
+    console.log(productId);
+
+    if(productId != null){
+      this.loadProductDetails(productId);
+    }
+    
+  }
+
+  loadProductDetails(id: string): void {
     this.productoService.getProductById(id).subscribe(
       (data: any) => {
         this.producto = data;

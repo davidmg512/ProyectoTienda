@@ -1,28 +1,23 @@
 <div class="container">
     <div class="row mt-5">
-        <h2 class="text-white mb-0 titulo">Destacados</h2>
+        <h2 class="text-white mb-0 titulo">{{ 'topVentas' | translate }}</h2>
     </div>
     <div class="row">
         <div class="col-3 movimientoContainer">
-            <button (click)="prev()" mat-fab class="botonMovimiento" #prevButton>
+            <button (click)="prev()" class="botonMovimiento" #prevButton>
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
         </div>
         <div class="col-6 scene">
             <div class="carousel" #carousel>
-              <div class="carousel__cell">1</div>
-              <div class="carousel__cell">2</div>
-              <div class="carousel__cell">3</div>
-              <div class="carousel__cell">4</div>
-              <div class="carousel__cell">5</div>
-              <div class="carousel__cell">6</div>
-              <div class="carousel__cell">7</div>
-              <div class="carousel__cell">8</div>
-              <div class="carousel__cell">9</div>
+
+              <div class="carousel__cell" *ngFor="let destacado of productos;">
+                <img [src]="'assets/images/' + destacado.imagen" alt="Imagen del producto" class="producto-imagen" [routerLink]="['/productos', destacado.id]" (error)="replaceImage($event)">
+              </div>
             </div>
         </div>
         <div class="col-3 movimientoContainer">
-            <button (click)="next()" mat-fab class="botonMovimiento" #nextButton>
+            <button (click)="next()" class="botonMovimiento" #nextButton>
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </div>

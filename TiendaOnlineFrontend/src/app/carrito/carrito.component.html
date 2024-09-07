@@ -51,7 +51,7 @@
 
       <div class="total">
         <p class="textoTotal">Total: {{ calcularTotal() }} €</p>
-        <button mat-stroked-button (click)="pagar()" disabled="!selectedAddress" class="pay-button">Pagar</button>
+        <button mat-stroked-button (click)="pagar()" [disabled]="!selectedAddress" class="pay-button">Pagar</button>
       </div>
     </div>
     <ng-template #vacio>

@@ -55,8 +55,10 @@
     "Cesta": "Add to cart",
     "Cantidad": "Quantity",
     "Pendiente": "Pending",
-    "Vacio": "Empty"
-    
+    "Vacio": "Empty",
+    "topVentas": "Best sellers",
+    "recomendaciones": "Because you bought",
+    "categoria": "category"
 
 
 

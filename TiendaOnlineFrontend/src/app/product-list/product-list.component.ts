@@ -4,6 +4,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { CarritoServiceService } from '../services/carrito-service.service';
 import { ProductoService } from '../services/producto.service';
 import { Producto } from '../model/producto';
+import { UserServiceTsService } from '../services/user.service.ts.service';
 
 
 
@@ -36,7 +37,7 @@ export class ProductListComponent{
   productos: Producto[] = [];
   categorias = ['casual', 'streetwear', 'deportes', 'running']; // Agrega aquí todas las categorías disponibles
   categoriasSeleccionadas: string[] = [];
-  productosFiltrados: any[] = this.productos;
+  productosFiltrados: Producto[] = this.productos;
   precioMin:number = 0;
   precioMax:number = 1000;
   searchQuery: string = '';
@@ -45,7 +46,15 @@ export class ProductListComponent{
   limit: number = 20;
   total: number = 0;
 
-  constructor(private navbarComponent: NavbarComponent, private carritoService: CarritoServiceService, private productoService: ProductoService) { }
+  isLoggedIn: boolean = false;
+
+  constructor(private navbarComponent: NavbarComponent, 
+    private carritoService: CarritoServiceService, 
+    private productoService: ProductoService, 
+    private userService: UserServiceTsService) {
+      
+    this.isLoggedIn = this.userService.isLoggedIn();
+  }
 
   ngOnInit(): void {
     this.obtenerProductos();

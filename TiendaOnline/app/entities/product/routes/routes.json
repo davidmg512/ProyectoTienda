@@ -109,7 +109,7 @@
             }
         },
         "/product/{product_id}/": {
-            "get": {
+            "getById": {
                 "summary": "Get a product by id",
                 "operationId": "getProductById",
                 "tags": [

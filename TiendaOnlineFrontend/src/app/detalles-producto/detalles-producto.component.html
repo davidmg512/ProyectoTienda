@@ -1,4 +1,4 @@
-<div class="product-details-container" *ngIf="producto">
+<div class="product-details-container mt-5" *ngIf="producto">
     <mat-card class="product-card">
       <div class="product-header">
         <img mat-card-image [src]="'assets/images/' + producto.imagen" alt="{{ producto.nombre }}">
@@ -12,9 +12,9 @@
         <p>{{ producto.descripcion }}</p>
   
         <div class="price-and-button">
-          <h3>{{ producto.precio | currency }}</h3>
-          <button class="product-actions" mat-raised-button color="primary" (click)="addToCart()">
-            <mat-icon>add_shopping_cart</mat-icon> Añadir al carrito
+          <h3>{{ producto.precio }} €</h3>
+          <button [disabled]="!isLoggedIn" class="product-actions" mat-raised-button color="primary" (click)="addToCart()">
+            <mat-icon>add_shopping_cart</mat-icon> {{ 'Cesta' | translate }}
           </button>
         </div>
         

@@ -26,8 +26,14 @@ export class CarouselProductsComponent implements AfterViewInit{
   obtenerProductos(){
     this.productoService.obtenerDestacados().subscribe(
       (response: any) => {
-        this.productos = response.data;
-        console.log(this.productos);
+
+        this.productos = response.data.map((dbProducto: any) => {
+          return {
+            id: dbProducto._id,
+            imagen: dbProducto.imagen
+          };
+        });
+        //console.log(this.productos);
       },
       (error: any) => {
         console.log('Error al obtener los productos:', error);
@@ -53,5 +59,10 @@ export class CarouselProductsComponent implements AfterViewInit{
   next() {
     this.selectedIndex = (this.selectedIndex + 1) % this.cellCount;
     this.updateCarouselRotation();
+  }
+
+  replaceImage(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = '/assets/placeholder.jpg';
   }
 }

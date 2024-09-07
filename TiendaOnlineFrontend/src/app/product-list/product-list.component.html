@@ -43,7 +43,7 @@
               <p class="fw-bold">{{ 'Precio' | translate}}: {{ product.precio }} €</p>
             </mat-card-content>
 
-            <button (click)="addToCart(product)" mat-raised-button class="custom-button mat-small" style="margin-top:15px">{{ 'Cesta' | translate}}</button>
+            <button [disabled]="!isLoggedIn" (click)="addToCart(product)" mat-raised-button class="custom-button mat-small" style="margin-top:15px">{{ 'Cesta' | translate}}</button>
             
           </mat-card>
         </div>

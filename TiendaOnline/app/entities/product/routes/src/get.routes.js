@@ -28,17 +28,14 @@ module.exports = {
         );
     },
 
-    get : function (app) {
+    getById : function (app) {
 
         const Product = ModelsService.Models.Product;
 
         // Get product by id
         app.get(
-            "/product/:product_id/",
+            "/product/:product_id",
             [
-                deactivateRoute,
-                tokenValid,
-                Product.Middlewares.canReadResource,
             ],
             Product.Controller.getProductById
         );

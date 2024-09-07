@@ -10,6 +10,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { PanelAdministracionComponent } from './panel-administracion/panel-administracion.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { DetallesProductoComponent } from './detalles-producto/detalles-producto.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'perfil/editar', component: EditarperfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   { path: 'resetpassword', component: ResetpasswordComponent, ...canActivate(() => redirectLoggedInTo(['/perfil']))},
   {path: 'panelAdministracion', component: PanelAdministracionComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
-  { path: 'productos', component: ProductListComponent }
+  { path: 'productos', component: ProductListComponent },
+  {path: 'productos/:id', component:DetallesProductoComponent}
 ];
 
 @NgModule({
