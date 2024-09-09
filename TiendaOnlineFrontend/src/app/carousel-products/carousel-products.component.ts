@@ -13,6 +13,11 @@ export class CarouselProductsComponent implements AfterViewInit{
 
   private cellCount: number = 9;
   private selectedIndex: number = 0;
+  private carouselInterval: any;
+  private inactivityTimeout: any;
+  private readonly INACTIVITY_DELAY = 4000; // 5 segundos de inactividad
+  private readonly ROTATE_INTERVAL = 3000; // Intervalo de rotación automática
+  private isUserInteracting: boolean = false;
 
   productos:Producto[] = [];
 
@@ -21,6 +26,18 @@ export class CarouselProductsComponent implements AfterViewInit{
   ngAfterViewInit() {
     this.obtenerProductos();
     this.initCarousel();
+    this.startAutoRotate();
+    this.setupUserActivityListeners();
+    
+  }
+
+  ngOnDestroy() {
+    if (this.carouselInterval) {
+      clearInterval(this.carouselInterval);  // Limpia el intervalo cuando el componente se destruye
+    }
+    if (this.inactivityTimeout) {
+      clearTimeout(this.inactivityTimeout);  // Limpia el temporizador de inactividad
+    }
   }
 
   obtenerProductos(){
@@ -51,12 +68,42 @@ export class CarouselProductsComponent implements AfterViewInit{
     carousel.style.transform = `translateZ(-288px) rotateY(${angle}deg)`;
   }
 
+  private startAutoRotate() {
+    this.carouselInterval = setInterval(() => {
+      if (!this.isUserInteracting) {
+        this.next(false);  // Avanza al siguiente elemento si no hay interacción del usuario
+      }
+    }, this.ROTATE_INTERVAL);  // 5000 ms = 5 segundos
+  }
+
+  private setupUserActivityListeners() {
+    const events = ['mousemove', 'keydown', 'touchstart'];
+    events.forEach(event => {
+      window.addEventListener(event, this.resetInactivityTimer.bind(this));
+    });
+  }
+
+  private resetInactivityTimer() {
+    this.isUserInteracting = true; // Marca que el usuario está interactuando
+    clearTimeout(this.inactivityTimeout);
+    this.inactivityTimeout = setTimeout(() => {
+      this.isUserInteracting = false; // Marca que el usuario no está interactuando
+    }, this.INACTIVITY_DELAY);
+  }
+
   prev() {
+    this.isUserInteracting = true; // Marca que el usuario está interactuando
+    clearTimeout(this.inactivityTimeout); // Detén el temporizador de inactividad
     this.selectedIndex = (this.selectedIndex - 1 + this.cellCount) % this.cellCount;
     this.updateCarouselRotation();
   }
 
-  next() {
+  next(userInteracting:boolean) {
+    if(userInteracting){
+      this.isUserInteracting = true; // Marca que el usuario está interactuando
+      clearTimeout(this.inactivityTimeout); // Detén el temporizador de inactividad
+    }
+    
     this.selectedIndex = (this.selectedIndex + 1) % this.cellCount;
     this.updateCarouselRotation();
   }

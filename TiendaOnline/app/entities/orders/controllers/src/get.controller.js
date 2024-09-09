@@ -78,17 +78,27 @@ async function getOrdersById(req, res)
 async function getOrdersByUser(req, res) 
 {
     const Orders = ModelsService.Models.Orders;
-    const userId = req.params.user_id; // Asegúrate de que este es el ID del usuario que estás buscando
 
     try {
-        // Usa el método personalizado para encontrar pedidos por user_id
-        const orders = await Orders.findByUserId(userId);
+
+        const user_id = req.decodedTokenId;
+
+        const filterableKeys = [];
+        const filterQuery = {};
+
+        if (user_id) {
+            filterQuery.user_id = user_id;
+        }
+
+        filterableKeys.forEach(key => { if (req.query[key]) { filterQuery[key] = req.query[key]; } });
+
+        const orders = await Orders.findPaginated(filterQuery, req.query)
         
         // Verifica si se encontraron pedidos
         if (orders.length === 0) {
             throw new Orders.Exceptions.OrdersNotFoundException({
                 error_type: "NOT_FOUND",
-                error_message: `No orders found for user ID: ${userId}`,
+                error_message: `No orders found for user ID: ${user_id}`,
                 error_data: {
                     req: req.body
                 }
@@ -97,6 +107,73 @@ async function getOrdersByUser(req, res)
 
         return res.status(200).json(orders);
     } catch (error) {
+        console.log(error);
+        LogService.ErrorLogger.error(error);
+        ExceptionService.handle(error, res);
+    }
+}
+
+/**
+ * Get orders by id
+ * @async
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ * @returns {void}
+ */
+async function getCategorias(req, res) 
+{
+    const Orders = ModelsService.Models.Orders;
+    
+
+    try{
+        const user_id = req.decodedTokenId;
+
+        const filterableKeys = [];
+        const filterQuery = {};
+
+        if (user_id) {
+            filterQuery.user_id = user_id;
+        }
+
+        filterableKeys.forEach(key => { 
+            if (req.query[key]) { 
+                filterQuery[key] = req.query[key]; 
+            } 
+        });
+
+        // Obtener el resultado paginado
+        const ordersResult = await Orders.findPaginated(filterQuery, req.query);
+
+        // Acceder al array de pedidos desde ordersResult.data
+        const orders = ordersResult.data;
+
+        //console.log(orders);
+
+        // Verificar si orders es un array
+        if (!Array.isArray(orders)) {
+            throw new Error('Unexpected format of orders data');
+        }
+
+        const categoriasSet = new Set();
+
+        orders.forEach(order => {
+            if (order.categorias) {
+                order.categorias.forEach(categoria => {
+                    categoriasSet.add(categoria);
+                        
+                    }
+                );
+            }
+        });
+
+        const categoriasArray = Array.from(categoriasSet);
+
+        console.log(categoriasArray);
+
+        return res.status(200).json(categoriasArray);
+
+    }catch(error){
+        console.log(error);
         LogService.ErrorLogger.error(error);
         ExceptionService.handle(error, res);
     }
@@ -105,5 +182,6 @@ async function getOrdersByUser(req, res)
 module.exports = {
     getAllOrderss,
     getOrdersById,
-    getOrdersByUser
+    getOrdersByUser,
+    getCategorias
 };

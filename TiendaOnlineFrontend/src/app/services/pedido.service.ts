@@ -24,6 +24,10 @@ export class PedidoService {
   }
 
   getPedidos(): Observable<any>{
-    return this.http.get(`${this.baseUrl}orders`, this.config);
+    return this.http.get(`${this.baseUrl}orders/byuser`, this.config);
+  }
+
+  getCategorias(): Observable<any>{
+    return this.http.get(`${this.baseUrl}orders/categorias`, this.config);
   }
 }

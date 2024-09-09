@@ -1,4 +1,6 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { PedidoService } from '../services/pedido.service';
+import { UserServiceTsService } from '../services/user.service.ts.service';
 
 @Component({
   selector: 'app-recomendaciones',
@@ -6,7 +8,9 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./recomendaciones.component.css']
 })
 export class RecomendacionesComponent {
-  @ViewChild('productosSlider') productosSlider!: ElementRef;
+  @ViewChildren('productosSlider') productosSliders!: QueryList<ElementRef>;
+
+  constructor(private pedidosService: PedidoService, private userService: UserServiceTsService){}
 
   productos = [
     { id: 1, imagen: 'producto_1.jpg', nombre: 'Smartphone', precio: 299.99 },
@@ -19,24 +23,39 @@ export class RecomendacionesComponent {
     { id: 8, imagen: 'producto_8.jpg', nombre: 'Coche de juguete', precio: 34.99 },
   ];
 
-  categorias = [
-    { id: 1, nombre: 'Electrónica' },
-    { id: 2, nombre: 'Ropa' },
-    { id: 3, nombre: 'Hogar' },
-    { id: 4, nombre: 'Juguetes' },
-  ];
+  categorias = [];
 
   ngAfterViewInit() {
     // Puedes inicializar aquí cualquier lógica que necesite ejecutarse después de que la vista esté inicializada
   }
 
-  nextSlide() {
-    const sliderElement = this.productosSlider.nativeElement;
+  ngOnInit(){
+    if(this.userService.isLoggedIn()){
+      this.getCategorias();
+    }
+    
+  }
+
+  nextSlide(index: number) {
+    const sliderElement = this.productosSliders.toArray()[index].nativeElement;
     sliderElement.scrollLeft += 200; // Ajusta el valor según la cantidad de desplazamiento deseada
   }
 
-  prevSlide() {
-    const sliderElement = this.productosSlider.nativeElement;
+  prevSlide(index: number) {
+    const sliderElement = this.productosSliders.toArray()[index].nativeElement;
     sliderElement.scrollLeft -= 200; // Ajusta el valor según la cantidad de desplazamiento deseada
+  }
+
+  getCategorias(){
+    this.pedidosService.getCategorias().subscribe({
+      next:(response) => {
+        this.categorias = response;
+        console.log(this.categorias);
+      },
+      error:(error) => {
+        console.log(error);
+        console.log("Error obteniendo las categorias.");
+      }
+    })
   }
 }

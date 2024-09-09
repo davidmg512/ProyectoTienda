@@ -8,37 +8,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
   </head>
 
-  <app-carousel-products></app-carousel-products>
-
-  <app-recomendaciones></app-recomendaciones>
-  
-  <router-outlet></router-outlet>
-
-  <footer class="bg-dark text-light mt-5">
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Sobre Nosotros</h5>
-                <p>Somos una tienda en línea dedicada a ofrecer los mejores productos para ti. Con una amplia variedad de categorías, desde electrónica hasta moda, encuentra lo que necesitas con facilidad y seguridad.</p>
+  <body>
+    <div class="app-container">
+        <main>
+            <app-carousel-products></app-carousel-products>
+            <app-recomendaciones></app-recomendaciones>
+            <router-outlet></router-outlet>
+        </main>
+        <footer class="bg-dark text-light mt-5">
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Sobre Nosotros</h5>
+                        <p>Somos una tienda en línea dedicada a ofrecer los mejores productos para ti. Con una amplia variedad de categorías, desde electrónica hasta moda, encuentra lo que necesitas con facilidad y seguridad.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Enlaces Rápidos</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Inicio</a></li>
+                            <li><a href="/productos" class="text-white">Productos</a></li>
+                            <li><a href="#" class="text-white">Recomendaciones</a></li>
+                            <li><a href="#" class="text-white">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contáctanos</h5>
+                        <p><i class="bi bi-envelope"></i> contacto@example.com</p>
+                        <p><i class="bi bi-phone"></i> +123 456 7890</p>
+                        <p><i class="bi bi-geo-alt"></i> Calle Falsa 123, Ciudad, País</p>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h5>Enlaces Rápidos</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Inicio</a></li>
-                    <li><a href="/productos" class="text-white">Productos</a></li>
-                    <li><a href="#" class="text-white">Recomendaciones</a></li>
-                    <li><a href="#" class="text-white">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Contáctanos</h5>
-                <p><i class="bi bi-envelope"></i> contacto@example.com</p>
-                <p><i class="bi bi-phone"></i> +123 456 7890</p>
-                <p><i class="bi bi-geo-alt"></i> Calle Falsa 123, Ciudad, País</p>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
-        </div>
+        </footer>
     </div>
-</footer>
+</body>

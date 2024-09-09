@@ -20,9 +20,10 @@ export class InicioComponent {
 
   ngOnInit(): void {
     this.UserServiceTsService.checkLenguaje();
-    this.getLocation();
+    //this.getLocation();
   }
 
+  /*
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -37,7 +38,7 @@ export class InicioComponent {
     } else {
       console.error('La geolocalización no está disponible en este navegador.');
     }
-  }
+  }*/
 
 }
 

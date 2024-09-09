@@ -1,6 +1,7 @@
 const { KaindaModel } = require("kainda");
 const DbService = require("@services/db.service");
 const Address = require("../../../address/model/src/address.model");
+const Product = require("../../../product/model/src/product.model");
 
 const mongoose = DbService.get();
 
@@ -79,17 +80,24 @@ const ordersSchema = new mongoose.Schema({
         enum: ['Pendiente', 'Procesando', 'Enviado', 'Entregado', 'Cancelado'],
         default: 'Pendiente',
         required: true
-    }
+    },
+
+    categorias: [{
+        type: String,
+        required: true
+    }]
 
 }, {
     timestamps: true,
 
 });
 
+
 ordersSchema.statics.findByUserId = function(userId) {
-    return this.find({ user_id: userId }).populate('productos.producto_id').exec();
-};
+    return this.find({ user_id: userId }).exec();
+}
 
 const tmpModel = mongoose.model("Orders", ordersSchema);
 const Orders = new KaindaModel(tmpModel);
 module.exports = Orders;
+module.exports.Product = Product;

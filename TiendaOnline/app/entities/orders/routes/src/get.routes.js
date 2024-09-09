@@ -3,6 +3,16 @@ const { tokenValid,tokenFirebaseValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
+
+    getByUser: function (app){
+        const Orders = ModelsService.Models.Orders;
+
+        app.get(
+            "/orders/byuser",
+            [tokenFirebaseValid],
+            Orders.Controller.getOrdersByUser
+        );
+    },
     
     getAll : function (app) 
     {
@@ -20,6 +30,16 @@ module.exports = {
         );
     },
 
+    getCategorias: function (app){
+        const Orders = ModelsService.Models.Orders;
+
+        app.get(
+            "/orders/categorias",
+            [tokenFirebaseValid],
+            Orders.Controller.getCategorias
+        );
+    },
+
     get : function (app) 
     {
 
@@ -34,16 +54,6 @@ module.exports = {
                 Orders.Middlewares.canReadResource,
             ],
             Orders.Controller.getOrdersById
-        );
-    },
-
-    getByUser: function (app){
-        const Orders = ModelsService.Models.Orders;
-
-        app.get(
-            "/orders/:user_id/",
-            [tokenFirebaseValid],
-            Orders.Controller.getOrdersByUser
         );
     }
 

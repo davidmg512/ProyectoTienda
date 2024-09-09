@@ -61,9 +61,10 @@ async function updateUser(req, res) {
                     
         }
 
-        const user = await User.subModel.updateOne({
-            user_email: userEmail
-        },dataToUpdate);
+        const user = await User.subModel.updateOne(
+            { user_email: userEmail },
+            dataToUpdate
+        );
 
         await transaction.commit();
         
