@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { PedidoService } from '../services/pedido.service';
 import { UserServiceTsService } from '../services/user.service.ts.service';
+import { ProductoService } from '../services/producto.service';
 
 @Component({
   selector: 'app-recomendaciones',
@@ -10,7 +11,10 @@ import { UserServiceTsService } from '../services/user.service.ts.service';
 export class RecomendacionesComponent {
   @ViewChildren('productosSlider') productosSliders!: QueryList<ElementRef>;
 
-  constructor(private pedidosService: PedidoService, private userService: UserServiceTsService){}
+  constructor(private pedidosService: PedidoService, 
+    private userService: UserServiceTsService, 
+    private productoService: ProductoService
+  ){}
 
   productos = [
     { id: 1, imagen: 'producto_1.jpg', nombre: 'Smartphone', precio: 299.99 },
@@ -50,11 +54,26 @@ export class RecomendacionesComponent {
     this.pedidosService.getCategorias().subscribe({
       next:(response) => {
         this.categorias = response;
-        console.log(this.categorias);
+        
+        for(let i = 0; i < this.categorias.length; i++){
+          this.getProductosPorCategoria(this.categorias[i]);
+        }
       },
       error:(error) => {
         console.log(error);
         console.log("Error obteniendo las categorias.");
+      }
+    })
+  }
+
+  getProductosPorCategoria(categoria:string){
+    this.productoService.obtenerPorCategoria(categoria).subscribe({
+      next:(response) => {
+        console.log(response);
+      },
+      error:(error) => {
+        console.log(error);
+        console.log("Error obteniendo los productos de la categoria " + categoria)
       }
     })
   }

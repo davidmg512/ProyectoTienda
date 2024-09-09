@@ -14,7 +14,18 @@ export class ProductoService {
   private baseUrl = "http://localhost:3000/";
 
 
-  constructor(private http: HttpClient) { }
+  config = {};
+  token: string | null;
+
+  constructor(private http:HttpClient) {
+    this.token = localStorage.getItem('token'); 
+
+    this.config = {
+      headers: {
+        'Authorization': `Bearer ${this.token}`
+      }
+    };
+  }
 
   getAllProductos(page: number, limit: number = 20): Observable<any> {
     const params = new HttpParams()
@@ -40,6 +51,11 @@ export class ProductoService {
 
   obtenerDestacados(): Observable<any>{
     return this.http.get(`${this.baseUrl}product/destacados`);
+  }
+
+  obtenerPorCategoria(categoria:string): Observable<any>{
+    const params = new HttpParams().set('categoria', categoria);
+    return this.http.get(`${this.baseUrl}product`, { params } );
   }
 
 }
