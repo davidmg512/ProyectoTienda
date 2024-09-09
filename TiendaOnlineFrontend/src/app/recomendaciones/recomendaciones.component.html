@@ -15,7 +15,7 @@
                         <div #productosSlider class="productos-slider">
                             <div *ngFor="let producto of productos[categoria]">
                                 <div class="producto">
-                                    <img [src]="'assets/images/' + producto.imagen" alt="Imagen del producto" class="recomendaciones-imagen">
+                                    <img [src]="'assets/images/' + producto.imagen" alt="Imagen del producto" [routerLink]="['/productos', producto._id]" class="recomendaciones-imagen">
                                 </div>
                             </div>
                         </div>
