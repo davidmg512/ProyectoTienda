@@ -78,7 +78,6 @@ async function createOrders(req, res)
         return res.status(201).json(order.toJSON());
     } catch (error) {
         await transaction.rollback();  // Revertir la transacción en caso de error
-        console.log(error);
         return res.status(500).json({ error: 'Internal Server Error' });  // Manejar la respuesta de error
     }
 }

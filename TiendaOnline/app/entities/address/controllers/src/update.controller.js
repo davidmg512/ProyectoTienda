@@ -30,7 +30,6 @@ async function updateAddress(req, res) {
                     
         }
 
-        console.log(dataToUpdate.address_province);
         const address = await Address.subModel.updateOne({
             _id: req.params.address_id
         },dataToUpdate);
@@ -40,7 +39,6 @@ async function updateAddress(req, res) {
         return res.status(200).json(dataToUpdate);
 
     } catch (error) {
-        console.log(error);
         throw new Address.Exceptions.AddressNotFoundException({
             error_type: "ADRESS_NOT_FOUND",
             error_message: "The adress wasn't found"

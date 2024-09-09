@@ -27,7 +27,6 @@ export class DetallesProductoComponent {
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
-    console.log(productId);
 
     if(productId != null){
       this.loadProductDetails(productId);
@@ -39,7 +38,6 @@ export class DetallesProductoComponent {
     this.productoService.getProductById(id).subscribe(
       (data: any) => {
         this.producto = data;
-        console.log(this.producto);
       },
       (error: any) => {
         console.log("Error al obtener el producto.");

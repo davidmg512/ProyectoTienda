@@ -85,7 +85,6 @@ export class ProductListComponent{
           this.total = response.count;
           this.productosFiltrados = this.productos;
           this.aplicarFiltros();
-          console.log(this.productos);
         },
         error => {
           console.log('Error al obtener los productos:', error);

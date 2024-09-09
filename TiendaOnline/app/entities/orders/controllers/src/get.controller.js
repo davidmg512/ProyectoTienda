@@ -107,7 +107,6 @@ async function getOrdersByUser(req, res)
 
         return res.status(200).json(orders);
     } catch (error) {
-        console.log(error);
         LogService.ErrorLogger.error(error);
         ExceptionService.handle(error, res);
     }
@@ -147,7 +146,6 @@ async function getCategorias(req, res)
         // Acceder al array de pedidos desde ordersResult.data
         const orders = ordersResult.data;
 
-        //console.log(orders);
 
         // Verificar si orders es un array
         if (!Array.isArray(orders)) {
@@ -168,12 +166,9 @@ async function getCategorias(req, res)
 
         const categoriasArray = Array.from(categoriasSet);
 
-        console.log(categoriasArray);
-
         return res.status(200).json(categoriasArray);
 
     }catch(error){
-        console.log(error);
         LogService.ErrorLogger.error(error);
         ExceptionService.handle(error, res);
     }

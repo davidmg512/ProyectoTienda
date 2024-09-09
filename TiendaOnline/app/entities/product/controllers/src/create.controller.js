@@ -47,10 +47,8 @@ async function createProduct(req, res){
     try{
 
     const {producto_nombre, producto_descripcion, producto_precio, producto_categoria} = req.body;
-    console.log(producto_nombre)
     const imageUrls = [];
     const imageFile = req.body.producto_imagenes.nombre;
-    console.log(imageFile);
     const imageStream = fs.readFile(imageFile.path);
 
     const cloudflareApiToken = "316430a42c83770acd2388043d75ca80b8169";

@@ -50,7 +50,6 @@ export class RecomendacionesComponent {
         });
       },
       error:(error) => {
-        console.log(error);
         console.log("Error obteniendo las categorias.");
       }
     })
@@ -59,11 +58,9 @@ export class RecomendacionesComponent {
   getProductosPorCategoria(categoria:string){
     this.productoService.obtenerPorCategoria(categoria).subscribe({
       next:(response) => {
-        console.log(response);
         this.productos[categoria] = response.data.data;
       },
       error:(error) => {
-        console.log(error);
         console.log("Error obteniendo los productos de la categoria " + categoria)
       }
     })

@@ -35,7 +35,6 @@ async function getAllProducts(req, res) {
  */
 async function getProductById(req, res) {
     const Product = ModelsService.Models.Product;
-    console.log(req.params.product_id);
     try {
         const product = await Product.findById(req.params.product_id);
         if (!product) {
@@ -83,7 +82,6 @@ async function getProductosDestacados(req,res) {
         });
     }catch (error) {
         LogService.ErrorLogger.error(error);
-        console.log(error);
         ExceptionHandler(error, res);
     }
 }
@@ -121,7 +119,6 @@ async function getByCategoria(req, res){
 
     } catch (error) {
         LogService.ErrorLogger.error(error);
-        console.log(error);
         ExceptionHandler(error, res);
     }
 }

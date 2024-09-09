@@ -171,7 +171,6 @@ export class PanelAdministracionComponent {
       const imagesArray = Array.from(this.selectedImages);
 
       if (!Array.isArray(imagesArray) || this.selectedImages.length === 0) {
-        console.log("cositas")
         return;
       }
     

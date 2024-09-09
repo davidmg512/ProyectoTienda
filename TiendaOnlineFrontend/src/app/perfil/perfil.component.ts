@@ -96,7 +96,6 @@ export class PerfilComponent implements OnInit{
 
     this.perfilService.getPerfil().subscribe(
       data => {
-        console.log(data);
         this.userNombre = data.user_nombre;
         this.userEmail = data.user_email;
         this.userApellido = data.user_apellidos;
@@ -314,11 +313,7 @@ export class PerfilComponent implements OnInit{
 
     this.addressService.setMainAddress(address._id).subscribe(
       data => {
-        //window.location.reload();
-        console.log(address._id);
-        console.log(this.userAddresses);
         this.userAddresses.forEach(addr => {
-          console.log(addr._id);
           
           addr.main_address = (addr._id === address._id);
         });

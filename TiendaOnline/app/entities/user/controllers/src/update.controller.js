@@ -91,8 +91,6 @@ try {
     // Obtener el usuario actual
     const currentUser = await User.subModel.findOne({ user_id: userId });
 
-    console.log(currentUser.user_rol);
-
     let updatedUserRol = "";
 
     if(currentUser.user_rol == "admin"){

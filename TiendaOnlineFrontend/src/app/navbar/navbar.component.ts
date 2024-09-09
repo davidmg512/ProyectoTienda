@@ -27,7 +27,7 @@ export class NavbarComponent {
 
   onClick(){
     this.UserServiceTsService.logout()
-    .then(response =>{ console.log(response);
+    .then(response =>{
       localStorage.clear();
       sessionStorage.clear();
       this.router.navigate(['']);

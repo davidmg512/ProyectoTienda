@@ -44,7 +44,6 @@ async function deleteUserFull(req, res)
     try 
     {
         const userId = req.params.user_id;
-        console.log(userId);
         const user = await User.deleteOne({ user_id: userId });
 
         await admin.auth().deleteUser(userId);

@@ -21,7 +21,6 @@ export class PedidosComponent {
       response => {
         
         this.pedidos = response.data;
-        console.log(this.pedidos);
       },
       error => {
         console.log(error);

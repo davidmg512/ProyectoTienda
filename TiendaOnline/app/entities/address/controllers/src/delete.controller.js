@@ -37,7 +37,6 @@ async function deleteAddressesByUserId(req, res) {
             message: `${result.deletedCount} direcciones eliminadas para el usuario ${userId}`
         });
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: 'Error interno del servidor' });
     }
 }

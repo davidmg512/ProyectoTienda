@@ -32,7 +32,6 @@ async function getAddressesOfUser(req, res) {
             data: response.data.map(cliente => cliente.toJSON()),
         });
     } catch (error) {
-        console.log(error);
         LogService.ErrorLogger.error(error);
         ExceptionHandler(error, res);
     }
