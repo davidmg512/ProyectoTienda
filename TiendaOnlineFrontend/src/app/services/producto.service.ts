@@ -54,8 +54,10 @@ export class ProductoService {
   }
 
   obtenerPorCategoria(categoria:string): Observable<any>{
-    const params = new HttpParams().set('categoria', categoria);
-    return this.http.get(`${this.baseUrl}product`, { params } );
+    const params = new HttpParams().set('categoria', categoria)
+    .set('page', 1)
+    .set('limit', 5);
+    return this.http.get(`${this.baseUrl}product/categoria`, { params } );
   }
 
 }

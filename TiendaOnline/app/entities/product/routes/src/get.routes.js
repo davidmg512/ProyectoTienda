@@ -3,6 +3,16 @@ const { tokenValid } = require("@services/auth.service");
 const { deactivateRoute } = require("kainda");
 
 module.exports = {
+
+    getByCategoria : function (app) {
+        const Product = ModelsService.Models.Product;
+
+        app.get(
+            "/product/categoria",
+            [],
+            Product.Controller.getByCategoria
+        );
+    },
     
     getAll : function (app) {
 

@@ -87,6 +87,44 @@ async function getProductosDestacados(req,res) {
         ExceptionHandler(error, res);
     }
 }
+
+/**
+ * Get productos por categoria
+ * @async
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ * @returns {void}
+ */
+async function getByCategoria(req, res){
+    const Product = ModelsService.Models.Product;
+
+    try {
+        const categoria = req.query.categoria;  // Captura el parámetro de consulta
+
+        const filterQuery = {};
+        if (categoria) {
+            // Filtra productos que tengan al menos una categoría coincidente en el array "categorias"
+            filterQuery.categorias = { $in: [categoria] };
+        }
+
+        // La opción de paginación se maneja manualmente aquí:
+        const queryOptions = {
+            page: parseInt(req.query.page) || 1,
+            limit: parseInt(req.query.limit) || 5
+        };
+
+        const response = await Product.findPaginated(filterQuery, queryOptions);
+
+        return res.status(200).json({
+            data: response,
+        });
+
+    } catch (error) {
+        LogService.ErrorLogger.error(error);
+        console.log(error);
+        ExceptionHandler(error, res);
+    }
+}
     
 /*
     const cf = cloudflare({
@@ -122,5 +160,6 @@ module.exports = {
     getAllProducts,
     getProductById,
     getUrl,
-    getProductosDestacados
+    getProductosDestacados,
+    getByCategoria
 };
