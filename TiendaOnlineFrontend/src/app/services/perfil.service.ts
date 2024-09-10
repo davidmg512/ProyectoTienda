@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PerfilService {
 
-  url: string = "https://sushopnode.onrender.com";
+  url: string = "https://sushopnode.onrender.com:3000";
   config = {};
   token: string | null;
 

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddressService {
 
-  url: string = "https://sushopnode.onrender.com";
+  url: string = "https://sushopnode.onrender.com:3000";
   config = {};
   token: string | null;
 
