@@ -2,6 +2,7 @@
 * IMPORTS 
 */
 require("module-alias/register");
+require("dotenv").config({ path: './keys.env' });
 const ModelsService = require("@services/models.service");
 const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
@@ -25,6 +26,11 @@ async function main()
     }));
     
     const serviceAccount = require("./firebase/tiendaonline-79f41-firebase-adminsdk-xxzcc-6d26161a2c.json");
+    
+    serviceAccount.private_key_id = process.env.PRIVATE_KEY_ID;
+    serviceAccount.private_key = process.env.PRIVATE_KEY;
+    serviceAccount.client_email = process.env.CLIENT_EMAIL;
+    serviceAccount.client_id = process.env.CLIENT_ID;
 
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
@@ -38,7 +44,29 @@ async function main()
     setupMiddlewares(app);
 
     // Critical database initialization
-    const critical = config.get("databases").filter(db => db.description === "critical")[0];
+    //const critical = config.get("databases").filter(db => db.description === "critical")[0];
+    
+    const critical = {
+        description: 'critical',
+        uri: '',  // Inicialmente vacío
+        dialect: 'mongo',
+        database_name: 'BaseDatosLocal',
+        pool: {
+            max: 100,
+            min: 10,
+            acquire: 10000,
+            idle: 30000
+        }
+    };
+
+    //console.log(critical);
+
+    let mongoUri = process.env.MONGO_URI;
+    //console.log('Mongo URI:', mongoUri);  // Agrega esta línea para verificar la URI
+    critical.uri = mongoUri;
+
+    //console.log(critical);
+
     await DbService.init(critical);
 
     // Make some configuration and utils globally available
