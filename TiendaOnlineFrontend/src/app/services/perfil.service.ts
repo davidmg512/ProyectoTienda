@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PerfilService {
 
-  url: string = "http://localhost:3000/";
+  url: string = "https://sushopbackend.vercel.app/";
   config = {};
   token: string | null;
 

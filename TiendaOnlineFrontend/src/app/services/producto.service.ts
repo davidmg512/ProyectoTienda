@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ProductoService {
 
   producto!: Producto;
-  private baseUrl = "http://localhost:3000/";
+  private baseUrl = "https://sushopbackend.vercel.app/";
 
 
   config = {};

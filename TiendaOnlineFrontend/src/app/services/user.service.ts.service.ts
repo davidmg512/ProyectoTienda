@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserServiceTsService {
 
   config = {};
-  url:string = 'http://localhost:3000/';
+  url:string = 'https://sushopbackend.vercel.app/';
 
   constructor(private auth: Auth,public translate: TranslateService, private http: HttpClient) { }
 

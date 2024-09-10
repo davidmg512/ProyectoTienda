@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddressService {
 
-  url: string = "http://localhost:3000/";
+  url: string = "https://sushopbackend.vercel.app/";
   config = {};
   token: string | null;
 

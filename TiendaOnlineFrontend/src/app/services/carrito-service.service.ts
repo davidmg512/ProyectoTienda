@@ -13,7 +13,7 @@ export class CarritoServiceService {
 
   cartItems$ = this.cartItemsSubject.asObservable();
 
-  private baseUrl = "http://localhost:3000/";
+  private baseUrl = "https://sushopbackend.vercel.app/";
   config = {};
   token: string | null;
 
