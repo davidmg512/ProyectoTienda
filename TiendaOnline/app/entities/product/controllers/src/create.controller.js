@@ -3,7 +3,6 @@ const LogService = require("@services/log.service");
 const DbService = require("@services/db.service");
 const { ExceptionHandler } = require('kainda');
 //const cloudflare = require('cloudflare-api');
-//const fetch = require('node-fetch').default;
 const FormData = require('form-data');
 const fs = require('fs')
 

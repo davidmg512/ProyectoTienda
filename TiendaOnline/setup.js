@@ -89,8 +89,9 @@ async function main()
     /**
     * Server creation
     */
-    const port = config.get("server.port");
-    const host = config.get("server.host");
+    const port = config.get("server.port") || 3000; // Usa 3000 por defecto si no se obtiene de la configuración
+    const host = config.get("server.host") || '0.0.0.0'; // Usa '0.0.0.0' por defecto si no se obtiene de la configuración
+
     let poll = true;
     const server = https.createServer(app);
     server.listen(port, host, (err) => 
