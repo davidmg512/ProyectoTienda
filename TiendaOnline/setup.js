@@ -26,6 +26,8 @@ async function main()
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization']
     }));
+
+    app.options('*', cors());
     
     const serviceAccount = require("./firebase/tiendaonline-79f41-firebase-adminsdk-xxzcc-6d26161a2c.json");
     
