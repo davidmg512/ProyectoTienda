@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PerfilService {
 
-  url: string = "https://sushopbackend.vercel.app/";
+  url: string = "https://sushopnode.onrender.com";
   config = {};
   token: string | null;
 

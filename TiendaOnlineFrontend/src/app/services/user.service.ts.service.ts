@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserServiceTsService {
 
   config = {};
-  url:string = 'https://sushopbackend.vercel.app/';
+  url:string = 'https://sushopnode.onrender.com';
 
   constructor(private auth: Auth,public translate: TranslateService, private http: HttpClient) { }
 

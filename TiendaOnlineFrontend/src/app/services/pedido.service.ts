@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PedidoService {
 
-  private baseUrl = "https://sushopbackend.vercel.app/";
+  private baseUrl = "https://sushopnode.onrender.com";
   config = {};
   token: string | null;
 

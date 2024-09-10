@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ProductoService {
 
   producto!: Producto;
-  private baseUrl = "https://sushopbackend.vercel.app/";
+  private baseUrl = "https://sushopnode.onrender.com";
 
 
   config = {};

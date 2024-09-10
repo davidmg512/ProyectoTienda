@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddressService {
 
-  url: string = "https://sushopbackend.vercel.app/";
+  url: string = "https://sushopnode.onrender.com";
   config = {};
   token: string | null;
 
