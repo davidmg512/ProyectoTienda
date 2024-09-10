@@ -742,7 +742,7 @@
   resolved "https://registry.yarnpkg.com/@mongodb-js/zstd-win32-x64-msvc/-/zstd-win32-x64-msvc-1.2.1.tgz#fa640964180917f43f0c27da1abeda0438d419fa"
   integrity sha512-T4uJOynCjuJXmJuW5wbYIjxiwzzF6lE6q1EWhb8/GZvs/GKBgy47lrX5vaTIRY4shQwAiYE9aMDOVdTOV0icXg==
 
-"@mongodb-js/zstd@^1.1.0":
+"@mongodb-js/zstd@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@mongodb-js/zstd/-/zstd-1.2.1.tgz#ab4ff5cff8cd489d9b6490fe86209113abeb1d80"
   integrity sha512-m+N0N7Ju28P47JfoqOReCW/8mqdWK7+K38muVW0tacXEcNSE3atFEXLabXMoPaAY76KZ21DC11EcB2ehmxW3rQ==
