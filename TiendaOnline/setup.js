@@ -22,7 +22,9 @@ async function main()
     // We run express which will provide us an execution environment
     let app = express();
     app.use(cors({
-        origin: 'https://sushopfrontend.vercel.app'
+        origin: 'https://sushopfrontend.vercel.app',
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization']
     }));
     
     const serviceAccount = require("./firebase/tiendaonline-79f41-firebase-adminsdk-xxzcc-6d26161a2c.json");
