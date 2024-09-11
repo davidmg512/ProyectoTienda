@@ -22,10 +22,10 @@ export class PerfilService {
   }
 
   getPerfil():Observable<any>{
-    return this.http.get(`${this.url}user/perfil`, this.config);
+    return this.http.get(`${this.url}/user/perfil`, this.config);
   }
 
   updatePerfil(formData:any):Observable<any>{
-    return this.http.put(`${this.url}updateUser`, formData, this.config);
+    return this.http.put(`${this.url}/updateUser`, formData, this.config);
   }
 }

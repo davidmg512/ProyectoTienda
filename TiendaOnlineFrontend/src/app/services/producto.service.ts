@@ -32,12 +32,12 @@ export class ProductoService {
       .set('page', page.toString())
       .set('limit', limit.toString());
 
-    return this.http.get(`${this.baseUrl}product`, { params });  
+    return this.http.get(`${this.baseUrl}/product`, { params });  
   }
 
   getProductById(id:string){
     
-    return this.http.get(`${this.baseUrl}product/${id}`);
+    return this.http.get(`${this.baseUrl}/product/${id}`);
   }
 
   crearProducto(data: any): Observable<any>
@@ -50,14 +50,14 @@ export class ProductoService {
   }
 
   obtenerDestacados(): Observable<any>{
-    return this.http.get(`${this.baseUrl}product/destacados`);
+    return this.http.get(`${this.baseUrl}/product/destacados`);
   }
 
   obtenerPorCategoria(categoria:string): Observable<any>{
     const params = new HttpParams().set('categoria', categoria)
     .set('page', 1)
     .set('limit', 5);
-    return this.http.get(`${this.baseUrl}product/categoria`, { params } );
+    return this.http.get(`${this.baseUrl}/product/categoria`, { params } );
   }
 
 }

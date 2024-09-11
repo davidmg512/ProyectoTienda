@@ -79,7 +79,7 @@ export class CarritoServiceService {
       const parsedCartItems = JSON.parse(cartItems);
   
       // Realizar la solicitud POST al backend con los datos del pedido
-      return this.http.post(`${this.baseUrl}orders`, {
+      return this.http.post(`${this.baseUrl}/orders`, {
         items: parsedCartItems,
         address
       }, this.config).subscribe(
