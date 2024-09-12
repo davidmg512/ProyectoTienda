@@ -35,7 +35,7 @@
         </mat-card>
       </div>
 
-      <div class="address-select mt-4">
+      <div class="address-select mt-4" *ngIf="direcciones !== null && direcciones.length > 0">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>{{ 'Selecciona tu dirección' | translate }}</mat-label>
           <mat-select [(ngModel)]="selectedAddress" [disabled]="direcciones.length === 0">
@@ -47,6 +47,13 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+      </div>
+
+      <div class="address-select mt-4" *ngIf="direcciones.length == 0">
+        <button mat-raised-button routerLink="/perfil">
+          {{ 'carritoDireccionAdd' | translate}}
+        </button>
+        <span style="margin-left: 12px;" class="text-white">{{ 'warningDireccion' | translate }}</span>
       </div>
 
       <div class="total">

@@ -96,3 +96,9 @@ mat-card-content {
     -ms-overflow-style: none; /* Oculta la barra de desplazamiento en IE y Edge */
     scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
 }
+
+@media (max-width: 768px) {
+    .contenedorRecomendaciones{
+        margin-top:0;
+    }
+}

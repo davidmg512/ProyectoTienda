@@ -2,14 +2,13 @@ import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceTsService } from 'src/app/services/user.service.ts.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import axios from 'axios';
 import { NavbarComponent } from '../navbar/navbar.component';
-import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail} from '@angular/fire/auth';
+import {Auth, sendPasswordResetEmail} from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { PerfilService } from '../services/perfil.service';
 import { AddressService } from '../services/address.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 
 
@@ -46,7 +45,8 @@ export class PerfilComponent implements OnInit{
     private navbar: NavbarComponent,
     public translate: TranslateService,
     private perfilService: PerfilService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private cdr: ChangeDetectorRef
   ) {
 
       this.addressForm = new FormGroup({
@@ -112,48 +112,18 @@ export class PerfilComponent implements OnInit{
         console.error('Error al obtener datos del backend:', error);
       }
     )
-  
-    /*
-    axios.get('http://localhost:3000/user/perfil', config)
-      .then(response => {
-        this.userNombre = response.data.user_nombre;
-        this.userEmail = response.data.user_email;
-        this.userApellido = response.data.user_apellidos;
-        this.userTelefono = response.data.user_telf;
-        this.userRol = response.data.user_rol;
-        if(this.userRol !== null){
-          if(this.userRol === 'admin'){
-            this.admin = true;          
-          }
-        }
-      })
-      .catch(error => {
+    
+    this.UserServiceTsService.checkLenguaje();
+
+    this.addressService.getAddresses().subscribe(
+      data => {
+        this.userAddresses = data.data;
+      },
+      error => {
         console.log(error);
         console.error('Error al obtener datos del backend:', error);
-      });
-      */
-        this.UserServiceTsService.checkLenguaje();
-
-
-      this.addressService.getAddresses().subscribe(
-        data => {
-          this.userAddresses = data.data;
-        },
-        error => {
-          console.log(error);
-          console.error('Error al obtener datos del backend:', error);
-        }
-      )
-      /*
-      axios.get('http://localhost:3000/user/addresses/', config)
-      .then(response => {
-        this.userAddresses = response.data.data;
-      })
-      .catch(error => {
-        console.log(error);
-        console.error('Error al obtener datos del backend:', error);
-      });*/
-
+      }
+    )
   };
   
 
@@ -225,40 +195,28 @@ export class PerfilComponent implements OnInit{
         'Authorization': `Bearer ${token}`
       }
     };
-    /*
-    // Realiza la llamada al backend para borrar la dirección
-     axios.delete(`http://localhost:3000/address/${address._id}`, config)
-      .then(
-        (response) => {
-          // Maneja la respuesta del backend
-          console.log('Dirección eliminada:', response);
-  
-          // Remueve la dirección del array userAddresses
-          const index = this.userAddresses.indexOf(address);
-          if (index !== -1) {
-            this.userAddresses.splice(index, 1);
-          }
-        },
-        (error) => {
-          console.error('Error al eliminar la dirección:', error);
-        }
-      );*/
 
-      this.addressService.deleteAddress(address._id).subscribe(
-        data => {
-          // Maneja la respuesta del backend
-          console.log('Dirección eliminada:', data);
-  
-          // Remueve la dirección del array userAddresses
-          const index = this.userAddresses.indexOf(address);
-          if (index !== -1) {
-            this.userAddresses.splice(index, 1);
-          }
-        },
-        error => {
-          console.error('Error al eliminar la dirección:', error);
+    this.addressService.deleteAddress(address._id).subscribe(
+      data => {
+        // Maneja la respuesta del backend
+        console.log('Dirección eliminada:', data);
+
+        // Remueve la dirección del array userAddresses
+        const index = this.userAddresses.findIndex(addr => addr._id === address._id);
+        console.log(index); // Verificar el índice
+
+        if (index !== -1) {
+          console.log("Eliminando dirección...");
+          this.userAddresses.splice(index, 1);
+
+          // Forzar la detección de cambios si es necesario
+          this.cdr.detectChanges();
         }
-      )
+      },
+      error => {
+        console.error('Error al eliminar la dirección:', error);
+      }
+    );
   }
 
   async onUpdateAddress(address: any){

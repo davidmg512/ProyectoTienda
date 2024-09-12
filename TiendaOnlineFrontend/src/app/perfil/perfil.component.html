@@ -37,15 +37,17 @@
                   <span class="detail-value">{{ userTelefono }}</span>
                 </div>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <button style="margin-right: 10px" type="button" class="custom-button" routerLink="/perfil/editar">
-                  {{ 'EditarPerfil' | translate }}
-                </button>
-                <button type="button" class="custom-button" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button>
-              </div>
-              <button *ngIf="admin" type="button" class="custom-button"  routerLink="/panelAdministracion">{{ 'PanelAdministracion' | translate}}</button>
-            </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">
+                  <div class="botones mb-2">
+                    <button style="margin-right: 10px" type="button" class="custom-button" routerLink="/perfil/editar">
+                      {{ 'EditarPerfil' | translate }}
+                    </button>
+                    <button type="button" class="custom-button" (click)="onClickResetPassword()">{{ 'CambiarContrasenya' | translate}}</button>
+                  </div>
+                  <div class="d-flex align-items-end mt-auto mt-md-0">
+                    <button *ngIf="admin" type="button" class="custom-button boton-admin" routerLink="/panelAdministracion">{{ 'PanelAdministracion' | translate}}</button>
+                  </div>
+                </div>
             
             
             <div style="margin-top: 10px;" *ngIf="resetPasswordString" class="alert alert-primary">{{ 'ContrasenyaCorreo' | translate }}</div>

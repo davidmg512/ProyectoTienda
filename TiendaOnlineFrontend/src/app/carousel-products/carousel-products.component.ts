@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Producto } from '../model/producto';
 import { ProductoService } from '../services/producto.service';
 
@@ -20,6 +20,10 @@ export class CarouselProductsComponent implements AfterViewInit{
   private isUserInteracting: boolean = false;
 
   productos:Producto[] = [];
+
+  private startX: number = 0;
+  private currentX: number = 0;
+  private isDragging: boolean = false;
 
   constructor(private productoService: ProductoService) {}
 
@@ -111,5 +115,35 @@ export class CarouselProductsComponent implements AfterViewInit{
   replaceImage(event: Event) {
     const element = event.target as HTMLImageElement;
     element.src = '/assets/placeholder.jpg';
+  }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.startX = event.touches[0].clientX;
+    this.isDragging = true;
+  }
+
+  @HostListener('touchmove', ['$event'])
+  onTouchMove(event: TouchEvent) {
+    if (!this.isDragging) return;
+    this.currentX = event.touches[0].clientX;
+    event.preventDefault();
+  }
+
+  @HostListener('touchend')
+  onTouchEnd() {
+    if (!this.isDragging) return;
+
+    const deltaX = this.startX - this.currentX;
+
+    if (Math.abs(deltaX) > 50) { // Si el movimiento es significativo
+      if (deltaX > 0) {
+        this.next(true);  // Deslizar hacia la izquierda
+      } else {
+        this.prev();  // Deslizar hacia la derecha
+      }
+    }
+
+    this.isDragging = false;
   }
 }

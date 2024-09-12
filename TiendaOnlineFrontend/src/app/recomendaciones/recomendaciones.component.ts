@@ -50,6 +50,7 @@ export class RecomendacionesComponent {
         });
       },
       error:(error) => {
+        console.log(error);
         console.log("Error obteniendo las categorias.");
       }
     })

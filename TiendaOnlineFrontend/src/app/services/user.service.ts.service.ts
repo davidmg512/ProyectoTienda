@@ -3,6 +3,8 @@ import {Auth,signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthPro
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,10 @@ import { Observable } from 'rxjs';
 export class UserServiceTsService {
 
   config = {};
-  url:string = 'https://sushopnode.onrender.com';
+  //url:string = 'https://sushopnode.onrender.com';
+  //url:string = "http://localhost:3000";
+  private url = environment.apiUrl;
+
 
   constructor(private auth: Auth,public translate: TranslateService, private http: HttpClient) { }
 

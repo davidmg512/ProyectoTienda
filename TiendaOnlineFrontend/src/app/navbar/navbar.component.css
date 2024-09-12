@@ -23,6 +23,15 @@
   font-size: 12px;
 }
 
+.nav-icon-custom{
+  margin-right: 70px;
+}
+
+.prod-nav{
+  margin-left: 10%;
+}
+
+
 .tooltip {
   color:black;
   position: absolute;
@@ -45,4 +54,26 @@ a:hover .tooltip {
 .tooltip app-carrito-lista {
   max-height: 200px; /* Establece la altura máxima del listado de productos */
   overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+}
+
+@media (max-width: 768px) {
+  .nav-icon-custom{
+    margin-right: 18%;
+    margin-left:3%;
+    margin-top:5%;
+  }
+
+  .boton-idioma{
+    margin-top:5%;
+  }
+
+  .prod-nav{
+    align-items: center;
+    display: flex;
+    margin-left: 0;
+  }
+
+  .tooltip {
+    display: none; /* Oculta el tooltip en pantallas móviles */
+  }
 }

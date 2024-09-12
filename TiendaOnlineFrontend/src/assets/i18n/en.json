@@ -58,7 +58,9 @@
     "Vacio": "Empty",
     "topVentas": "Best sellers",
     "recomendaciones": "Because you bought",
-    "categoria": "category"
+    "categoria": "category",
+    "warningDireccion": "You must add an address to your profile to continue with the purchase.",
+    "carritoDireccionAdd": "Add address"
 
 
 

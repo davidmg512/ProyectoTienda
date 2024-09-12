@@ -1,6 +1,6 @@
 {
     "Registrarse": "Registrarse",
-    "IniciarSesion": "Iniciar Sesión",
+    "IniciarSesion": "Iniciar sesión",
     "PerfilUsuario": "Perfil",
     "Contrasenya": "Contraseña",
     "CambiarContrasenya": "Cambiar Contraseña",
@@ -57,7 +57,9 @@
     "Pendiente": "Pendiente",
     "Vacio": "Vacio",
     "topVentas": "Más vendidos",
-    "recomendaciones": "Porque compraste"
+    "recomendaciones": "Porque compraste",
+    "warningDireccion": "Tienes que añadir una dirección a tu perfil para continuar con la compra.",
+    "carritoDireccionAdd": "Añadir direccion"
     
 
 }

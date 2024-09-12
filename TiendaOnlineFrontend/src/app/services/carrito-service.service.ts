@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Producto, CarritoProducto } from '../model/producto';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,10 @@ export class CarritoServiceService {
 
   cartItems$ = this.cartItemsSubject.asObservable();
 
-  private baseUrl = "https://sushopnode.onrender.com";
+  //private baseUrl = "https://sushopnode.onrender.com";
+  //private baseUrl = "http://localhost:3000";
+  private baseUrl = environment.apiUrl;
+
   config = {};
   token: string | null;
 
