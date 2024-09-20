@@ -85,6 +85,10 @@ async function main()
         DbService.seed(Models);
     }
 
+    app.get('/health', (req, res) => {
+        res.status(200).send('OK');
+    });
+
     // Require the routes
     ModelsService.setupRoutes(app);
 
