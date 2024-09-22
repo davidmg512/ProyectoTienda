@@ -48,6 +48,8 @@ export class ProductListComponent{
 
   isLoggedIn: boolean = false;
 
+  charged: boolean = false;
+
   constructor(private navbarComponent: NavbarComponent, 
     private carritoService: CarritoServiceService, 
     private productoService: ProductoService, 
@@ -85,6 +87,7 @@ export class ProductListComponent{
           this.total = response.count;
           this.productosFiltrados = this.productos;
           this.aplicarFiltros();
+          this.charged = true;
         },
         error => {
           console.log('Error al obtener los productos:', error);

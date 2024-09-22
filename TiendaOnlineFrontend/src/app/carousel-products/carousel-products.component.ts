@@ -24,12 +24,13 @@ export class CarouselProductsComponent implements AfterViewInit{
   private startX: number = 0;
   private currentX: number = 0;
   private isDragging: boolean = false;
+  charged:boolean = false;
 
   constructor(private productoService: ProductoService) {}
 
   ngAfterViewInit() {
     this.obtenerProductos();
-    this.initCarousel();
+    
     this.startAutoRotate();
     this.setupUserActivityListeners();
     
@@ -54,6 +55,12 @@ export class CarouselProductsComponent implements AfterViewInit{
             imagen: dbProducto.imagen
           };
         });
+
+        this.charged = true;
+        
+        setTimeout(() => {
+          this.initCarousel();
+        }, 0);
         //console.log(this.productos);
       },
       (error: any) => {
@@ -85,6 +92,7 @@ export class CarouselProductsComponent implements AfterViewInit{
     events.forEach(event => {
       window.addEventListener(event, this.resetInactivityTimer.bind(this));
     });
+    
   }
 
   private resetInactivityTimer() {

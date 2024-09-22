@@ -2,7 +2,7 @@
     <div class="row mt-5">
       <h2 class="text-white mb-0 titulo">{{ 'topVentas' | translate }}</h2>
     </div>
-    <div class="row d-flex align-items-center">
+    <div class="row d-flex align-items-center" *ngIf="charged; else spinner">
       <div class="col-2 col-sm-2 col-md-3 movimientoContainer">
         <button (click)="prev()" class="botonMovimiento" #prevButton>
           <mat-icon>keyboard_arrow_left</mat-icon>
@@ -11,8 +11,15 @@
       <div class="col-8 col-sm-8 col-md-6 scene">
         <div class="carousel" #carousel>
           <div class="carousel__cell" *ngFor="let destacado of productos;">
-            <img [src]="'assets/images/' + destacado.imagen" alt="Imagen del producto" class="producto-imagen"
-              [routerLink]="['/productos', destacado.id]" (error)="replaceImage($event)">
+              <picture>
+                <source [srcset]="'assets/images/' + destacado.imagen.split('.')[0] + '.webp'" type="image/webp">
+                <img [src]="'assets/images/' + destacado.imagen" 
+                     alt="Imagen del producto" 
+                     class="producto-imagen" 
+                     loading="lazy"
+                     [routerLink]="['/productos', destacado.id]" 
+                     (error)="replaceImage($event)">
+              </picture>
           </div>
         </div>
       </div>
@@ -22,5 +29,11 @@
         </button>
       </div>
     </div>
+
+    <ng-template #spinner>
+      <div class="mt-5" style="display: flex; align-items:center; justify-content:center;">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
   </div>
   

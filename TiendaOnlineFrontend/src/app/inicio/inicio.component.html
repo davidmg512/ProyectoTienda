@@ -12,7 +12,9 @@
     <div class="app-container">
         <main>
             <app-carousel-products></app-carousel-products>
-            <app-recomendaciones></app-recomendaciones>
+            <ng-container *appSession="true">
+                <app-recomendaciones></app-recomendaciones>
+            </ng-container>
             <router-outlet></router-outlet>
         </main>
         <footer class="bg-dark text-light mt-5">

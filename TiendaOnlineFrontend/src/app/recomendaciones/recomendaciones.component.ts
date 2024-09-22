@@ -18,6 +18,7 @@ export class RecomendacionesComponent {
 
   productos: { [key: string]: any[] } = {};
   categorias: string[] = [];
+  charged: boolean = false;
 
   ngAfterViewInit() {
     // Puedes inicializar aquí cualquier lógica que necesite ejecutarse después de que la vista esté inicializada
@@ -48,6 +49,7 @@ export class RecomendacionesComponent {
         this.categorias.forEach(categoria => {
           this.getProductosPorCategoria(categoria);
         });
+        this.charged = true;
       },
       error:(error) => {
         console.log(error);
@@ -65,5 +67,10 @@ export class RecomendacionesComponent {
         console.log("Error obteniendo los productos de la categoria " + categoria)
       }
     })
+  }
+
+  replaceImage(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = '/assets/placeholder.jpg';
   }
 }

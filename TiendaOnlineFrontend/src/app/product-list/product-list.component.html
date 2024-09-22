@@ -28,13 +28,21 @@
     
     
     
- 
-    <div class="row">
+    <div class="row" *ngIf="charged; else spinner">
         <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3  mb-4" *ngFor="let product of productosFiltrados;">
           <mat-card class="producto-card">
             <mat-card-header>
-              <!--<img [src]="product.imagen" alt="Imagen del producto" class="producto-imagen"><br>-->
-              <img [src]="'assets/images/' + product.imagen" alt="Imagen del producto" class="producto-imagen" [routerLink]="['/productos', product.id]" (error)="replaceImage($event)"><br>
+              <div  class="producto-imagen-container">
+                <picture>
+                  <source [srcset]="'assets/images/' + product.imagen.split('.')[0] + '.webp'" type="image/webp">
+                  <img [src]="'assets/images/' + product.imagen" 
+                       alt="Imagen del producto" 
+                       class="producto-imagen" 
+                       loading="lazy"
+                       [routerLink]="['/productos', product.id]" 
+                       (error)="replaceImage($event)">
+                </picture><br>
+              </div>              
             </mat-card-header>
             <mat-card-content>
               <h4 class="fw-bold mt-3">{{ product.nombre }}</h4>
@@ -48,4 +56,10 @@
           </mat-card>
         </div>
       </div>
+
+      <ng-template #spinner>
+        <div style="display: flex; align-items:center; justify-content:center; height:100vh">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
 </div>

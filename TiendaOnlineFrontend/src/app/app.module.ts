@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +50,7 @@ import { RecomendacionesComponent } from './recomendaciones/recomendaciones.comp
 import { DetallesProductoComponent } from './detalles-producto/detalles-producto.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -105,8 +108,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatSliderModule,
     MatTooltipModule,
-    MatSelectModule
-
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
