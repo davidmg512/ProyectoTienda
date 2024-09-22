@@ -21,8 +21,8 @@ async function main()
 
     // We run express which will provide us an execution environment
     let app = express();
-    //let url = 'https://sushopfrontend.vercel.app';
-    let url = 'http://localhost:4200';
+    let url = 'https://sushopfrontend.vercel.app';
+    //let url = 'http://localhost:4200';
     app.use(cors({
         origin: url,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

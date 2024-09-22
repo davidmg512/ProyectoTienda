@@ -9,7 +9,7 @@ export const environment = {
     messagingSenderId: '245502381227',
     measurementId: 'G-YY1ZTGW5Z8',
   },
-  apiUrl:'http://localhost:3000'
+  apiUrl:'https://sushopnode.onrender.com'
 };
 
 //http://localhost:3000
