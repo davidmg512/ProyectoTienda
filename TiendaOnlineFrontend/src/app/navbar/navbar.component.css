@@ -27,6 +27,11 @@
   margin-right: 70px;
 }
 
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+}
+
 .prod-nav{
   margin-left: 10%;
 }
@@ -58,9 +63,9 @@ a:hover .tooltip {
 
 @media (max-width: 768px) {
   .nav-icon-custom{
-    margin-right: 18%;
-    margin-left:3%;
-    margin-top:5%;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 15px;
   }
 
   .boton-idioma{

@@ -8,7 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
   </head>
 
-  <nav class="navbar navbar-expand-lg navbar-light navbar-estilo">
+  <nav class="mt-2 navbar navbar-expand-lg navbar-light navbar-estilo">
     <div class="container">
       <a class="navbar-brand text-white" routerLink="">SuShop</a>  
 
@@ -20,14 +20,21 @@
      
       <div class="collapse navbar-collapse" id="navbarNav">
         <!-- Enlaces visibles en todos los dispositivos -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 prod-nav">
+        <ul class="navbar-nav mb-2 mb-lg-0 prod-nav flex-row align-items-center" style="justify-content: center;">
             <li class="nav-item hover-underline-animation" data-underline-color="white" style="margin-left: 10px; font-size: 17px;">
                 <a class="nav-link text-white" routerLink="/productos">{{ 'Productos' | translate }}</a>
+            </li>
+            <li class="nav-item d-md-none" style="font-size: 17px; margin-left:30px;">
+                <button class="boton-idioma text-white" mat-button [matMenuTriggerFor]="menu">{{ 'Idioma' | translate }}</button>
+                <mat-menu #menu="matMenu">
+                    <button (click)="changeLanguage('es')" mat-menu-item>{{ 'Espanyol' | translate }}</button>
+                    <button (click)="changeLanguage('en')" mat-menu-item>{{ 'Ingles' | translate }}</button>
+                </mat-menu>
             </li>
         </ul>
 
         <!-- Enlaces cuando la sesión no está iniciada -->
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row align-items-center">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row align-items-center" style="display:flex; align-items:center; justify-content: center;">
             <ng-container *appSession="false">
                 <li class="nav-item nav-icon-custom" style="font-size: 17px;">
                     <a class="nav-link text-white hover-underline-animation" data-underline-color="white" routerLink="/register">
@@ -39,7 +46,7 @@
                         {{ 'IniciarSesion' | translate }}
                     </a>
                 </li>
-                <li class="nav-item nav-icon-custom">
+                <li class="nav-item nav-icon-custom d-none d-md-block">
                     <button class="boton-idioma text-white" mat-button [matMenuTriggerFor]="menu">{{ 'Idioma' | translate }}</button>
                     <mat-menu #menu="matMenu">
                         <button (click)="changeLanguage('es')" mat-menu-item>{{ 'Espanyol' | translate }}</button>
@@ -50,12 +57,12 @@
 
             <!-- Enlaces cuando la sesión está iniciada -->
             <ng-container *appSession="true">
-                <li class="nav-item" class="nav-icon-custom">
+                <li class="nav-item nav-icon-custom" style="display:flex; align-items:center; justify-content:center;">
                     <a class="nav-link text-white hover-underline-animation" data-underline-color="white" routerLink="/perfil">
                         <mat-icon class="large-icon">account_circle</mat-icon>
                     </a>
                 </li>
-                <li class="nav-item" class="nav-icon-custom">
+                <li class="nav-item nav-icon-custom" style="display:flex; align-items:center; justify-content:center;">
                     <a id="cart-button" class="nav-link text-white hover-underline-animation" routerLink="/carrito" data-underline-color="white" (mouseenter)="showCarritoLista()" (mouseleave)="hideCarritoLista()">
                         <mat-icon class="large-icon">shopping_cart</mat-icon>
                         <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
@@ -64,12 +71,12 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item" class="nav-icon-custom">
+                <li class="nav-item nav-icon-custom" style="display:flex; align-items:center; justify-content:center;">
                     <a class="nav-link text-white hover-underline-animation" data-underline-color="white" (click)="onClick(); reloadPage()">
                         <mat-icon class="large-icon">logout</mat-icon>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-none d-md-block">
                     <button class="boton-idioma text-white" mat-button [matMenuTriggerFor]="menu">{{ 'Idioma' | translate }}</button>
                     <mat-menu #menu="matMenu">
                         <button (click)="changeLanguage('es')" mat-menu-item>{{ 'Espanyol' | translate }}</button>

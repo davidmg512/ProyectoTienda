@@ -20,6 +20,6 @@
 
   <div *ngIf="productos.length > 0" class="total-container">
     <span class="total-text">Total: {{ calcularTotal() }} €</span>
-    <button (click)="pagar()" class="custom-button">Pagar</button>
+    <button (click)="pagar()" class="custom-button">{{ 'pagar' | translate }}</button>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class UserServiceTsService {
   private url = environment.apiUrl;
 
 
-  constructor(private auth: Auth,public translate: TranslateService, private http: HttpClient) { }
+  constructor(private auth: Auth,public translate: TranslateService, private http: HttpClient, private authService: AuthService) { }
 
   login({user_email, user_password}: any) {
     return signInWithEmailAndPassword(this.auth, user_email, user_password);
@@ -29,8 +30,17 @@ export class UserServiceTsService {
   }
 
   isLoggedIn(): boolean {
-    //return this.auth.currentUser !== null;
-    return ((sessionStorage.getItem('token') !== null));
+
+    if((sessionStorage.getItem('token') !== null)){
+      if(this.authService.isTokenExpired(sessionStorage.getItem('token'))){
+        this.logout();
+        return false;
+      }else{
+        return true;
+      }
+    }
+
+    return false;
   }
 
   restorePassword({user_email}: any){

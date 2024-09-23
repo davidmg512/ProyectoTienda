@@ -59,7 +59,10 @@
     "topVentas": "Más vendidos",
     "recomendaciones": "Porque compraste",
     "warningDireccion": "Tienes que añadir una dirección a tu perfil para continuar con la compra.",
-    "carritoDireccionAdd": "Añadir direccion"
+    "carritoDireccionAdd": "Añadir direccion",
+    "pagar":"Pagar",
+    "cestaTitulo": "Cesta",
+    "seleccionDireccion": "Selecciona tu dirección"
     
 
 }

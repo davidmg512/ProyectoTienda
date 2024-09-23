@@ -1,6 +1,6 @@
 <div class="container">
   
-    <h1 style="color:white;">Cesta</h1>
+    <h1 style="color:white;">{{ 'cestaTitulo' | translate }}</h1>
     <div class="mt-5 mb-5" *ngIf="productos.length > 0; else vacio">
       <div class="cart-item" *ngFor="let item of productos">
         <img [src]="'assets/images/' + item.imagen" alt="{{ item.nombre }}" class="product-image" [routerLink]="['/productos', item.id]">
@@ -37,7 +37,7 @@
 
       <div class="address-select mt-4" *ngIf="direcciones !== null && direcciones.length > 0">
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{ 'Selecciona tu dirección' | translate }}</mat-label>
+          <mat-label>{{ 'seleccionDireccion' | translate }}</mat-label>
           <mat-select [(ngModel)]="selectedAddress" [disabled]="direcciones.length === 0">
             <mat-option *ngIf="direcciones.length === 0" disabled>
               {{ 'Por favor añade primero una direccion en tu perfil' | translate }}
@@ -58,7 +58,7 @@
 
       <div class="total">
         <p class="textoTotal">Total: {{ calcularTotal() }} €</p>
-        <button mat-stroked-button (click)="pagar()" [disabled]="!selectedAddress" class="pay-button">Pagar</button>
+        <button mat-stroked-button (click)="pagar()" [disabled]="!selectedAddress" class="pay-button">{{ 'pagar' | translate }}</button>
       </div>
     </div>
     <ng-template #vacio>
