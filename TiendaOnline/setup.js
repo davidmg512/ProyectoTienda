@@ -33,8 +33,9 @@ async function main()
     
     const serviceAccount = require("./firebase/tiendaonline-79f41-firebase-adminsdk-xxzcc-6d26161a2c.json");
     
+    
     serviceAccount.private_key_id = process.env.PRIVATE_KEY_ID;
-    serviceAccount.private_key = process.env.PRIVATE_KEY;
+    serviceAccount.private_key = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
     serviceAccount.client_email = process.env.CLIENT_EMAIL;
     serviceAccount.client_id = process.env.CLIENT_ID;
 
