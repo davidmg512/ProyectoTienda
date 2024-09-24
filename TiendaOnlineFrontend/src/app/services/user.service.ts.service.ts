@@ -68,4 +68,14 @@ export class UserServiceTsService {
     }
   }
 
+  register(data:any): Observable<any>{
+    const token = localStorage.getItem('token'); 
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<any>(`${this.url}/register`, data, { headers });
+  }
+
 }

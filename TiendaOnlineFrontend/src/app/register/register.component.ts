@@ -20,24 +20,21 @@ export class RegisterComponent {
 
   errorMessage: boolean = false;
 
-  constructor(private UserServiceTsService: UserServiceTsService,private http: HttpClient,public translate: TranslateService,private router: Router) {}
+  constructor(private UserServiceTsService: UserServiceTsService,public translate: TranslateService,private router: Router) {}
 
   onSubmit() {
     // Enviar los datos del formulario al backend
-    
-    this.http.post('http://localhost:3000/register', this.formData)
-      .subscribe(
-        (response) => {
-          // Manejar la respuesta del backend
-          console.log('Registro exitoso:', response);
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          this.errorMessage = true;
-          console.error('Error en el registro:', error);
-        }
-      );
-      
+
+    this.UserServiceTsService.register(this.formData).subscribe(
+      (response) => {
+        console.log('Registro exitoso.');
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.log('Error en el registro.');
+        this.errorMessage = true;
+      }
+    )
   }
 
   ngOnInit(): void {
