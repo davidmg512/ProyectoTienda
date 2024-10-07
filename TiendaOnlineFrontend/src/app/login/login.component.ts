@@ -58,6 +58,26 @@ export class LoginComponent {
     }
   }
 
+  async accederInvitado(){
+    let invitadoData = {
+      user_email: "invitadosushop@gmail.com",
+      user_password: "password"
+    }
+
+    try{
+      const response = await this.UserServiceTsService.login(invitadoData);
+      const stringValue =  await response.user.getIdToken();
+      localStorage.setItem('token',stringValue);
+      sessionStorage.setItem('token',stringValue);
+      this.navbar.reloadPage();
+      this.router.navigate(['']);
+
+    }catch(error){
+      this.errorMessage = true;
+      console.log(error);
+    }
+  }
+
   /*
   async onGoogleClick() {
 

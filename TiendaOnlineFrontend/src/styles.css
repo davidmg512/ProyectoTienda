@@ -66,7 +66,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .tp-blue {
-  text-transform: capitalize !important;
   background: #5a7ce2;
   background: -moz-linear-gradient(-45deg, #5a7ce2 0, #8283e8 50%, #6624c8 51%, #565bd8 71%, #575cdb 100%);
   background: -webkit-linear-gradient(-45deg, #5a7ce2 0, #8283e8 50%, #6624c8 51%, #565bd8 71%, #575cdb 100%);
@@ -77,8 +76,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border: medium;
 }
 
+.tp-green {
+  background: #2c3e50; /* Color base oscuro */
+  background: -moz-linear-gradient(-45deg, #2c3e50 0%, #27ae60 50%, #16a085 51%, #1abc9c 71%, #16a085 100%);
+  background: -webkit-linear-gradient(-45deg, #2c3e50 0%, #27ae60 50%, #16a085 51%, #1abc9c 71%, #16a085 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #27ae60 50%, #16a085 51%, #1abc9c 71%, #16a085 100%);
+  background-size: 400% 400%;
+  animation: AnimationName 4s ease infinite;
+  animation-delay: 2s;
+  border: medium;
+  color: white; /* Texto legible */
+}
+
 .tp-btn {
-  text-transform: capitalize !important;
   border-radius: 5px !important;
   margin: 10px auto;
   font-size: 14px;
@@ -88,7 +98,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   cursor: pointer;
   padding: 6.5px 30px !important;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, .14);
-  text-transform: uppercase;
   box-shadow: 0 4px 9px 0 rgba(0, 0, 0, .2);
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }

@@ -39,18 +39,17 @@
 
             <div *ngIf="errorMessage" class="alert alert-danger">{{ 'ErrorEmailyContrasenya' | translate }}</div>
             
-            <div class="center-button ">
+            <div class="center-button">
               <button matRipple class="tp-blue tp-btn" type="submit">{{'IniciarSesion' | translate}}</button>
             </div>
 
-            <!--
-            <div class="button-container-1">
-              <span class="mas" style="padding-bottom: 10px;">{{'IniciarSesion' | translate}}</span>
-              <button name="Hover" type="submit">{{'IniciarSesion' | translate}}</button>
-            </div>-->
-            
             
           </form>
+          <div class="center-button">
+            <button matRipple class="tp-green tp-btn" (click)="accederInvitado()">{{'invitado' | translate}}</button>
+          </div>
+
+          
         </div>
         
         
@@ -68,7 +67,9 @@
 
       </mat-card-content>
 
-        
+      <div style="margin-top:30px; margin-left: auto;">
+        <a class="hover-underline-animation float-end" data-underline-color="blue" routerLink="/register" style="text-decoration: none;">{{'nocuenta' | translate}}</a>
+      </div>
     </mat-card>
 </div>
 

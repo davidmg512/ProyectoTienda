@@ -25,6 +25,7 @@ export class CarritoComponent {
 
   obtenerProductos(){
     this.productos = this.carritoService.getCarritoItems();
+    console.log(this.productos);
   }
 
   obtenerDirecciones(){
@@ -82,5 +83,9 @@ export class CarritoComponent {
   pagar(){
     this.carritoService.pagarPedido(this.selectedAddress);
   };
+
+  navegarAnterior(){
+    window.history.back();
+  }
   
 }

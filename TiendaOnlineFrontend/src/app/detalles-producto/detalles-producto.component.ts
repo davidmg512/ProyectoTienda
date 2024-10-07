@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { CarritoServiceService } from '../services/carrito-service.service';
@@ -20,7 +20,8 @@ export class DetallesProductoComponent {
   constructor(private route: ActivatedRoute, 
     private productoService: ProductoService, 
     private cestaService: CarritoServiceService, 
-    private userService:UserServiceTsService) {
+    private userService:UserServiceTsService,
+    private router:Router) {
 
     this.isLoggedIn = userService.isLoggedIn();
   }
@@ -37,7 +38,8 @@ export class DetallesProductoComponent {
   loadProductDetails(id: string): void {
     this.productoService.getProductById(id).subscribe(
       (data: any) => {
-        this.producto = data;
+        const { _id, ...resto } = data;
+        this.producto = { id: _id || data.id, ...resto };
       },
       (error: any) => {
         console.log("Error al obtener el producto.");
@@ -48,6 +50,10 @@ export class DetallesProductoComponent {
 
   addToCart(): void {
     this.cestaService.addToCart(this.producto);
+  }
+
+  navegarAnterior(){
+    window.history.back();
   }
 
   /*

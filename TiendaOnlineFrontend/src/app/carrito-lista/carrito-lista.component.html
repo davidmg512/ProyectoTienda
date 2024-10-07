@@ -2,11 +2,11 @@
   <div *ngIf="productos.length > 0">
     <div *ngFor="let product of productos;">
       <mat-card class="cart-card">
-        <mat-card-content>
+        <mat-card-content class="cart-card-content">
           <img [src]="'assets/images/' + product.imagen" alt="Imagen del producto" class="cart-image" [routerLink]="['/productos', product.id]">
-          <span style="margin-left: 15px;" class="fw-bold"> {{ product.nombre }} &nbsp;</span>
-          <span>{{product.cantidad}} x {{product.precio}} €</span>
-          <button mat-mini-fab (click)="borrarItem(product.id)" class="delete-button float-end">
+          <span style="margin-left: 15px;" class="fw-bold product-name"> {{ product.nombre }} &nbsp;</span>
+          <span style="margin-left: 10px;">{{product.cantidad}} x {{product.precio}} €</span>
+          <button mat-mini-fab (click)="borrarItem(product.id)" class="delete-button">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-content>

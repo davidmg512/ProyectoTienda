@@ -63,13 +63,16 @@
                     </a>
                 </li>
                 <li class="nav-item nav-icon-custom" style="display:flex; align-items:center; justify-content:center;">
-                    <a id="cart-button" class="nav-link text-white hover-underline-animation" routerLink="/carrito" data-underline-color="white" (mouseenter)="showCarritoLista()" (mouseleave)="hideCarritoLista()">
-                        <mat-icon class="large-icon">shopping_cart</mat-icon>
-                        <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
-                        <div class="tooltip d-none d-md-block" *ngIf="isCarritoListaVisible">
-                            <app-carrito-lista></app-carrito-lista>
-                        </div>
-                    </a>
+                    <div (mouseenter)="showCarritoLista()" (mouseleave)="hideCarritoLista()" style="position: relative;">
+                        <a id="cart-button" class="nav-link text-white hover-underline-animation" data-underline-color="white" >
+                            <mat-icon class="large-icon" routerLink="/carrito">shopping_cart</mat-icon>
+                            <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+                            <div class="tooltip d-none d-md-block" *ngIf="isCarritoListaVisible">
+                                <app-carrito-lista ></app-carrito-lista>
+                            </div>
+                        </a>
+                    </div>
+                    
                 </li>
                 <li class="nav-item nav-icon-custom" style="display:flex; align-items:center; justify-content:center;">
                     <a class="nav-link text-white hover-underline-animation" data-underline-color="white" (click)="onClick(); reloadPage()">

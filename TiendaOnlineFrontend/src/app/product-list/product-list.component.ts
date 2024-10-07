@@ -95,18 +95,6 @@ export class ProductListComponent{
       );
   }
 
-  mapProducto(dbProducto: any): Producto {
-    return {
-        id: dbProducto._id,
-        nombre: dbProducto.nombre,
-        descripcion: dbProducto.descripcion,
-        precio: dbProducto.precio,
-        stock: dbProducto.stock,
-        imagen: dbProducto.imagen,
-        categorias: dbProducto.categorias
-    };
-  }
-
   loadMore(): void {
     if (this.page * this.limit < this.total) {
       this.page++;

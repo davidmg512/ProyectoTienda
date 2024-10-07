@@ -11,7 +11,7 @@ import { UserServiceTsService } from '../services/user.service.ts.service';
 })
 export class ResetpasswordComponent {
 
-  constructor(private UserServiceTsService: UserServiceTsService,private auth: Auth,public translate: TranslateService) {}
+  constructor(private UserServiceTsService: UserServiceTsService,private auth: Auth,public translate: TranslateService, private router:Router) {}
 
   formData = {
     user_email: ''
@@ -36,6 +36,10 @@ export class ResetpasswordComponent {
 
   ngOnInit(): void {
     this.UserServiceTsService.checkLenguaje();
+    }
+
+    navegarAnterior(){
+      this.router.navigate(["/login"]);
     }
   
 }

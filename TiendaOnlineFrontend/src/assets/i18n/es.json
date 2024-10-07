@@ -62,8 +62,9 @@
     "carritoDireccionAdd": "Añadir direccion",
     "pagar":"Pagar",
     "cestaTitulo": "Cesta",
-    "seleccionDireccion": "Selecciona tu dirección"
-    
+    "seleccionDireccion": "Selecciona tu dirección",
+    "invitado": "Acceder como invitado",
+    "nocuenta": "¿No tienes cuenta? Registrate"    
 
 }
   

@@ -1,5 +1,5 @@
 .cart-card {
-  width: 400px; /* Ancho deseado del card */
+  width: 330px; /* Ancho deseado del card */
   max-height: 400px; /* Altura máxima para evitar un card excesivamente alto */
   overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
   margin: 10px; /* Margen alrededor del card */
@@ -21,6 +21,11 @@
   margin-left: auto;
 }
 
+.cart-card-content {
+  display: flex;
+  align-items: center;
+}
+
 .total-text{
   font-size: large;
   padding: 10px;
@@ -34,5 +39,14 @@
   align-items: center;
   cursor: pointer;
   vertical-align: baseline;
+  margin-left: auto;
+}
+
+.product-name{
+  display: inline-block; /* Asegúrate de que el span se comporte como un bloque en línea */
+  max-width: 120px; /* Ajusta este valor según el diseño deseado */
+  overflow-wrap: break-word; /* Permite que las palabras se dividan */
+  white-space: normal; /* Permite que el texto use múltiples líneas */
+  overflow: hidden; /* Oculta el texto que excede el contenedor */
 }
   

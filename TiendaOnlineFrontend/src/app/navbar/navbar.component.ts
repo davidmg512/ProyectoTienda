@@ -17,6 +17,7 @@ export class NavbarComponent {
   stringToken: string | null = "";
   cartItemCount: number = 0;
   isCarritoListaVisible: boolean = false;
+  private hideTimeout: any;
 
   constructor(private UserServiceTsService: UserServiceTsService,
     private router: Router, activerouter:ActivatedRoute,public translate: TranslateService, private carritoService: CarritoServiceService) {
@@ -40,6 +41,12 @@ export class NavbarComponent {
     window.location.reload();
   }
 
+  onCartIconClick(event: MouseEvent): void {
+    // Si el clic es en el icono, no se propaga
+    event.stopPropagation(); // Detener la propagación para evitar que el clic en el icono active el enlace
+    // El enlace se activará por el routerLink en el icono
+  }
+
   changeLanguage(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('lenguaje',lang);
@@ -57,11 +64,21 @@ export class NavbarComponent {
     }
 
     showCarritoLista() {
+      clearTimeout(this.hideTimeout);
       this.isCarritoListaVisible = true;
+      console.log('Tooltip visible');
     }
   
     hideCarritoLista() {
-      this.isCarritoListaVisible = false;
+      this.hideTimeout = setTimeout(() => {
+        this.isCarritoListaVisible = false;
+        console.log('Tooltip hidden');
+      }, 700);
+      
+    }
+
+    ngOnDestroy() {
+      clearTimeout(this.hideTimeout);
     }
 
     

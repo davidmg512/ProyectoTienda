@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     margin: 20px;
+    padding-bottom: 100px;
   }
   
   .product-card {
@@ -53,4 +54,9 @@
     top: 10px; /* Ajusta la distancia desde arriba según sea necesario */
     right: 10px; /* Ajusta la distancia desde la derecha según sea necesario */
     z-index: 1; /* Asegura que el botón esté por encima de la imagen */
+  }
+
+  .back-button {
+    right: 10px;
+    color: white !important;
   }

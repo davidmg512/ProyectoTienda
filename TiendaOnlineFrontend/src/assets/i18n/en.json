@@ -63,7 +63,9 @@
     "carritoDireccionAdd": "Add address",
     "pagar":"Pay",
     "cestaTitulo": "Shopping cart",
-    "seleccionDireccion": "Select your address"
+    "seleccionDireccion": "Select your address",
+    "invitado": "Log in as guest",
+    "nocuenta": "Don't have an account? Register"  
 
 
 

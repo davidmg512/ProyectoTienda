@@ -1,5 +1,7 @@
 <div class="container">
-  
+  <button class="back-button" mat-icon-button aria-label="Back button" (click)="navegarAnterior()">
+    <mat-icon class="bold">arrow_back</mat-icon>
+  </button>
     <h1 style="color:white;">{{ 'cestaTitulo' | translate }}</h1>
     <div class="mt-5 mb-5" *ngIf="productos.length > 0; else vacio">
       <div class="cart-item" *ngFor="let item of productos">

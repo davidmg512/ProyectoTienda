@@ -1,4 +1,7 @@
 <div class="product-details-container mt-5" *ngIf="producto">
+  <button class="back-button" mat-icon-button aria-label="Back button" (click)="navegarAnterior()">
+    <mat-icon class="bold">arrow_back</mat-icon>
+  </button>
     <mat-card class="product-card">
       <div class="product-header">
         <img mat-card-image [src]="'assets/images/' + producto.imagen" alt="{{ producto.nombre }}">
