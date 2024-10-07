@@ -12,9 +12,8 @@
               <div class="row">
                 <div class="col-7">
                   <h3>{{ item.nombre }}</h3>
-                  <p>{{ item.descripcion }}</p>
                 </div>
-                <div class="col-5">
+                <div class="col-5 mb-5">
                   <div class="quantity-controls">
                     <button class="quantity-button" mat-icon-button (click)="disminuirCantidad(item)">
                       <mat-icon>remove</mat-icon>
@@ -25,6 +24,9 @@
                     </button>
                   </div>
                 </div>
+              </div>
+              <div class="row descripcion">
+                <p>{{ item.descripcion }}</p>
               </div>
               <div class="space-between">
                 <p>Precio: {{ item.precio * item.cantidad }} €</p>

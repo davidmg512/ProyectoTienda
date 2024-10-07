@@ -1,6 +1,6 @@
 <div class="container contenedorRecomendaciones"> 
     <div class="row" *ngIf="charged; else spinner">
-        <div class="col-12 col-md-6 mt-4" *ngFor="let categoria of categorias; let i = index">
+        <div class="col-12 col-md-6 mt-4 cardRecomendacion" *ngFor="let categoria of categorias; let i = index">
             <mat-card appearance="outlined">
                 <mat-card-header style="align-items: center; justify-content:center;">
                     <h2>{{ 'recomendaciones' | translate}} {{categoria}}</h2>

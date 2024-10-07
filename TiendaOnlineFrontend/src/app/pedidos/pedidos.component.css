@@ -14,3 +14,25 @@
 .address-info div:last-child {
     border-bottom: none; /* Elimina la línea divisoria del último campo */
 }
+
+.cardDireccion{
+    margin:20px;
+}
+
+.infoProducto{
+    display: flex; 
+    align-items: stretch; 
+    padding: 10px;
+}
+
+@media (max-width:768px){
+    .cardDireccion{
+        margin:0;
+    }
+
+    .infoProducto{
+        padding-left:0;
+        padding-right:0;
+        padding-bottom:10px;
+    }
+}

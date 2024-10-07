@@ -61,7 +61,15 @@ export class RecomendacionesComponent {
   getProductosPorCategoria(categoria:string){
     this.productoService.obtenerPorCategoria(categoria).subscribe({
       next:(response) => {
-        this.productos[categoria] = response.data.data;
+        
+        this.productos[categoria] = response.data.data.map((item:any) => {
+          return {
+            id: item._id,
+            ...item
+          }
+        });
+
+        console.log(this.productos);
       },
       error:(error) => {
         console.log("Error obteniendo los productos de la categoria " + categoria)

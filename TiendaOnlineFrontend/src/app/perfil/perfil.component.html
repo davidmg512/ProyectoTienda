@@ -59,7 +59,7 @@
             <div style="margin-top: 50px">
 
               <mat-accordion>
-                <mat-expansion-panel style="margin-top: 10px;" *ngFor="let address of userAddresses; let i = index">
+                <mat-expansion-panel style="margin-top: 10px; border:black solid 1px;" *ngFor="let address of userAddresses; let i = index">
                   <mat-expansion-panel-header (click)="fillAddressForm(address)">
 
                     <mat-panel-title>
@@ -67,7 +67,7 @@
                       <span *ngIf="address.main_address" style="color: rgb(98, 194, 1);">{{'DireccionPrincipal' | translate}}</span>
                     </mat-panel-title>
                     
-                    <mat-panel-description>
+                    <mat-panel-description class="descripcionDireccion">
                       {{ address.address_country }}, {{ address.address_province }}, {{address.address_town}}, {{address.address_postal}}, {{address.street_and_number}}, {{address.additional_data}}
                     </mat-panel-description>
                   </mat-expansion-panel-header>
@@ -104,7 +104,7 @@
                       <textarea matInput formControlName="additionalInfo" placeholder="Información Adicional"></textarea>
                     </mat-form-field><br>
 
-                    <button style="margin-left: 100px; margin-bottom: 15px;" class="custom-button" (click)="onSetMainAddress(address)">
+                    <button class="custom-button botonMainDireccion" (click)="onSetMainAddress(address)">
                       {{'DireccionPrincipal' | translate}}
                     </button>
 

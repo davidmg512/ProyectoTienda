@@ -100,5 +100,8 @@ mat-card-content {
 @media (max-width: 768px) {
     .contenedorRecomendaciones{
         margin-top:0;
+        padding:20px;
     }
+
+    
 }
